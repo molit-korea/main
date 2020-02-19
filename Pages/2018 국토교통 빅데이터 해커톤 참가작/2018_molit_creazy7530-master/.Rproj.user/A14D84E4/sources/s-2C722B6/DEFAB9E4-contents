@@ -1,0 +1,5 @@
+live3 <- live.R
+
+sort(table(live3[live3$V14 != 1 , 150]))
+sort(table(live3[live3$V14 != 1 , 151]))
+(table(live3[live3$V14 != 1 , 151],live3[live3$V14 != 1 , 150]))

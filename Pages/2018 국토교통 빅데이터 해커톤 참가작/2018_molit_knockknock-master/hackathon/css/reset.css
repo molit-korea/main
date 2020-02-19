@@ -1,0 +1,63 @@
+@charset "UTF-8";
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+
+/* CSS reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:12px;
+	vertical-align:baseline;
+	background:transparent;
+	-webkit-text-size-adjust:none;
+	font-family:'Noto Sans KR', 'Dotum', 'Gulim', 'Arial', sans-serif;
+	list-style:none;
+	line-height:1;
+}
+h1, h2, h3, h4, h5, h6 {display:inline;}
+
+em,address{font-style:normal;}
+hr{display:none}
+body{line-height:1;word-break: break-all;}
+ol, ul{list-style:none;}
+blockquote, q{quotes: none;}
+blockquote:before, blockquote:after,q:before, q:after{content:'';content:none;}
+
+table{width:100%;border-collapse:collapse;border-spacing:0;table-layout:auto;word-break:break-all;}
+table th, table td{vertical-align:middle; }
+fieldset{margin:0;padding:0;border:0 none;}
+legend, .hide{position:absolute; left:-9999px;width:0; height:0; font-size:0; line-height:0; overflow:hidden;}
+caption {width:0; height:0; font-size:0; line-height:0; overflow:hidden;}
+html, body,input,button,textarea{font-size:13px; color:#333;font-family:'Noto Sans KR', 'Dotum', 'Gulim', 'Arial', sans-serif;}
+/* button::-moz-focus-inner {border:none; cursor:pointer; background:#fff; box-shadow:0; margin:0; padding:0;} */ /* 표준수정 */
+button {border:none; cursor:pointer; background:#fff; box-shadow:none; margin:0; padding:0;}/* 표준수정 */
+button img {margin:0; padding:0;}
+a {color:#333; font-weight:500; text-decoration:none; cursor:pointer;}
+a:hover,a:focus {text-decoration:none;cursor:pointer;}
+img,input{vertical-align:top;}
+select {height:27px; margin:0; border:none; padding:0; font-size:12px; vertical-align:middle; color:#333; font-family:'Noto Sans KR', 'Dotum', 'Gulim', 'Arial', sans-serif;  cursor:pointer;}
+textarea {border:1px solid #dcdcdc; color:#333; font-size:13px; line-height:18px; padding:5px 5px 5px 5px; overflow-y:auto; resize:none;-webkit-border-radius:0; -webkit-appearance: none; }
+h1,h2,h3,h4,h5,h6,th,strong {font-weight:600;}
+
+input[type="checkbox"] {width:15px; height:15px; cursor:pointer; margin:2px 3px 0 0; /* border:1px solid #fff;  */ border:0;  }
+input[type="checkbox"]:focus + label {text-decoration:underline;}
+input[type="radio"] {width:15px; height:15px; cursor:pointer; margin:3px 3px 0 0; background:#fff; border:1px solid #ccc;}
+input[type="text"] {-webkit-appearance:none; width:200px; height:25px; padding:0 5px 0 5px; border:1px solid #ddd; color:#333;}
+input[type="password"] {-webkit-appearance:none; width:200px; height:25px; padding:0 5px 0 5px; border:1px solid #ddd; color:#333;}
+input[type="submit"] {-webkit-appearance:none; border:1px solid #ccc; width:35px; height:27px; background:#fff; color:#333;  cursor:pointer;}
+input[type="reset"] {-webkit-appearance:none; border:1px solid #ccc; width:45px; height:27px; background:#fff; color:#333;  cursor:pointer;}
+input[type="button"] {-webkit-appearance:none; cursor:pointer; }
+
+/* html5 reset */
+header, footer, section, article, aside, nav, hgroup, details, menu, figure, figcaption, canvas{display:block; margin:0; padding:0; border:0; font-size:100%; font:inherit; vertical-align:baseline;}
+input {border-radius:0; padding:0; margin:0;}
+

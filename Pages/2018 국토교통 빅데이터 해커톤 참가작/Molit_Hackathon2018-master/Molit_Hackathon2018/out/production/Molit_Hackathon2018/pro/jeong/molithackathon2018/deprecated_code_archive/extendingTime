@@ -1,0 +1,21 @@
+private ArrayList<String> extendDateFromTo(String from, String to) {
+        ArrayList<String> retArray = new ArrayList<>();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        LocalDate dateFrom = null;
+        LocalDate dateTo = null;
+
+        try {
+            dateFrom = LocalDate.of(Integer.parseInt(from.split("-")[0]), Integer.parseInt(from.split("-")[1]), Integer.parseInt(from.split("-")[2]));
+            dateTo = LocalDate.of(Integer.parseInt(to.split("-")[0]), Integer.parseInt(to.split("-")[1]), Integer.parseInt(to.split("-")[2]));
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        do {
+            retArray.add(dateFrom.toString());
+            dateFrom = dateFrom.plusDays(1);
+        } while(!dateFrom.equals(dateTo.plusDays(1)));
+
+        return retArray;
+    }

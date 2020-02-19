@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Molit_Hackathon2018:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Molit_Hackathon2018_jar</output-path>
+    <root id="archive" name="Molit_Hackathon2018.jar">
+      <element id="module-output" name="Molit_Hackathon2018" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/driver/sqlite-jdbc-3.7.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

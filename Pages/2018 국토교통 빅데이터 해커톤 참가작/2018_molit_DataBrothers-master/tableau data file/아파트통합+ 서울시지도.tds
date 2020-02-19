@@ -1,0 +1,601 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 10500.18.0404.1406                               -->
+<datasource formatted-name='federated.12txazu1dqvoz318uh1o714hdvzp' inline='true' source-platform='win' version='10.5' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <connection class='federated'>
+    <named-connections>
+      <named-connection caption='아파트통합' name='excel-direct.0zvwuhv0op7aue13d5wq90fbvmr7'>
+        <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='C:/Users/user/Desktop/부동산 데이터/xlsx/아파트통합.xlsx' interpretationMode='0' password='' server='' validate='no' />
+      </named-connection>
+      <named-connection caption='서울시' name='excel-direct.0g7enwb026tt8k11y4cab0o2hdpc'>
+        <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='C:/Users/user/Desktop/부동산 데이터/xlsx/서울시.xlsx' interpretationMode='0' password='' server='' validate='no' />
+      </named-connection>
+    </named-connections>
+    <relation join='inner' type='join'>
+      <clause type='join'>
+        <expression op='='>
+          <expression op='[아파트통합].[구]' />
+          <expression op='[시군구위경도].[SIG_KOR_NM]' />
+        </expression>
+      </clause>
+      <relation connection='excel-direct.0zvwuhv0op7aue13d5wq90fbvmr7' name='아파트통합' table='[아파트통합$]' type='table'>
+        <columns gridOrigin='A1:N10001:no:A1:N10001:0' header='yes' outcome='6'>
+          <column datatype='integer' name='ID' ordinal='0' />
+          <column datatype='date' name='계약년월' ordinal='1' />
+          <column datatype='string' name='구' ordinal='2' />
+          <column datatype='string' name='동' ordinal='3' />
+          <column datatype='string' name='시군구' ordinal='4' />
+          <column datatype='integer' name='아파트_mean_실거래' ordinal='5' />
+          <column datatype='integer' name='아파트_mean_월세' ordinal='6' />
+          <column datatype='integer' name='아파트_mean_전세' ordinal='7' />
+          <column datatype='integer' name='아파트_median_실거래' ordinal='8' />
+          <column datatype='integer' name='아파트_median_월세' ordinal='9' />
+          <column datatype='integer' name='아파트_median_전세' ordinal='10' />
+          <column datatype='integer' name='아파트실거래_mean_건축년도' ordinal='11' />
+          <column datatype='integer' name='아파트월세_mean_건축년도' ordinal='12' />
+          <column datatype='integer' name='아파트전세_mean_건축년도' ordinal='13' />
+        </columns>
+      </relation>
+      <relation connection='excel-direct.0g7enwb026tt8k11y4cab0o2hdpc' name='시군구위경도' table='[시군구위경도$]' type='table'>
+        <columns gridOrigin='A1:H10001:no:A1:H10001:0' header='yes' outcome='6'>
+          <column datatype='integer' name='PolygonID' ordinal='0' />
+          <column datatype='integer' name='SIG_CD' ordinal='1' />
+          <column datatype='string' name='SIG_ENG_NM' ordinal='2' />
+          <column datatype='string' name='SIG_KOR_NM' ordinal='3' />
+          <column datatype='integer' name='SubPolygonID' ordinal='4' />
+          <column datatype='integer' name='PointID' ordinal='5' />
+          <column datatype='real' name='Longitude' ordinal='6' />
+          <column datatype='real' name='Latitude' ordinal='7' />
+        </columns>
+      </relation>
+    </relation>
+    <metadata-records>
+      <metadata-record class='column'>
+        <remote-name>ID</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[ID]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>ID</remote-alias>
+        <ordinal>0</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>계약년월</remote-name>
+        <remote-type>7</remote-type>
+        <local-name>[계약년월]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>계약년월</remote-alias>
+        <ordinal>1</ordinal>
+        <local-type>date</local-type>
+        <aggregation>Year</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;DATE&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>구</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[구]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>구</remote-alias>
+        <ordinal>2</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>동</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[동]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>동</remote-alias>
+        <ordinal>3</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>시군구</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[시군구]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>시군구</remote-alias>
+        <ordinal>4</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>아파트_mean_실거래</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[아파트_mean_실거래]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>아파트_mean_실거래</remote-alias>
+        <ordinal>5</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>아파트_mean_월세</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[아파트_mean_월세]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>아파트_mean_월세</remote-alias>
+        <ordinal>6</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>아파트_mean_전세</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[아파트_mean_전세]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>아파트_mean_전세</remote-alias>
+        <ordinal>7</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>아파트_median_실거래</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[아파트_median_실거래]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>아파트_median_실거래</remote-alias>
+        <ordinal>8</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>아파트_median_월세</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[아파트_median_월세]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>아파트_median_월세</remote-alias>
+        <ordinal>9</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>아파트_median_전세</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[아파트_median_전세]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>아파트_median_전세</remote-alias>
+        <ordinal>10</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>아파트실거래_mean_건축년도</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[아파트실거래_mean_건축년도]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>아파트실거래_mean_건축년도</remote-alias>
+        <ordinal>11</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>아파트월세_mean_건축년도</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[아파트월세_mean_건축년도]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>아파트월세_mean_건축년도</remote-alias>
+        <ordinal>12</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>아파트전세_mean_건축년도</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[아파트전세_mean_건축년도]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>아파트전세_mean_건축년도</remote-alias>
+        <ordinal>13</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='capability'>
+        <remote-name />
+        <remote-type>0</remote-type>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias />
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='integer' name='context'>0</attribute>
+          <attribute datatype='string' name='gridOrigin'>&quot;A1:N10001:no:A1:N10001:0&quot;</attribute>
+          <attribute datatype='boolean' name='header'>true</attribute>
+          <attribute datatype='integer' name='outcome'>6</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>PolygonID</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[PolygonID]</local-name>
+        <parent-name>[시군구위경도]</parent-name>
+        <remote-alias>PolygonID</remote-alias>
+        <ordinal>14</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>SIG_CD</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[SIG_CD]</local-name>
+        <parent-name>[시군구위경도]</parent-name>
+        <remote-alias>SIG_CD</remote-alias>
+        <ordinal>15</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>SIG_ENG_NM</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[SIG_ENG_NM]</local-name>
+        <parent-name>[시군구위경도]</parent-name>
+        <remote-alias>SIG_ENG_NM</remote-alias>
+        <ordinal>16</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>SIG_KOR_NM</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[SIG_KOR_NM]</local-name>
+        <parent-name>[시군구위경도]</parent-name>
+        <remote-alias>SIG_KOR_NM</remote-alias>
+        <ordinal>17</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>SubPolygonID</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[SubPolygonID]</local-name>
+        <parent-name>[시군구위경도]</parent-name>
+        <remote-alias>SubPolygonID</remote-alias>
+        <ordinal>18</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>PointID</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[PointID]</local-name>
+        <parent-name>[시군구위경도]</parent-name>
+        <remote-alias>PointID</remote-alias>
+        <ordinal>19</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>Longitude</remote-name>
+        <remote-type>5</remote-type>
+        <local-name>[Longitude]</local-name>
+        <parent-name>[시군구위경도]</parent-name>
+        <remote-alias>Longitude</remote-alias>
+        <ordinal>20</ordinal>
+        <local-type>real</local-type>
+        <aggregation>Sum</aggregation>
+        <precision>15</precision>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>Latitude</remote-name>
+        <remote-type>5</remote-type>
+        <local-name>[Latitude]</local-name>
+        <parent-name>[시군구위경도]</parent-name>
+        <remote-alias>Latitude</remote-alias>
+        <ordinal>21</ordinal>
+        <local-type>real</local-type>
+        <aggregation>Sum</aggregation>
+        <precision>15</precision>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='capability'>
+        <remote-name />
+        <remote-type>0</remote-type>
+        <parent-name>[시군구위경도]</parent-name>
+        <remote-alias />
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='integer' name='context'>0</attribute>
+          <attribute datatype='string' name='gridOrigin'>&quot;A1:H10001:no:A1:H10001:0&quot;</attribute>
+          <attribute datatype='boolean' name='header'>true</attribute>
+          <attribute datatype='integer' name='outcome'>6</attribute>
+        </attributes>
+      </metadata-record>
+    </metadata-records>
+  </connection>
+  <aliases enabled='yes' />
+  <column caption='Fixed' datatype='real' name='[Calculation_858498683263868928]' role='measure' type='quantitative'>
+    <calculation class='tableau' formula='{ FIXED [계약년월]: avg([아파트_median_실거래])}' />
+  </column>
+  <column caption='이명박정부' datatype='boolean' name='[Calculation_858498683276034053]' role='dimension' type='nominal'>
+    <calculation class='tableau' formula='YEAR([계약년월])&gt;=2011 and Year([계약년월])&lt;=2012' />
+  </column>
+  <column caption='전세비율' datatype='real' name='[Calculation_858498683284283402]' role='measure' type='quantitative'>
+    <calculation class='tableau' formula='[아파트_mean_전세]/ [아파트_median_실거래] * 100' />
+  </column>
+  <column datatype='integer' name='[ID]' role='dimension' type='ordinal' />
+  <column aggregation='Avg' datatype='real' name='[Latitude]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+  <column aggregation='Avg' datatype='real' name='[Longitude]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+  <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+    <calculation class='tableau' formula='1' />
+  </column>
+  <column datatype='integer' name='[PointID]' role='dimension' type='ordinal' />
+  <column datatype='integer' name='[PolygonID]' role='dimension' type='ordinal' />
+  <column datatype='integer' name='[SubPolygonID]' role='dimension' type='ordinal' />
+  <column caption='문재인정부' datatype='boolean' name='[박근혜정부 (copy)]' role='dimension' type='nominal'>
+    <calculation class='tableau' formula='YEAR([계약년월]) &gt;= 2017' />
+  </column>
+  <column aggregation='CountD' datatype='string' default-role='measure' default-type='quantitative' name='[시군구]' role='dimension' type='nominal' />
+  <column datatype='integer' name='[아파트_mean_실거래]' role='measure' type='quantitative' />
+  <column datatype='integer' name='[아파트_median_실거래]' role='measure' type='quantitative' />
+  <column caption='박근혜정부' datatype='boolean' name='[이명박정부 (copy)]' role='dimension' type='nominal'>
+    <calculation class='tableau' formula='YEAR([계약년월]) &lt;= 2016 and YEAR([계약년월]) &gt;= 2013' />
+  </column>
+  <column-instance column='[Calculation_858498683263868928]' derivation='Avg' name='[avg:Calculation_858498683263868928:qk]' pivot='key' type='quantitative' />
+  <column-instance column='[아파트_median_실거래]' derivation='Avg' name='[avg:아파트_median_실거래:qk]' pivot='key' type='quantitative' />
+  <column-instance column='[Calculation_858498683263868928]' derivation='Median' name='[med:Calculation_858498683263868928:qk]' pivot='key' type='quantitative' />
+  <column-instance column='[아파트_median_실거래]' derivation='Median' name='[med:아파트_median_실거래:qk]' pivot='key' type='quantitative' />
+  <column-instance column='[Calculation_858498683276034053]' derivation='None' name='[none:Calculation_858498683276034053:nk]' pivot='key' type='nominal' />
+  <column-instance column='[Forecast Indicator]' derivation='None' forecast-column-base='[Forecast Indicator]' forecast-column-type='forecast-indicator' name='[none:Forecast Indicator:nk]' pivot='key' type='nominal' />
+  <column-instance column='[박근혜정부 (copy)]' derivation='None' name='[none:박근혜정부 (copy):nk]' pivot='key' type='nominal' />
+  <column-instance column='[이명박정부 (copy)]' derivation='None' name='[none:이명박정부 (copy):nk]' pivot='key' type='nominal' />
+  <column-instance column='[Calculation_858498683263868928]' derivation='Sum' name='[sum:Calculation_858498683263868928:qk]' pivot='key' type='quantitative' />
+  <column-instance column='[아파트_mean_실거래]' derivation='Sum' name='[sum:아파트_mean_실거래:qk]' pivot='key' type='quantitative' />
+  <column-instance column='[아파트_median_실거래]' derivation='Sum' name='[sum:아파트_median_실거래:qk]' pivot='key' type='quantitative' />
+  <column-instance column='[Calculation_858498683263868928]' derivation='Avg' name='[win:avg:Calculation_858498683263868928:qk]' pivot='key' type='quantitative'>
+    <table-calc aggregation='Avg' from='-2' ordering-type='Rows' to='0' type='WindowTotal' window-options='IncludeCurrent' />
+  </column-instance>
+  <column-instance column='[아파트_median_실거래]' derivation='Avg' name='[win:avg:아파트_median_실거래:qk:2]' pivot='key' type='quantitative'>
+    <table-calc aggregation='Avg' from='-2' ordering-type='Rows' to='0' type='WindowTotal' window-options='IncludeCurrent' />
+  </column-instance>
+  <column-instance column='[아파트_median_실거래]' derivation='Avg' name='[win:avg:아파트_median_실거래:qk]' pivot='key' type='quantitative'>
+    <table-calc aggregation='Avg' from='0' ordering-type='Rows' to='0' type='WindowTotal' window-options='IncludeCurrent' />
+  </column-instance>
+  <column-instance column='[Calculation_858498683263868928]' derivation='Median' name='[win:med:Calculation_858498683263868928:qk]' pivot='key' type='quantitative'>
+    <table-calc aggregation='Avg' from='-2' ordering-type='Rows' to='0' type='WindowTotal' window-options='IncludeCurrent' />
+  </column-instance>
+  <column-instance column='[아파트_median_실거래]' derivation='Median' name='[win:med:아파트_median_실거래:qk:16]' pivot='key' type='quantitative'>
+    <table-calc aggregation='Avg' from='-10' ordering-type='Rows' to='0' type='WindowTotal' window-options='IncludeCurrent' />
+  </column-instance>
+  <column-instance column='[아파트_median_실거래]' derivation='Median' name='[win:med:아파트_median_실거래:qk:24]' pivot='key' type='quantitative'>
+    <table-calc aggregation='Avg' from='0' ordering-type='Rows' to='0' type='WindowTotal' window-options='IncludeCurrent' />
+  </column-instance>
+  <column-instance column='[아파트_median_실거래]' derivation='Median' name='[win:med:아파트_median_실거래:qk:6]' pivot='key' type='quantitative'>
+    <table-calc aggregation='Avg' from='-5' ordering-type='Rows' to='0' type='WindowTotal' window-options='IncludeCurrent' />
+  </column-instance>
+  <column-instance column='[아파트_median_실거래]' derivation='Median' name='[win:med:아파트_median_실거래:qk]' pivot='key' type='quantitative'>
+    <table-calc aggregation='Avg' from='-2' ordering-type='Rows' to='0' type='WindowTotal' window-options='IncludeCurrent' />
+  </column-instance>
+  <column-instance column='[아파트_median_실거래]' derivation='Sum' name='[win:sum:아파트_median_실거래:qk:4]' pivot='key' type='quantitative'>
+    <table-calc aggregation='Avg' from='-5' ordering-type='Rows' to='0' type='WindowTotal' window-options='IncludeCurrent' />
+  </column-instance>
+  <column-instance column='[아파트_median_실거래]' derivation='Sum' name='[win:sum:아파트_median_실거래:qk]' pivot='key' type='quantitative'>
+    <table-calc aggregation='Avg' from='-2' ordering-type='Rows' to='0' type='WindowTotal' window-options='IncludeCurrent' />
+  </column-instance>
+  <group caption='Action (PointID,PolygonID,SubPolygonID)' hidden='true' name='[Action (PointID,PolygonID,SubPolygonID)]' name-style='unqualified' user:auto-column='sheet_link'>
+    <groupfilter function='crossjoin'>
+      <groupfilter function='level-members' level='[PointID]' />
+      <groupfilter function='level-members' level='[PolygonID]' />
+      <groupfilter function='level-members' level='[SubPolygonID]' />
+    </groupfilter>
+  </group>
+  <layout dim-ordering='alphabetic' dim-percentage='0.663636' measure-ordering='alphabetic' measure-percentage='0.193182' parameter-percentage='0.143182' show-structure='true' user-set-layout='true' />
+  <style>
+    <style-rule element='mark'>
+      <encoding attr='color' field='[none:Forecast Indicator:nk]' type='palette'>
+        <map to='#4e79a7'>
+          <bucket>&quot;Actual&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;Estimate&quot;</bucket>
+        </map>
+      </encoding>
+      <encoding attr='color' field='[none:Calculation_858498683276034053:nk]' type='palette'>
+        <map to='#49525e'>
+          <bucket>true</bucket>
+        </map>
+        <map to='#d5d5d5'>
+          <bucket>false</bucket>
+        </map>
+      </encoding>
+      <encoding attr='color' field='[none:이명박정부 (copy):nk]' type='palette'>
+        <map to='#49525e'>
+          <bucket>true</bucket>
+        </map>
+        <map to='#d5d5d5'>
+          <bucket>false</bucket>
+        </map>
+      </encoding>
+      <encoding attr='color' field='[none:박근혜정부 (copy):nk]' type='palette'>
+        <map to='#49525e'>
+          <bucket>true</bucket>
+        </map>
+        <map to='#d5d5d5'>
+          <bucket>false</bucket>
+        </map>
+      </encoding>
+      <encoding attr='color' field='[:Measure Names]' type='palette'>
+        <map to='#59a14f'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[sum:Calculation_858498683263868928:qk]&quot;</bucket>
+        </map>
+        <map to='#76b7b2'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[sum:아파트_median_실거래:qk]&quot;</bucket>
+        </map>
+        <map to='#76b7b2'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:med:아파트_median_실거래:qk:6]&quot;</bucket>
+        </map>
+        <map to='#76b7b2'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:sum:아파트_median_실거래:qk:4]&quot;</bucket>
+        </map>
+        <map to='#76b7b2'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:sum:아파트_median_실거래:qk]&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[avg:아파트_median_실거래:qk]&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[med:아파트_median_실거래:qk]&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:avg:아파트_median_실거래:qk:2]&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:avg:아파트_median_실거래:qk]&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:med:아파트_median_실거래:qk:16]&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:med:아파트_median_실거래:qk:24]&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:med:아파트_median_실거래:qk]&quot;</bucket>
+        </map>
+        <map to='#e03426'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[med:Calculation_858498683263868928:qk]&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp]&quot;</bucket>
+        </map>
+        <map to='#f0bd27'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:avg:Calculation_858498683263868928:qk]&quot;</bucket>
+        </map>
+        <map to='#f0bd27'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:med:Calculation_858498683263868928:qk]&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[sum:아파트_mean_실거래:qk]&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[sum:아파트_median_실거래:qk]:1&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:med:아파트_median_실거래:qk:6]:1&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:sum:아파트_median_실거래:qk:4]:1&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:sum:아파트_median_실거래:qk]:1&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;[federated.1j5xhr709rkdis10wecy51h4a5yx].[avg:아파트_median_실거래:qk]&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;[federated.1j5xhr709rkdis10wecy51h4a5yx].[sum:아파트_median_실거래:qk]&quot;</bucket>
+        </map>
+        <map to='#ffbc79'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[avg:Calculation_858498683263868928:qk]&quot;</bucket>
+        </map>
+      </encoding>
+    </style-rule>
+  </style>
+  <semantic-values>
+    <semantic-value key='[Country].[Name]' value='&quot;South Korea&quot;' />
+  </semantic-values>
+  <default-sorts>
+    <sort class='manual' column='[none:Forecast Indicator:nk]' direction='ASC'>
+      <dictionary>
+        <bucket>&quot;Actual&quot;</bucket>
+        <bucket>&quot;Estimate&quot;</bucket>
+      </dictionary>
+    </sort>
+  </default-sorts>
+  <datasource-dependencies datasource='federated.1j5xhr709rkdis10wecy51h4a5yx'>
+    <column-instance column='[아파트_median_실거래]' derivation='Avg' name='[avg:아파트_median_실거래:qk]' pivot='key' type='quantitative' />
+    <column-instance column='[아파트_median_실거래]' derivation='Sum' name='[sum:아파트_median_실거래:qk]' pivot='key' type='quantitative' />
+    <column datatype='integer' name='[아파트_median_실거래]' role='measure' type='quantitative' />
+  </datasource-dependencies>
+</datasource>

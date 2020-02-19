@@ -1,0 +1,28 @@
+
+
+/* =====================================
+   rangeslider
+   ===================================== */
+
+
+.irs--modern{
+  .irs-bar, .irs-to, .irs-from, .irs-single {
+    background: $custom !important;
+  }
+  .irs-to, .irs-from, .irs-single{
+    &:before{
+      border-top-color: $custom;
+    }
+  }
+
+  .irs-min, .irs-max{
+    color: $muted;
+  }
+  .irs-grid-text{
+    font-size: 12px;
+  }
+  .irs-handle > i:nth-child(1){
+    width: 8px;
+    height: 8px;
+  }
+}

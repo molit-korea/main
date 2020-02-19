@@ -1,0 +1,31 @@
+:plugin: dots
+:type: codec
+
+///////////////////////////////////////////
+START - GENERATED VARIABLES, DO NOT EDIT!
+///////////////////////////////////////////
+:version: %VERSION%
+:release_date: %RELEASE_DATE%
+:changelog_url: %CHANGELOG_URL%
+:include_path: ../../../../logstash/docs/include
+///////////////////////////////////////////
+END - GENERATED VARIABLES, DO NOT EDIT!
+///////////////////////////////////////////
+
+[id="plugins-{type}-{plugin}"]
+
+=== Dots codec plugin
+
+include::{include_path}/plugin_header.asciidoc[]
+
+==== Description
+
+
+
+[id="plugins-{type}s-{plugin}-options"]
+==== Dots Codec Configuration Options
+
+[cols="<,<,<",options="header",]
+|=======================================================================
+|Setting |Input type|Required
+|=======================================================================

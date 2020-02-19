@@ -1,0 +1,2 @@
+[2017-08-29T16:02:52,928][WARN ][o.e.d.i.m.TypeParsers    ] field [include_in_all] is deprecated, as [_all] is deprecated, and will be disallowed in 6.0, use [copy_to] instead.
+[2017-08-29T16:02:52,941][WARN ][o.e.d.i.m.TypeParsers    ] field [include_in_all] is deprecated, as [_all] is deprecated, and will be disallowed in 6.0, use [copy_to] instead.

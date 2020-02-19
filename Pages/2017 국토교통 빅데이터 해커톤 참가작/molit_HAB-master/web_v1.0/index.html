@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <title>버스 어때?</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="favicon.ico">
+        
+        <script src="js/ie-emulation-modes-warning.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/menu.css?ver=3" rel="stylesheet">
+        <link href="css/carousel.css" rel="stylesheet">
+        <link href="css/custom_navbar.css" rel="stylesheet">
+        
+    </head>
+    <body style="background-color:#ffffff;">
+<!--
+            <div class="kibana page_cover">
+                <iframe src="http://1.214.89.7:5601/app/kibana#/dashboard/db827a00-89fa-11e7-a59e-3d818770d40b?embed=true&_g=(refreshInterval%3A(display%3AOff%2Cpause%3A!f%2Cvalue%3A0)%2Ctime%3A(from%3A'2012-12-31T15%3A00%3A00.000Z'%2Cmode%3Aabsolute%2Cto%3A'2017-08-26T04%3A55%3A14.103Z'))" frameBoarder="0" ></iframe>
+            </div>
+-->    
+    
+        
+      <div class="navbar-wrapper">
+            <div class="container">
+      
+              <nav class="navbar navbar-inverse navbar-static-top">
+                <div class="container">
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="main.html" style="padding-top:8px"><img src="img/icon_img.png" width="40px" height="40px" style="display:inline;"/><strong>버스 어때</strong></a>
+                  </div>
+                  <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                          <li class="active"><a href="index.html">How about the Bus?</a></li>
+                          <li><a href="wdrive.html">Statistics of Dangerous Driving</a></li>
+                          <li><a href="accident.html">Accidents on the Road</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+      
+            </div>
+          </div>
+            
+     <!-- Carousel
+        ================================================== -->
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <!--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>-->
+            <li data-target="#myCarousel" data-slide-to="0"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              <img class="first-slide carousel_gate" src="img/mint_bus.png" alt="First slide" style="height:auto; width:100%; top:-200px; background-size:cover;">
+              <div class="container">
+                <div class="carousel-caption">
+                  <h1>How about the bus? : Safe driving helper application</h1>
+                  <p>DTG 위험운전 데이터와 사고정보 데이터,<br/>
+                    그리고 승객의 평가를 통해 안전운전에 대한 경각심을 일깨워줍니다.</p>
+                  <p><a class="btn btn-lg btn-primary" href="#" role="button">Be our Customer</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <img class="third-slide carousel_gate" src="img/mint_bus.png" alt="Second slide" style="height:auto; width:100%; top:-200px; background-size:cover;">
+              <div class="container">
+                <div class="carousel-caption">
+                  <h2>Bigdata Analysis Dashboard : Statistics of Dangerous Driving</h2>
+                  <p>위험운전 데이터를 분석하여 동적인 데이터 시각화를 지원합니다</p>
+                  <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn More</a></p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <img class="second-slide carousel_gate" src="img/mint_bus.png" alt="Third slide" style="height:auto; width:100%; top:-200px; background-size:cover;">
+              <div class="container">
+                <div class="carousel-caption">
+                  <h2>Provide refined data : Provide safe driving instructions</h2>
+                  <p>운수회사들은 위 데이터들을 바탕으로 버스운전자들에게 적절한 안전운전 지침을 제공할 수 있도록 합니다.
+                  </p>
+                  <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div><!-- /.carousel -->
+                
+            <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+    
+        <div class="container marketing">
+    
+          <!-- Three columns of text below the carousel -->
+          <div class="row">
+            <div class="col-lg-4">
+              <img class="img-circle" src="img/analytics-1799646_rev.png" alt="Generic placeholder image" width="140" height="140">
+              <h2>Data Integration : Risk road assessment </h2>
+              <p>다양한 데이터를 통합하여 위험도로에 대한 평가를 내리고 이를 운전자에게 알려주어 위험도로에서 안전운전 할 수 있도록 합니다. 3가지 데이터를 통합하여 위험도로에 대한 보다 정확한 정보를 제공합니다.</p>
+              <p><a class="btn btn-default" href="index.html" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+              <img class="img-circle" src="img/checklist-2023731.png" alt="Generic placeholder image" width="140" height="140">
+              <h2>Bus driving habits assessment : Improving Risk Behavior</h2>
+              <p>버스 이용자가 버스 운전자의 운전 습관에 대해 평가합니다. 평가 결과를 버스기사 및 운수회사에 제공하여 해당 기사의 버스 운전 습관을 돌아볼 수 있게 합니다. 승객들은 자신들이 탈 버스가 안전한 운행을 하는 버스인지 확인할 수 있으며, 버스 이용 후, 해당 기사에 대한 평가를 할 수 있습니다.</p>
+              <p><a class="btn btn-default" href="wdrive.html" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+            <div class="col-lg-4">
+              <img class="img-circle" src="img/icon_img.png" alt="Generic placeholder image" width="140" height="140">
+              <h2>Provide refined data : Provide safe driving instructions</h2>
+              <p>운수회사들은 위 데이터들을 바탕으로 버스운전자들에게 적절한 안전운전 지침을 제공할 수 있도록 한다. 운수회사들은 웹 어플리케이션을 통해 운전자의 위험행동 빈도 및 사고 정보와 버스 운전자의 운전 습관에 대한 승객들의 평가 데이터를 한 눈에 볼 수 있습니다.</p>
+              <p><a class="btn btn-default" href="prediction.html" role="button">View details &raquo;</a></p>
+            </div><!-- /.col-lg-4 -->
+          </div><!-- /.row -->
+    
+      <!-- START THE FEATURETTES -->
+<!--
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5 col-md-pull-7">
+          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <div class="row featurette">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive center-block" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+-->
+      <!-- /END THE FEATURETTES -->
+    
+        </div><!-- /.container -->
+    
+    
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-3.1.1.min.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/menu.js?ver=8"></script>
+        <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+        <script src="js/holder.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="js/ie10-viewport-bug-workaround.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 30%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #trigger {
+            height: 10%;
+            width: 100%;
+        }
+        #response {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+
+<div id="response">
+    <button id="trigger" onclick="makeDestinationRequest()">
+        TRIGGER
+    </button>
+    <p id="responseP" style="wrap-option: true" contenteditable="true">
+        NONE
+    </p>
+</div>
+
+
+<script>
+    var map;
+    function initMap() {
+        let originInit = {lat: 37.516904, lng: 126.985017};
+        let origin = "37.516904,126.985017";
+        let destination = "37.345234,127.930432";
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: origin,
+            zoom: 14
+        });
+    }
+
+    function makeDestinationRequest() {
+        let baseKey = "https://maps.googleapis.com/maps/api/directions/xml";
+        let originCoordinate = "?origin=37.516904,126.985017";
+        let destinationCoordinate = "&destination=37.345234,127.930432";
+        let waypointInitial = "&waypoints="; // Add waypoints.
+        let apiKey = "&key=AIzaSyCZxFTSoOUBkwfpoNWPg4s6mn0RjKWLrbo";
+
+        let completeURL = baseKey + originCoordinate + destinationCoordiate + apiKey;
+
+        let xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", completeURL, false);
+        xmlHttp.send();
+
+        document.getElementById("responseP").value = xmlHttp.responseXML;
+
+        return xmlHttp.responseXML;
+    }
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZxFTSoOUBkwfpoNWPg4s6mn0RjKWLrbo&callback=initMap"
+        async defer></script>
+</body>
+</html>

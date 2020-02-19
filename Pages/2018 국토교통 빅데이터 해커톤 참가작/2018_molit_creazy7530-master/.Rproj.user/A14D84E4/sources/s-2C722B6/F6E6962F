@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1528003892404.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F6E6962F",
+    "lastKnownWriteTime" : 1528263130,
+    "last_content_update" : -2147483648,
+    "path" : "E:/2018-01/국토교통 빅데이터 해커톤/Creazy7530/r/test.R",
+    "project_path" : "r/test.R",
+    "properties" : {
+        "cursorPosition" : "96,0",
+        "scrollLine" : "82",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

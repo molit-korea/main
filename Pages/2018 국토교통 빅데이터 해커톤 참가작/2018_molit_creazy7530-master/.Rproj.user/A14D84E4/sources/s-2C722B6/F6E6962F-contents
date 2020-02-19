@@ -1,0 +1,106 @@
+sum(s_a_g[-(1:4),3])
+
+p[small&have&60세이상] = 5104/20133 = 0.2535
+p[60세이상&have|small] = 5104/10490 = 0.4866
+p[60세이상|small&have] = 5104/5953 = 0.8574
+
+
+p[have|small] = 5953 /10490 = .5675
+
+live3 <- live.R
+
+#자가 주택자중 60세이상의 비율은?
+live%>%
+  filter(V14 == 1)%>%
+  nrow()
+p[have] = 0.6142
+p[60세이상|have] = 0.5895
+p[small|have] = 0.5186
+
+
+###무 주택자
+ns <- live%>%
+  filter(V14 != 1)
+#소형 무주택 가구자 연령분포
+sort(table(nh$V286))
+
+
+
+
+nh <- live%>%
+  filter(V14 !=1 & V277<=1 )
+
+#%>%
+#  filter(age1 <= 30|age1 >=65)
+
+
+plot(sort(table(nh$V286,nh$age1)))
+
+nh[nh$V286==9999999,17] <- NA
+
+ggplot()+
+  geom_jitter(mapping = aes(x=nh$age1,y=nh$V286),
+                     width = .8, height = .8, col = "darkblue",
+                     alpha = .2,cex=3)+
+  theme_bw()+
+  geom_vline(xintercept = 30,col="red",linetype = 'dashed')+
+  geom_vline(xintercept = 65,col="red",linetype = 'dashed')+
+  geom_hline(yintercept = 160,col="red",linetype = 'dashed')
+
+install.packages("hexbin")
+library(hexbin)
+
+nh_hex <- hexbin(x=nh$age1,
+                 y=nh$V286,xbin=30)
+plot(nh_hex,colramp=my_colors)
+my_colors=colorRampPalette(rev(brewer.pal(11,'Spectral')))
+smoothScatter(x=nh$age1,y=nh$V286,nbin=200)
+
+
+
+
+##test
+
+live2 <- live
+live2[live2$V286 == 9999999,17] <- NA
+live2$have <- "red"
+live2[live2$V14 != 1, 30] <- "blue"
+max(live2$V286,na.rm = T)
+which(live2$V286 == 8000)
+live3[live3$V306 == 9999999,306] <- NA
+
+ggplot()+
+  geom_jitter(mapping = aes(x=live2[live2$V14==1,28],y=live2[live2$V14==1,17]),
+              width = .8, height = .8, fill = live2[live2$V14==1,30],
+              alpha = .2,cex=3)+
+  theme_bw()+
+  geom_vline(xintercept = 30,col="red",linetype = 'dashed')+
+  geom_vline(xintercept = 65,col="red",linetype = 'dashed')+
+  geom_hline(yintercept = 160,col="red",linetype = 'dashed')
+
+ggplot()+
+  geom_jitter(mapping = aes(x=live2[live2$V14 ==1,28],
+                            y=live2[live2$V14==1,17],
+                            pch=live3[live2$V14==1,301]),
+              width = 2, height = 2, col = "red",alpha = .3,
+             cex=3)+
+  geom_jitter(mapping = aes(x=live2[live2$V14!=1,28],
+                            y=live2[live2$V14!=1,17],
+                            pch=live3[live2$V14!=1,301]),
+              width = 2, height = 2,col = "darkblue",alpha = .3,
+              ,cex=3)+
+  ylim(-1,1000)+theme_void()+
+  geom_vline(xintercept = 1)+
+  geom_hline(yintercept = -1)
+  
+
+geom_smooth(mapping = aes(x=live2[live2$V14 ==1,28],
+                            y=live2[live2$V14==1,17]),
+              col = "red",formula = lm)+
+  geom_smooth(mapping = aes(x=live2[-c(live2$V14 ==1),28],
+                            y=live2[-c(live2$V14 ==1),17]),
+              col = "blue",formula = lm)+
+  theme_bw()+
+  geom_vline(xintercept = 30,col="red",linetype = 'dashed')+
+  geom_vline(xintercept = 65,col="red",linetype = 'dashed')+
+  geom_hline(yintercept = 160,col="red",linetype = 'dashed')

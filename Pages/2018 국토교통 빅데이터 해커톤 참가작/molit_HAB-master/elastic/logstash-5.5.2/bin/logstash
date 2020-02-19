@@ -1,0 +1,56 @@
+#!/bin/sh
+# Run logstash from source
+#
+# This is most useful when done from a git checkout.
+#
+# Usage:
+#   bin/logstash <command> [arguments]
+#
+# See 'bin/logstash --help' for a list of commands.
+#
+# Supported environment variables:
+#   LS_JVM_OPTS="xxx" path to file with JVM options
+#   LS_JAVA_OPTS="xxx" to append extra options to the defaults JAVA_OPTS provided by logstash
+#   JAVA_OPTS="xxx" to *completely override* the default set of JAVA_OPTS provided by logstash
+#
+# Development environment variables:
+#   USE_RUBY=1 to force use the local "ruby" command to launch logstash instead of using the vendored JRuby
+#   USE_DRIP=1 to force use drip
+#   DEBUG=1 to output debugging information
+
+unset CDPATH
+# This unwieldy bit of scripting is to try to catch instances where Logstash
+# was launched from a symlink, rather than a full path to the Logstash binary
+if [ -L "$0" ]; then
+  # Launched from a symlink
+  # --Test for the readlink binary
+  RL="$(which readlink)"
+  if [ $? -eq 0 ]; then
+    # readlink exists
+    SOURCEPATH="$($RL $0)"
+  else
+    # readlink not found, attempt to parse the output of stat
+    SOURCEPATH="$(stat -c %N $0 | awk '{print $3}' | sed -e 's/\‘//' -e 's/\’//')"
+    if [ $? -ne 0 ]; then
+      # Failed to execute or parse stat
+      echo "Failed to find source library at path $(cd `dirname $0`/..; pwd)/bin/logstash.lib.sh"
+      echo "You may need to launch Logstash with a full path instead of a symlink."
+      exit 1
+    fi
+  fi
+else
+  # Not a symlink
+  SOURCEPATH="$0"
+fi
+
+. "$(cd `dirname $SOURCEPATH`/..; pwd)/bin/logstash.lib.sh"
+setup
+
+if [ "$1" = "-V" ] || [ "$1" = "--version" ];
+then
+  LOGSTASH_VERSION_FILE="${LOGSTASH_HOME}/logstash-core/lib/logstash/version.rb"
+  LOGSTASH_VERSION="$(sed -ne 's/^LOGSTASH_VERSION = "\([^*]*\)"$/\1/p' $LOGSTASH_VERSION_FILE)"
+  echo "logstash $LOGSTASH_VERSION"
+else
+  ruby_exec "${LOGSTASH_HOME}/lib/bootstrap/environment.rb" "logstash/runner.rb" "$@"
+fi

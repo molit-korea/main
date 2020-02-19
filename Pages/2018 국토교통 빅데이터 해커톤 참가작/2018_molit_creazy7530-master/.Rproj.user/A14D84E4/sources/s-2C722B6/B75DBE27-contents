@@ -1,0 +1,174 @@
+library(ggplot2)
+library(dplyr)
+library(stringr)
+library(maptools)
+library(sp)
+library(rgdal)
+library(tidyverse)
+library(broom)
+
+name_kr = c("서울",
+            "부산",
+            "대구",
+            "인천",
+            "광주",
+            "대전",
+            "울산",
+            "세종",
+            "경기",
+            "강원",
+            "충북",
+            "충남",
+            "전북",
+            "전남",
+            "경북",
+            "경남",
+            "제주")
+
+live.R <- read.table("./data/live16.txt",header=F,sep = ",")
+live <- live.R[,c(1,3,10,14,84,85,
+                  200,201,202,211,212,277,
+                  281,282,286,287,288,289,
+                  293,294,295,300,306,307,309)]
+#아파트 거주자
+live2 <- live[live$V10 == 4,]
+#자가 주택자
+live3 <- live[live$V14 == 1,]
+live3_apt <- live2[live2$V14==1,]
+
+##주거유형(apt) = 0.4966##
+##점유형태(자가) = 0.6142##
+##아파트&자가 = .3357##
+##(아파트|자가) = .5465##
+
+###소가족
+#(1)1~2인가구(10490/20133)=.521
+small <- live[live$V277 <=2,]
+small$age1 <- 2019-small$V211
+small$age2 <- 2019-small$V212
+small$have <- rep(0,nrow(small))
+small[small$V14 == 1,28] <- 1
+table(small$have)
+small_h<- small[small$V14 == 1,]
+small_nh <- small[small$V14 != 1,]
+
+
+
+boxplot(small_h$age1,small_nh$age1)
+small_h_age <- as.data.frame(table(small_h$age1),stringsAsFactors = F)
+small_h_age$Var1 <- as.numeric(small_h_age$Var1)
+small_nh_age <- as.data.frame(table(small_nh$age1),stringsAsFactors = F)
+small_nh_age$Var1 <- as.numeric(small_nh_age$Var1)
+
+#유주택자 연령분포 
+ggplot()+
+  geom_line(aes(x=small_h_age$Var1,
+                y=small_h_age$Freq),cex=1,col="blue")+
+  geom_line(aes(x=small_nh_age$Var1,
+                y=small_nh_age$Freq),cex=1,col="red")+
+  geom_polygon(aes(x=c(65,small_h_age[small_h_age$Var1>=65,1],max(small_h_age$Var1)),
+                   y=c(0,small_h_age[small_h_age$Var1>=65,2],0)),
+               fill="red",col="black",cex=1, alpha = .6)+
+  geom_vline(xintercept = 65, linetype = 'dashed')+
+  geom_hline(yintercept = 0)+
+  theme_bw()
+  
+small_age_have <- data.frame(cbind(small$age1,small$have,small$V10),stringsAsFactors = T)
+
+
+small_nh_age%>%
+  + mutate(per=Freq/4537*100)%>%
+  + plot()%>%
+  + lines()
+
+
+
+####65세이상 유주택자
+small_h_old <- small_h[small_h$age1>=65,]
+small_h_o_a <- small_h_old[small_h_old$V10==4,]
+boxplot(small_h_o_a$V84)
+sort(table(small_h_o_a$V286))
+table(small_h_o_a$V84)
+as.data.frame(sort(table(small_h_o_a$V84)))
+
+small_a_g <- t(small%>%
+  summarise("20대" = sum(small$age1 >=19 & small$age1<=29),
+            "30대" = sum(small$age1 >=30 & small$age1<=39),
+            "40대" = sum(small$age1 >=40 & small$age1<=49),
+            "50대" = sum(small$age1 >=50 & small$age1<=59),
+            "60대" = sum(small$age1 >=60 & small$age1<=69),
+            "70대" = sum(small$age1 >=70 & small$age1<=79),
+            "80대" = sum(small$age1 >=80 & small$age1<=89),
+            "90대이상" = sum(small$age1>=90)))
+small_h_a_g <- t(small_h%>%
+  summarise("20대" = sum(small_h$age1 >=19 & small_h$age1<=29),
+            "30대" = sum(small_h$age1 >=30 & small_h$age1<=39),
+            "40대" = sum(small_h$age1 >=40 & small_h$age1<=49),
+            "50대" = sum(small_h$age1 >=50 & small_h$age1<=59),
+            "60대" = sum(small_h$age1 >=60 & small_h$age1<=69),
+            "70대" = sum(small_h$age1 >=70 & small_h$age1<=79),
+            "80대" = sum(small_h$age1 >=80 & small_h$age1<=89),
+            "90대이상" = sum(small_h$age1 >=90)))
+small_nh_a_g<- t(small_nh%>%
+  summarise("20대" = sum(small_nh$age1 >=19 & small_nh$age1<=29),
+            "30대" = sum(small_nh$age1 >=30 & small_nh$age1<=39),
+            "40대" = sum(small_nh$age1 >=40 & small_nh$age1<=49),
+            "50대" = sum(small_nh$age1 >=50 & small_nh$age1<=59),
+            "60대" = sum(small_nh$age1 >=60 & small_nh$age1<=69),
+            "70대" = sum(small_nh$age1 >=70 & small_nh$age1<=79),
+            "80대" = sum(small_nh$age1 >=80 & small_nh$age1<=89),
+            "90대이상" = sum(small_nh$age1 >=90)))
+s_a_g <- data.frame(연령=rownames(small_a_g),
+                    전체=small_a_g,
+                    자가=small_h_a_g,
+                    임차=small_nh_a_g)
+str(s_a_g)
+plot(s_a_g)
+s_a_g
+s_a_g_m <- melt(data = s_a_g[,-2],variable.name = "주거유형")
+
+ggplot(s_a_g_m)+
+  geom_bar(mapping=aes(x=`연령`,
+                       y=value,
+                       fill=`주거유형`),
+           stat = 'identity',
+           position="fill")
+ggplot(s_a_g_m)+
+  geom_line(mapping=aes(x=`연령`,
+                       y=value,
+                       group=`주거유형`))
+s_a_g
+##########지역
+small_c <- data.frame(small%>%
+                   count(V3)%>%
+                   as.data.frame(),
+                 small_h%>%
+                   count(V3)%>%
+                   select(n)%>%
+                   as.data.frame(),
+                 small_nh%>%
+                   count(V3)%>%
+                   select(n)%>%
+                   as.data.frame(),name_kr,stringsAsFactors = )
+names(small_c) <- c("code","전체","자가","임차","시도명")
+small_c_m <- melt(small_c[,-c(1,2)],variable.name = "주거유형")
+small_c_m$시도명 <- factor(small_c_m$시도명,levels = name_kr)
+str(small_c_m)
+small_c_m
+ggplot(small_c_m)+geom_bar(mapping = aes(x=`시도명`,
+                                              y=value,
+                                              fill=`주거유형`),stat = 'identity',
+                                position = "dodge")
+
+################################small + apt
+small_apt <- small[small$V10==4,]
+small_apt_mb <- small_apt[small_apt$V84>25,]
+small_apt_mb_ha <- small_apt_mb[small_apt_mb$V14==1,]
+small_apt_mb_nha <- small_apt_mb[small_apt_mb$V14!=1,]
+sum(table(small_apt_mb_ha[small_apt_mb_ha$age1>=65,26]))
+.
+
+
+
+
+nh$

@@ -1,0 +1,96 @@
+= XMPP4R
+
+A XMPP/Jabber library for ruby
+
+
+== Project Home
+
+You can find info about the xmpp4r project and how to contribute
+at the project home page:
+
+http://xmpp4r.github.io
+
+If you need to ask questions, or want feedback on proposed changes
+please feel free to ask them on the github issues tracker. 
+
+https://github.com/xmpp4r/xmpp4r/issues
+
+If you are having a problem and would like to report it
+please include a protocol dump
+which can be enabled in your code with:
+
+  Jabber::debug = true
+
+
+== Contributors
+
+=== Present Maintainer
+
+  Harisankar P S (hsps@rubykitchen.org)
+
+=== List of Contributors
+  
+http://github.com/xmpp4r/xmpp4r/contributors
+
+
+== Installation
+
+There are a number of ways that you can install xmpp4r depending
+on your needs and the methods you prefer.
+
+=== Install over the network using RubyGems
+
+You can install the current release of the xmpp4r library via rubygems:
+
+  sudo gem install xmpp4r
+
+The latest stable version is 0.5.6
+
+=== Install from local source code (Developers Only)
+
+If you have a local Git clone of the source repository or a tarball
+you can install xmpp4r using several methods.  First you'll
+need to get a local copy.
+
+Clone the Git repository (recommended):
+
+  git clone git://github.com/xmpp4r/xmpp4r.git
+
+OR download a snapshot of the latest source in .tar.gz format from:
+
+  http://github.com/xmpp4r/xmpp4r/tarball/master
+
+==== Install : Using Rake
+
+  # Show all available rake tasks
+  cd xmpp4r/
+  rake -T
+
+  # Package up the gem file and install it
+  rake gem:install
+
+==== Install : Using setup.rb
+
+This will install a copy of the library in your Ruby path and does not
+require RubyGems to be installed.
+
+  cd xmpp4r/
+  ./setup.rb
+
+
+== Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+== License
+
+XMPP4R is released under the Ruby license (see the LICENSE file), which is
+compatible with the GNU GPL (see the COPYING file) via an explicit
+dual-licensing clause.
+
+
+

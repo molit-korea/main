@@ -1,0 +1,108 @@
+library(ggplot2)
+library(dplyr)
+library(stringr)
+library(maptools)
+library(sp)
+library(rgdal)
+library(tidyverse)
+library(broom)
+
+name_kr = c("서울",
+            "부산",
+            "대구",
+            "인천",
+            "광주",
+            "대전",
+            "울산",
+            "세종",
+            "경기",
+            "강원",
+            "충북",
+            "충남",
+            "전북",
+            "전남",
+            "경북",
+            "경남",
+            "제주")
+
+live.R <- read.table("./data/live16.txt",header=F,sep = ",")
+live <- live.R[,c(1,3,10,14,84,85,
+                  200,201,202,211,212,277,
+                  281,282,286,287,288,289,
+                  293,294,295,300,306,307,309)]
+#아파트 거주자
+live2 <- live[live$V10 == 4,]
+#자가 주택자
+live3 <- live[live$V14 == 1,]
+live3_apt <- live2[live2$V14==1,]
+
+##주거유형(apt) = 0.4966##
+##점유형태(자가) = 0.6142##
+##아파트&자가 = .3357##
+##(아파트|자가) = .5465##
+
+###소가족
+#(1)1~2인가구(10490/20133)=.521
+small <- live[live$V277 <=2,]
+table(small$V14)
+##(2)자가
+small_h <- small[small$V14 ==1,]
+table(small_h$V10)
+small_hna <- small_h[small_h$V10 == 1, ]
+small_ha <- small_h[small_h$V10 == 4, ]
+table(small_hna$V3)
+table(small_ha$V3)
+
+small_h_df <- small_h%>%count(V3)%>%mutate(name_kor = name_kr)
+small_ha_df <- small_ha%>%count(V3)%>%mutate(name_kor = name_kr)
+small_hna_df <- small_hna%>%count(V3)%>%mutate(name_kor = name_kr)
+small_df <- data.frame(name_kor = name_kr,
+                       code=small_h_df$V3,
+                       total=small_h_df$n,
+                       apt=small_ha_df$n,
+                       gesin=small_hna_df$n)
+small_df  
+
+small_df%>%
+  mutate(total_per = total/sum(total)*100, 
+         apt_per = apt/sum(apt)*100,
+         apt_per_total = apt/sum(total)*100)
+########자가아님
+
+
+
+
+
+##연령특서
+small$age <- 2019-small$V211
+small_h$age <- 2019-small_h$V211
+small_nh <- small[small$V14 !=1,]
+boxplot(small$age,small_h$age,small_nh$age)
+small[which(small$V286 == 9999999),15] <- NA
+small_h[which(small_h$V286 == 9999999),15] <- NA
+small_nh[which(small_nh$V286 == 9999999),15] <- NA
+boxplot(small$V286,small_h$V286,small_nh$V286)
+
+mean(small$V286, na.rm = T)
+mean(small_h$V286, na.rm = T)
+mean(small_nh$V286, na.rm = T)
+
+
+sum(small_h$age>=65)
+
+hist(small[small$V286<=800,15],breaks = 15)
+axis(1,at = ,labels = small$V286)
+hist(small_h[small_h$V286<=800,15],breaks = 30)
+hist(small_nh[small_nh$V286<=800,15],breaks = 30)
+
+
+
+
+
+
+
+
+
+###무주택가구
+nohave <- live[live$V14!=1,]
+##무주택가구 .3857

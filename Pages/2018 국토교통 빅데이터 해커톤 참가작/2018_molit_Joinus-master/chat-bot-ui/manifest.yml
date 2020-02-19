@@ -1,0 +1,6 @@
+applications:
+- name: chat-bot-ui
+  memory: 64M
+  buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
+  path: ./dist
+  host: chat-bot-ui-<<YOUR-NAME>>

@@ -1,0 +1,140 @@
+---
+title: "시계열 확률모형을 이용한 고속도로 정체구간 해결방안 모색- 서울외곽순환도로를 중심으로"
+author: "국토교통해커톤 - 정체가 뭐죠?"
+date: '2019 5 28'
+output: html_document
+---
+
+--- 목차 ---
+
+1. 데이터 탐색
+
+2. 데이터 분석
+
+3. 데이터 분석 결과
+
+4. 결과 해석
+
+## 패키지 설치
+
+```{r package}
+
+library(shiny)
+library(leaflet)
+library(leaflet.extras)
+library(data.table)
+library(tidyr)
+library(htmlwidgets)
+library(webshot)
+library(readxl)
+
+```
+
+# 데이터 불러오기
+
+```{r setup, include=FALSE}
+dir1 <- c("C:/Users/ccche/Documents/R analysis/data/E")
+file_list1 <- list.files(dir1)
+
+dir2 <- c("C:/Users/ccche/Documents/R analysis/data/S")
+file_list2 <- list.files(dir2)
+
+data1_1 <- data.frame()
+data2_2 <- data.frame()
+
+for (file1 in file_list1){
+  print(file1)
+  temp1 <- read.csv(paste(dir1,file1,sep="/"),sep=",")
+  data1 <- rbind(data1_1,temp1)
+}
+
+for (file2 in file_list2){
+  print(file2)
+  temp2 <- read.csv(paste(dir2,file2,sep="/"),sep=",")
+  data2 <- rbind(data2_2,temp2)
+}
+
+data <- rbind(data1,data2)
+
+data3 <- subset(data,Day>=20180101)
+
+data3 <- tapply(data$traffic,data$Day,mean)
+
+data4 <- as.data.frame(data3)
+
+base <- read_xlsx("C:/Users/ccche/Documents/R analysis/BASE.xlsx",1,col_names = T)
+
+ff <- function(input, output){
+  data1_1 <- data.frame()
+  
+  print(input)
+  data1_1 <- fread(input, sep = "|", header = FALSE)
+  
+  data1_1 <- data1_1[ , -6]
+  data1_1 <- data1_1[ , -4]
+  
+  data1_1 <- unite(data1_1,"date",c("V1","V2"),sep = "")
+  
+  data1_1 <- data1_1[order(data1_1$date),]
+  
+  data1_1 <- cast(data1_1,date~V3,value = "V5")
+  
+  write.csv(data1_1, output ,row.names=F)
+  
+  rm(list = ls())
+}
+
+
+
+datatotal <- fread("D:/해커톤/내가한거/5분단위/2차_vds_지점교통량/201001.txt", sep = ",", header = F)
+datatotal <- t(datatotal)
+colnames(datatotal) <- datatotal[1,]
+join <- function(output){
+  data1 <- fread(output, sep = ",", header = F)
+  data1 <- t(data1)
+  colnames(data1) <- data1[1,]
+  datatotal <- merge(x = datatotal, y = data1, by = 'date', all = T)
+}
+
+```
+
+## 공간시각화
+ 
+```{r}
+
+for(i in c(1:10)){
+  
+  data_temp<-subset(data3,Day==i)
+  
+  m<-leaflet(data3) %>% addProviderTiles(providers$CartoDB) %>%
+    setView(lng=126.990867, lat=37.550991, zoom=8) %>%
+    addHeatmap(lng = ~long, lat = ~lat, intensity = ~traffic, blur = 20 ,max =10,radius = 5)
+  
+  saveWidget(m, "m.html", selfcontained = T)
+  
+  plot_name<-sprintf("%s.png",i)
+  webshot("m.html", file = plot_name)
+  
+  print(i)
+}
+```
+
+
+```{r}
+
+for(i in c(1:10)){
+  
+  data_temp<-subset(data3,Day==i)
+  
+  m<-leaflet(data3) %>% addProviderTiles(providers$CartoDB) %>%
+    setView(lng=126.990867, lat=37.550991, zoom=8) %>%
+    addHeatmap(lng = ~long, lat = ~lat, intensity = ~traffic, blur = 20 ,max =10,radius = 5)
+  
+  saveWidget(m, "m.html", selfcontained = T)
+  
+  plot_name<-sprintf("%s.png",i)
+  webshot("m.html", file = plot_name)
+  
+  print(i)
+}
+```

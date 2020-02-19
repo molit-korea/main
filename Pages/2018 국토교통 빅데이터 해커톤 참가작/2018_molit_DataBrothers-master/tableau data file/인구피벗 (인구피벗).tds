@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 10500.18.0404.1406                               -->
+<datasource formatted-name='federated.1ch3z0103rtzoh1cqhrjp0vt3fzl' inline='true' source-platform='win' version='10.5' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <connection class='federated'>
+    <named-connections>
+      <named-connection caption='인구피벗' name='excel-direct.1j33ouj1qwivwk15n4eo91obrecg'>
+        <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='//oj-win10-02/Driver/4-조별자료실/공통/해커톤/00_Data/인구통계/인구피벗.xlsx' interpretationMode='0' password='' server='' validate='no' />
+      </named-connection>
+    </named-connections>
+    <relation connection='excel-direct.1j33ouj1qwivwk15n4eo91obrecg' name='인구피벗' table='[인구피벗$]' type='table'>
+      <columns gridOrigin='A1:E10001:no:A1:E10001:0' header='yes' outcome='6'>
+        <column datatype='integer' name='Number of Records' ordinal='0' />
+        <column datatype='date' name='날짜' ordinal='1' />
+        <column datatype='integer' name='인구수' ordinal='2' />
+        <column datatype='string' name='구' ordinal='3' />
+        <column datatype='string' name='동' ordinal='4' />
+      </columns>
+    </relation>
+    <metadata-records>
+      <metadata-record class='column'>
+        <remote-name>Number of Records</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[Number of Records]</local-name>
+        <parent-name>[인구피벗]</parent-name>
+        <remote-alias>Number of Records</remote-alias>
+        <ordinal>0</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>날짜</remote-name>
+        <remote-type>7</remote-type>
+        <local-name>[날짜]</local-name>
+        <parent-name>[인구피벗]</parent-name>
+        <remote-alias>날짜</remote-alias>
+        <ordinal>1</ordinal>
+        <local-type>date</local-type>
+        <aggregation>Year</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;DATE&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>인구수</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[인구수]</local-name>
+        <parent-name>[인구피벗]</parent-name>
+        <remote-alias>인구수</remote-alias>
+        <ordinal>2</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>구</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[구]</local-name>
+        <parent-name>[인구피벗]</parent-name>
+        <remote-alias>구</remote-alias>
+        <ordinal>3</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>동</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[동]</local-name>
+        <parent-name>[인구피벗]</parent-name>
+        <remote-alias>동</remote-alias>
+        <ordinal>4</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='capability'>
+        <remote-name />
+        <remote-type>0</remote-type>
+        <parent-name>[인구피벗]</parent-name>
+        <remote-alias />
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='integer' name='context'>0</attribute>
+          <attribute datatype='string' name='gridOrigin'>&quot;A1:E10001:no:A1:E10001:0&quot;</attribute>
+          <attribute datatype='boolean' name='header'>true</attribute>
+          <attribute datatype='integer' name='outcome'>6</attribute>
+        </attributes>
+      </metadata-record>
+    </metadata-records>
+  </connection>
+  <aliases enabled='yes' />
+  <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec' />
+  <column caption='계약년월' datatype='date' name='[날짜]' role='dimension' type='ordinal' />
+  <column datatype='integer' name='[인구수]' role='measure' type='quantitative' />
+  <column-instance column='[인구수]' derivation='Avg' name='[avg:인구수:qk]' pivot='key' type='quantitative' />
+  <column-instance column='[인구수]' derivation='Max' name='[max:인구수:qk]' pivot='key' type='quantitative' />
+  <column-instance column='[인구수]' derivation='Median' name='[med:인구수:qk]' pivot='key' type='quantitative' />
+  <column-instance column='[Forecast Indicator]' derivation='None' forecast-column-base='[Forecast Indicator]' forecast-column-type='forecast-indicator' name='[none:Forecast Indicator:nk]' pivot='key' type='nominal' />
+  <column-instance column='[인구수]' derivation='Sum' name='[sum:인구수:qk]' pivot='key' type='quantitative' />
+  <column-instance column='[인구수]' derivation='Sum' name='[win:sum:인구수:qk]' pivot='key' type='quantitative'>
+    <table-calc aggregation='Avg' from='-2' ordering-type='Rows' to='0' type='WindowTotal' window-options='IncludeCurrent' />
+  </column-instance>
+  <layout dim-ordering='alphabetic' dim-percentage='0.368182' measure-ordering='alphabetic' measure-percentage='0.315909' parameter-percentage='0.315909' show-structure='true' />
+  <style>
+    <style-rule element='mark'>
+      <encoding attr='color' field='[:Measure Names]' type='palette'>
+        <map to='#4e79a7'>
+          <bucket>&quot;[federated.0d719v11w0q9c1102pie40jy73ib].[sum:Pivot Field Values:qk]&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;[federated.0d719v11w0q9c1102pie40jy73ib].[win:avg:Pivot Field Values:qk:1]&quot;</bucket>
+        </map>
+        <map to='#76b7b2'>
+          <bucket>&quot;[federated.0d719v11w0q9c1102pie40jy73ib].[win:avg:Pivot Field Values:qk]&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;[federated.12txazu1dqvoz318uh1o714hdvzp].[win:avg:아파트_median_실거래:qk:2]&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;[federated.0d719v11w0q9c1102pie40jy73ib].[avg:Pivot Field Values:qk]&quot;</bucket>
+        </map>
+        <map to='#edc948'>
+          <bucket>&quot;[federated.0d719v11w0q9c1102pie40jy73ib].[pcdf:avg:Pivot Field Values:qk]&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;[federated.1ch3z0103rtzoh1cqhrjp0vt3fzl].[avg:인구수:qk]&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;[federated.1ch3z0103rtzoh1cqhrjp0vt3fzl].[max:인구수:qk]&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;[federated.1ch3z0103rtzoh1cqhrjp0vt3fzl].[med:인구수:qk]&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;[federated.1ch3z0103rtzoh1cqhrjp0vt3fzl].[sum:인구수:qk]&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;[federated.1ch3z0103rtzoh1cqhrjp0vt3fzl].[win:sum:인구수:qk]&quot;</bucket>
+        </map>
+      </encoding>
+      <encoding attr='color' field='[none:Forecast Indicator:nk]' type='palette'>
+        <map to='#e15759'>
+          <bucket>&quot;Actual&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;Estimate&quot;</bucket>
+        </map>
+      </encoding>
+    </style-rule>
+  </style>
+  <semantic-values>
+    <semantic-value key='[Country].[Name]' value='&quot;South Korea&quot;' />
+  </semantic-values>
+  <default-sorts>
+    <sort class='manual' column='[none:Forecast Indicator:nk]' direction='ASC'>
+      <dictionary>
+        <bucket>&quot;Actual&quot;</bucket>
+        <bucket>&quot;Estimate&quot;</bucket>
+      </dictionary>
+    </sort>
+  </default-sorts>
+  <datasource-dependencies datasource='federated.0d719v11w0q9c1102pie40jy73ib'>
+    <column caption='거래금액' datatype='integer' name='[Pivot Field Values]' role='measure' type='quantitative' />
+    <column-instance column='[Pivot Field Values]' derivation='Avg' name='[avg:Pivot Field Values:qk]' pivot='key' type='quantitative' />
+    <column-instance column='[Pivot Field Values]' derivation='Avg' name='[pcdf:avg:Pivot Field Values:qk]' pivot='key' type='quantitative'>
+      <table-calc diff-options='Relative' ordering-type='Rows' type='PctDiff'>
+        <address>
+          <value>-1</value>
+        </address>
+      </table-calc>
+    </column-instance>
+  </datasource-dependencies>
+  <datasource-dependencies datasource='federated.12txazu1dqvoz318uh1o714hdvzp'>
+    <column-instance column='[아파트_median_실거래]' derivation='Avg' name='[win:avg:아파트_median_실거래:qk:2]' pivot='key' type='quantitative'>
+      <table-calc aggregation='Avg' from='-2' ordering-type='Rows' to='0' type='WindowTotal' window-options='IncludeCurrent' />
+    </column-instance>
+    <column datatype='integer' name='[아파트_median_실거래]' role='measure' type='quantitative' />
+  </datasource-dependencies>
+</datasource>

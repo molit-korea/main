@@ -1,0 +1,1257 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 10500.18.0404.1406                               -->
+<datasource formatted-name='federated.0d719v11w0q9c1102pie40jy73ib' inline='true' source-platform='win' version='10.5' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <connection class='federated'>
+    <named-connections>
+      <named-connection caption='아파트통합' name='excel-direct.0yqet2b11mujfn1bpupwp12jkbvj'>
+        <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='C:/Users/user/Desktop/부동산 데이터/xlsx/아파트통합.xlsx' interpretationMode='0' password='' server='' validate='no' />
+      </named-connection>
+      <named-connection caption='서울시' name='excel-direct.0216j1102ri9zm196s3lv0azbjw4'>
+        <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='C:/Users/user/Desktop/부동산 데이터/xlsx/서울시.xlsx' interpretationMode='0' password='' server='' validate='no' />
+      </named-connection>
+    </named-connections>
+    <relation name='Pivot' type='pivot'>
+      <columns>
+        <column datatype='string' name='Pivot Field Names' />
+        <column datatype='integer' name='Pivot Field Values' />
+      </columns>
+      <tag name='Pivot Field Names'>
+        <value name='[아파트_mean_실거래]' />
+        <value name='[아파트_mean_월세]' />
+        <value name='[아파트_mean_전세]' />
+        <value name='[아파트_median_실거래]' />
+        <value name='[아파트_median_월세]' />
+        <value name='[아파트_median_전세]' />
+      </tag>
+      <groups>
+        <group name='Pivot Field Values'>
+          <field name='[아파트통합].[아파트_mean_실거래]' />
+          <field name='[아파트통합].[아파트_mean_월세]' />
+          <field name='[아파트통합].[아파트_mean_전세]' />
+          <field name='[아파트통합].[아파트_median_실거래]' />
+          <field name='[아파트통합].[아파트_median_월세]' />
+          <field name='[아파트통합].[아파트_median_전세]' />
+        </group>
+      </groups>
+      <relation connection='excel-direct.0yqet2b11mujfn1bpupwp12jkbvj' name='아파트통합' table='[아파트통합$]' type='table'>
+        <columns gridOrigin='A1:N10001:no:A1:N10001:0' header='yes' outcome='6'>
+          <column datatype='integer' name='ID' ordinal='0' />
+          <column datatype='date' name='계약년월' ordinal='1' />
+          <column datatype='string' name='구' ordinal='2' />
+          <column datatype='string' name='동' ordinal='3' />
+          <column datatype='string' name='시군구' ordinal='4' />
+          <column datatype='integer' name='아파트_mean_실거래' ordinal='5' />
+          <column datatype='integer' name='아파트_mean_월세' ordinal='6' />
+          <column datatype='integer' name='아파트_mean_전세' ordinal='7' />
+          <column datatype='integer' name='아파트_median_실거래' ordinal='8' />
+          <column datatype='integer' name='아파트_median_월세' ordinal='9' />
+          <column datatype='integer' name='아파트_median_전세' ordinal='10' />
+          <column datatype='integer' name='아파트실거래_mean_건축년도' ordinal='11' />
+          <column datatype='integer' name='아파트월세_mean_건축년도' ordinal='12' />
+          <column datatype='integer' name='아파트전세_mean_건축년도' ordinal='13' />
+        </columns>
+      </relation>
+    </relation>
+    <metadata-records>
+      <metadata-record class='column'>
+        <remote-name>ID</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[ID]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>ID</remote-alias>
+        <ordinal>0</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>계약년월</remote-name>
+        <remote-type>7</remote-type>
+        <local-name>[계약년월]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>계약년월</remote-alias>
+        <ordinal>1</ordinal>
+        <local-type>date</local-type>
+        <aggregation>Year</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;DATE&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>구</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[구]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>구</remote-alias>
+        <ordinal>2</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>동</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[동]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>동</remote-alias>
+        <ordinal>3</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>시군구</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[시군구]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>시군구</remote-alias>
+        <ordinal>4</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>아파트실거래_mean_건축년도</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[아파트실거래_mean_건축년도]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>아파트실거래_mean_건축년도</remote-alias>
+        <ordinal>5</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>아파트월세_mean_건축년도</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[아파트월세_mean_건축년도]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>아파트월세_mean_건축년도</remote-alias>
+        <ordinal>6</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>아파트전세_mean_건축년도</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[아파트전세_mean_건축년도]</local-name>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias>아파트전세_mean_건축년도</remote-alias>
+        <ordinal>7</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='capability'>
+        <remote-name />
+        <remote-type>0</remote-type>
+        <parent-name>[아파트통합]</parent-name>
+        <remote-alias />
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='integer' name='context'>0</attribute>
+          <attribute datatype='string' name='gridOrigin'>&quot;A1:N10001:no:A1:N10001:0&quot;</attribute>
+          <attribute datatype='boolean' name='header'>true</attribute>
+          <attribute datatype='integer' name='outcome'>6</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>Pivot Field Names</remote-name>
+        <remote-type>129</remote-type>
+        <local-name>[Pivot Field Names]</local-name>
+        <parent-name>[Pivot]</parent-name>
+        <remote-alias>Pivot Field Names</remote-alias>
+        <ordinal>8</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>Pivot Field Values</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[Pivot Field Values]</local-name>
+        <parent-name>[Pivot]</parent-name>
+        <remote-alias>Pivot Field Values</remote-alias>
+        <ordinal>9</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+      </metadata-record>
+    </metadata-records>
+  </connection>
+  <aliases enabled='yes' />
+  <column caption='아파트 거래 구분' datatype='string' name='[Pivot Field Names]' role='dimension' type='nominal'>
+    <aliases>
+      <alias key='&quot;아파트_mean_실거래&quot;' value='아파트 실거래가격(평균값)' />
+      <alias key='&quot;아파트_mean_월세&quot;' value='아파트 월세가격 (평균값)' />
+      <alias key='&quot;아파트_mean_전세&quot;' value='아파트 전세가격 (평균값)' />
+      <alias key='&quot;아파트_median_실거래&quot;' value='아파트실거래가격(중앙값)' />
+      <alias key='&quot;아파트_median_월세&quot;' value='아파트 월세가(중앙값)' />
+      <alias key='&quot;아파트_median_전세&quot;' value='아파트전세가격(중앙값)' />
+    </aliases>
+  </column>
+  <column caption='거래금액' datatype='integer' name='[Pivot Field Values]' role='measure' type='quantitative' />
+  <column datatype='date' name='[계약년월]' role='dimension' type='ordinal' />
+  <column datatype='string' name='[동]' role='dimension' type='nominal' />
+  <column caption='구' datatype='string' name='[시군구 - Split 2]' role='dimension' type='nominal' user:SplitFieldIndex='2' user:SplitFieldOrigin='[federated.0d719v11w0q9c1102pie40jy73ib].[시군구]'>
+    <calculation class='tableau' formula='TRIM( SPLIT( [시군구], &quot; &quot;, 2 ) )' />
+  </column>
+  <column caption='동' datatype='string' name='[시군구 - Split 3]' role='dimension' type='nominal' user:SplitFieldIndex='3' user:SplitFieldOrigin='[federated.0d719v11w0q9c1102pie40jy73ib].[시군구]'>
+    <calculation class='tableau' formula='TRIM( SPLIT( [시군구], &quot; &quot;, 3 ) )' />
+  </column>
+  <column datatype='integer' hidden='true' name='[아파트실거래_mean_건축년도]' role='measure' type='quantitative' />
+  <column datatype='integer' hidden='true' name='[아파트월세_mean_건축년도]' role='measure' type='quantitative' />
+  <column datatype='integer' hidden='true' name='[아파트전세_mean_건축년도]' role='measure' type='quantitative' />
+  <column-instance column='[Forecast Indicator]' derivation='None' forecast-column-base='[Forecast Indicator]' forecast-column-type='forecast-indicator' name='[none:Forecast Indicator:nk]' pivot='key' type='nominal' />
+  <column-instance column='[Pivot Field Names]' derivation='None' name='[none:Pivot Field Names:nk]' pivot='key' type='nominal' />
+  <column-instance column='[동]' derivation='None' name='[none:동:nk]' pivot='key' type='nominal' />
+  <column-instance column='[계약년월]' derivation='Month-Trunc' name='[tmn:계약년월:ok]' pivot='key' type='ordinal' />
+  <group caption='Action (MONTH(계약년월))' hidden='true' name='[Action (MONTH(계약년월))]' name-style='unqualified' user:auto-column='sheet_link'>
+    <groupfilter function='crossjoin'>
+      <groupfilter function='level-members' level='[tmn:계약년월:ok]' />
+    </groupfilter>
+  </group>
+  <group caption='Action (아파트 거래 구분,MONTH(계약년월))' hidden='true' name='[Action (아파트 거래 구분,MONTH(계약년월))]' name-style='unqualified' user:auto-column='sheet_link'>
+    <groupfilter function='crossjoin'>
+      <groupfilter function='level-members' level='[Pivot Field Names]' />
+      <groupfilter function='level-members' level='[tmn:계약년월:ok]' />
+    </groupfilter>
+  </group>
+  <extract count='-1' enabled='true' units='records'>
+    <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='C:/Users/user/Documents/내 Tableau 리포지토리/데이터 원본/아파트통합(피벗).hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='06/01/2018 06:16:09 AM' username='tableau_internal_user'>
+      <relation name='Extract' table='[Extract].[Extract]' type='table' />
+      <refresh>
+        <refresh-event add-from-file-path='' increment-value='%null%' refresh-type='create' rows-inserted='110730' timestamp-start='2018-06-01 06:16:09.392' />
+      </refresh>
+      <metadata-records>
+        <metadata-record class='column'>
+          <remote-name>ID</remote-name>
+          <remote-type>20</remote-type>
+          <local-name>[ID]</local-name>
+          <parent-name>[Extract]</parent-name>
+          <remote-alias>ID</remote-alias>
+          <ordinal>0</ordinal>
+          <family>아파트통합</family>
+          <local-type>integer</local-type>
+          <aggregation>Sum</aggregation>
+          <approx-count>16059</approx-count>
+          <contains-null>true</contains-null>
+        </metadata-record>
+        <metadata-record class='column'>
+          <remote-name>계약년월</remote-name>
+          <remote-type>133</remote-type>
+          <local-name>[계약년월]</local-name>
+          <parent-name>[Extract]</parent-name>
+          <remote-alias>계약년월</remote-alias>
+          <ordinal>1</ordinal>
+          <family>아파트통합</family>
+          <local-type>date</local-type>
+          <aggregation>Year</aggregation>
+          <approx-count>76</approx-count>
+          <contains-null>true</contains-null>
+        </metadata-record>
+        <metadata-record class='column'>
+          <remote-name>구</remote-name>
+          <remote-type>129</remote-type>
+          <local-name>[구]</local-name>
+          <parent-name>[Extract]</parent-name>
+          <remote-alias>구</remote-alias>
+          <ordinal>2</ordinal>
+          <family>아파트통합</family>
+          <local-type>string</local-type>
+          <aggregation>Count</aggregation>
+          <approx-count>25</approx-count>
+          <contains-null>true</contains-null>
+          <collation flag='0' name='LKO_RKR' />
+        </metadata-record>
+        <metadata-record class='column'>
+          <remote-name>동</remote-name>
+          <remote-type>129</remote-type>
+          <local-name>[동]</local-name>
+          <parent-name>[Extract]</parent-name>
+          <remote-alias>동</remote-alias>
+          <ordinal>3</ordinal>
+          <family>아파트통합</family>
+          <local-type>string</local-type>
+          <aggregation>Count</aggregation>
+          <approx-count>254</approx-count>
+          <contains-null>true</contains-null>
+          <collation flag='0' name='LKO_RKR' />
+        </metadata-record>
+        <metadata-record class='column'>
+          <remote-name>시군구</remote-name>
+          <remote-type>129</remote-type>
+          <local-name>[시군구]</local-name>
+          <parent-name>[Extract]</parent-name>
+          <remote-alias>시군구</remote-alias>
+          <ordinal>4</ordinal>
+          <family>아파트통합</family>
+          <local-type>string</local-type>
+          <aggregation>Count</aggregation>
+          <approx-count>256</approx-count>
+          <contains-null>true</contains-null>
+          <collation flag='0' name='LKO_RKR' />
+        </metadata-record>
+        <metadata-record class='column'>
+          <remote-name>Pivot Field Names</remote-name>
+          <remote-type>129</remote-type>
+          <local-name>[Pivot Field Names]</local-name>
+          <parent-name>[Extract]</parent-name>
+          <remote-alias>Pivot Field Names</remote-alias>
+          <ordinal>5</ordinal>
+          <family>Pivot</family>
+          <local-type>string</local-type>
+          <aggregation>Count</aggregation>
+          <approx-count>6</approx-count>
+          <contains-null>true</contains-null>
+          <collation flag='0' name='binary' />
+        </metadata-record>
+        <metadata-record class='column'>
+          <remote-name>Pivot Field Values</remote-name>
+          <remote-type>20</remote-type>
+          <local-name>[Pivot Field Values]</local-name>
+          <parent-name>[Extract]</parent-name>
+          <remote-alias>Pivot Field Values</remote-alias>
+          <ordinal>6</ordinal>
+          <family>Pivot</family>
+          <local-type>integer</local-type>
+          <aggregation>Sum</aggregation>
+          <approx-count>933</approx-count>
+          <contains-null>true</contains-null>
+        </metadata-record>
+      </metadata-records>
+    </connection>
+  </extract>
+  <layout dim-ordering='alphabetic' dim-percentage='0.425' measure-ordering='alphabetic' measure-percentage='0.329545' parameter-percentage='0.245455' show-structure='true' user-set-layout='true' />
+  <style>
+    <style-rule element='mark'>
+      <encoding attr='color' field='[none:동:nk]' type='palette'>
+        <map to='#499894'>
+          <bucket>&quot;거여동&quot;</bucket>
+        </map>
+        <map to='#499894'>
+          <bucket>&quot;남가좌동&quot;</bucket>
+        </map>
+        <map to='#499894'>
+          <bucket>&quot;대방동&quot;</bucket>
+        </map>
+        <map to='#499894'>
+          <bucket>&quot;둔촌동&quot;</bucket>
+        </map>
+        <map to='#499894'>
+          <bucket>&quot;문래동3가&quot;</bucket>
+        </map>
+        <map to='#499894'>
+          <bucket>&quot;북가좌동&quot;</bucket>
+        </map>
+        <map to='#499894'>
+          <bucket>&quot;상월곡동&quot;</bucket>
+        </map>
+        <map to='#499894'>
+          <bucket>&quot;시흥동&quot;</bucket>
+        </map>
+        <map to='#499894'>
+          <bucket>&quot;안암동3가&quot;</bucket>
+        </map>
+        <map to='#499894'>
+          <bucket>&quot;영등포동2가&quot;</bucket>
+        </map>
+        <map to='#499894'>
+          <bucket>&quot;원효로1가&quot;</bucket>
+        </map>
+        <map to='#499894'>
+          <bucket>&quot;전농동&quot;</bucket>
+        </map>
+        <map to='#499894'>
+          <bucket>&quot;청량리동&quot;</bucket>
+        </map>
+        <map to='#499894'>
+          <bucket>&quot;항동&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>%null%</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;군자동&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;당산동1가&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;돈암동&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;명륜2가&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;방화동&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;삼전동&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;세곡동&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;신원동&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;역촌동&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;용강동&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;일원동&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;창동&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;하월곡동&quot;</bucket>
+        </map>
+        <map to='#4e79a7'>
+          <bucket>&quot;회현동2가&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;갈현동&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;금호동3가&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;당산동5가&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;동소문동6가&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;무악동&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;보문동4가&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;상봉동&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;수서동&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;신천동&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;염리동&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;용산동2가&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;잠원동&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;천연동&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;한강로3가&quot;</bucket>
+        </map>
+        <map to='#59a14f'>
+          <bucket>&quot;흑석동&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;공덕동&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;내발산동&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;대흥동&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;마천동&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;문배동&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;사당동&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;서초동&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;신내동&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;양평동1가&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;영등포동7가&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;응봉동&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;종암동&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;충신동&quot;</bucket>
+        </map>
+        <map to='#79706e'>
+          <bucket>&quot;홍은동&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;견지동&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;남대문로5가&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;대조동&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;등촌동&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;문래동4가&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;북아현동&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;상일동&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;신계동&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;암사동&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;영등포동3가&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;원효로4가&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;정동&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;청암동&quot;</bucket>
+        </map>
+        <map to='#86bcb6'>
+          <bucket>&quot;행당동&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;강일동&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;금호동4가&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;당산동6가&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;동소문동7가&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;묵동&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;보문동6가&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;상수동&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;수유동&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;쌍문동&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;염창동&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;용산동5가&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;장안동&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;천왕동&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;한남동&quot;</bucket>
+        </map>
+        <map to='#8cd17d'>
+          <bucket>&quot;흥인동&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;구산동&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;답십리동&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;도화동&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;면목동&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;방이동&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;삼선동4가&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;성수동1가&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;신설동&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;여의도동&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;옥수동&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;인의동&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;증산동&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;하계동&quot;</bucket>
+        </map>
+        <map to='#9d7660'>
+          <bucket>&quot;회기동&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;가락동&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;궁동&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;당산동2가&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;동선동4가&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;명륜3가&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;번동&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;상계동&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;송정동&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;신월동&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;연건동&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;용답동&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;자곡동&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;창신동&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;하중동&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;효창동&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;교남동&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;녹번동&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;도선동&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;망우동&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;반포동&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;삼선동2가&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;성북동&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;신림동&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;양평동5가&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;오류동&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;이태원동&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;중림동&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;평창동&quot;</bucket>
+        </map>
+        <map to='#b07aa1'>
+          <bucket>&quot;화양동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;개봉동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;길동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;당주동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;동자동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;묵정동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;본동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;상암동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;순화동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;아현동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;영등포동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;우면동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;장위동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;천호동&quot;</bucket>
+        </map>
+        <map to='#b6992d'>
+          <bucket>&quot;합동&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;공릉동&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;내수동&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;도곡동&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;마포동&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;문정동&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;사직동&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;석관동&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;신당동&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;양평동2가&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;영등포동8가&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;응암동&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;중계동&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;충정로2가&quot;</bucket>
+        </map>
+        <map to='#bab0ac'>
+          <bucket>&quot;홍익동&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;공항동&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;노고산동&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;도림동&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;만리동1가&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;미근동&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;산림동&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;석촌동&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;신대방동&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;양평동3가&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;영천동&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;이문동&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;중곡동&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;충정로3가&quot;</bucket>
+        </map>
+        <map to='#d37295'>
+          <bucket>&quot;홍제동&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;구로동&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;논현동&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;도원동&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;망원동&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;방배동&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;삼선동3가&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;성산동&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;신사동&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;양평동6가&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;오장동&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;익선동&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;중화동&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;풍납동&quot;</bucket>
+        </map>
+        <map to='#d4a6c8'>
+          <bucket>&quot;황학동&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;구의동&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;당산동&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;독산동&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;명륜1가&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;방학동&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;삼성동&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;성수동2가&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;신수동&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;역삼동&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;온수동&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;인현동2가&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;진관동&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;하왕십리동&quot;</bucket>
+        </map>
+        <map to='#d7b5a6'>
+          <bucket>&quot;회현동1가&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;고덕동&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;남현동&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;대치동&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;마곡동&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;문래동5가&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;불광동&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;서교동&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;신공덕동&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;압구정동&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;영등포동4가&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;월계동&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;정릉동&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;충무로4가&quot;</bucket>
+        </map>
+        <map to='#e15759'>
+          <bucket>&quot;현석동&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;개포동&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;길음동&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;대림동&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;동작동&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;문래동2가&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;봉천동&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;상왕십리동&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;숭인동&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;안암동1가&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;영등포동1가&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;우이동&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;장지동&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;청담동&quot;</bucket>
+        </map>
+        <map to='#f1ce63'>
+          <bucket>&quot;합정동&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;가산동&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;금호동1가&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;당산동3가&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;동소문동4가&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;명일동&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;보광동&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;상도1동&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;송파동&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;신정동&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;연남동&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;용두동&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;자양동&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;창전동&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;한강로1가&quot;</bucket>
+        </map>
+        <map to='#f28e2b'>
+          <bucket>&quot;후암동&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;광장동&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;노량진동&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;도봉동&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;만리동2가&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;미아동&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;산천동&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;성내동&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;신도림동&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;양평동4가&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;오금동&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;이촌동&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;중동&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;토정동&quot;</bucket>
+        </map>
+        <map to='#fabfd2'>
+          <bucket>&quot;화곡동&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;고척동&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;내곡동&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;대현동&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;마장동&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;문래동6가&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;사근동&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;서빙고동&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;신길동&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;양재동&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;영등포동5가&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;율현동&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;제기동&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;충무로5가&quot;</bucket>
+        </map>
+        <map to='#ff9d9a'>
+          <bucket>&quot;현저동&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;가양동&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;금호동2가&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;당산동4가&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;동소문동5가&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;목동&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;보문동3가&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;상도동&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;수색동&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;신창동&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;연희동&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;용문동&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;잠실동&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;창천동&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;한강로2가&quot;</bucket>
+        </map>
+        <map to='#ffbe7d'>
+          <bucket>&quot;휘경동&quot;</bucket>
+        </map>
+      </encoding>
+      <encoding attr='color' field='[none:Pivot Field Names:nk]' palette='tableau-10' type='palette'>
+        <map to='#1f77b4'>
+          <bucket>&quot;아파트_median_실거래&quot;</bucket>
+        </map>
+        <map to='#2ca02c'>
+          <bucket>&quot;아파트_mean_전세&quot;</bucket>
+        </map>
+        <map to='#8c564b'>
+          <bucket>&quot;아파트_mean_월세&quot;</bucket>
+        </map>
+        <map to='#9467bd'>
+          <bucket>&quot;아파트_mean_실거래&quot;</bucket>
+        </map>
+        <map to='#d62728'>
+          <bucket>&quot;아파트_median_전세&quot;</bucket>
+        </map>
+        <map to='#ff7f0e'>
+          <bucket>&quot;아파트_median_월세&quot;</bucket>
+        </map>
+      </encoding>
+      <encoding attr='color' field='[none:Forecast Indicator:nk]' type='palette'>
+        <map to='#4e79a7'>
+          <bucket>&quot;Actual&quot;</bucket>
+        </map>
+        <map to='#a0cbe8'>
+          <bucket>&quot;Estimate&quot;</bucket>
+        </map>
+      </encoding>
+    </style-rule>
+  </style>
+  <semantic-values>
+    <semantic-value key='[Country].[Name]' value='&quot;South Korea&quot;' />
+  </semantic-values>
+  <default-sorts>
+    <sort class='manual' column='[none:Forecast Indicator:nk]' direction='ASC'>
+      <dictionary>
+        <bucket>&quot;Actual&quot;</bucket>
+        <bucket>&quot;Estimate&quot;</bucket>
+      </dictionary>
+    </sort>
+  </default-sorts>
+</datasource>

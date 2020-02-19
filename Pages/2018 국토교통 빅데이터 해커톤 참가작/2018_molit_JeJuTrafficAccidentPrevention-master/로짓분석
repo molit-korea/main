@@ -1,0 +1,133 @@
+# working directory setting
+getwd()
+setwd("C:\\Users\\aj901\\Desktop\\국가해커톤")
+
+# 필요한 패키지 install
+install.packages("MASS")
+library(MASS)
+install.packages("Hmisc")
+library(Hmisc)
+
+# 데이터 불러오기 및 결측치 정제
+sample <- read.csv("accident(fix).csv",header = TRUE, na.strings=c("","NA"))
+View(sample)
+
+sample_df <- as.data.frame(sample)
+View(sample_df)
+str(sample_df)
+row.has.na <- apply(sample_df, 1, function(x){any(is.na(x))})
+
+sample_dfs<- sample_df[!row.has.na,]
+
+which(!is.na(sample_df))
+
+# 필요없는 열 제거
+sample_dfs <- sample_dfs[,-c(1,2,3,6:9,18,22)]
+sample_dfs <- sample_dfs[,-c(9,12)]
+
+sample_dfs <- sample_dfs[,-c(1)]
+View(sample_dfs)
+library(car)
+library(plyr)
+
+#다중공신성 확인
+lmfit <- lm(사고내용 ~ . , data = sample_dfs)
+summary(lmfit)
+vif(lmfit)거
+
+str(sample_dfs)
+vif()
+# 순서형 및 숫자형 변환
+
+sample_dfs$사고내용 <- factor(sample_dfs$사고내용, levels=c("부상사고", "경상사고", "중상사고", "사망사고"), ordered=TRUE)
+
+levels(sample_dfs$사고내용) <- 1:4
+str(sample_dfs$사고내용)
+#####################################################
+# 연령별 factor로 변환
+
+str(sample_dfs$가해운전자.연령)
+unique(sample_dfs$가해운전자.연령)
+
+#####
+
+# for (i in 1:length(sample_dfs$가해운전자.연령)){
+#   if (sample_dfs$가해운전자.연령 %/% 10 == 2) {
+#     sample_dfs$가해운전자.연령[i] <- 20
+#   } else if (sample_dfs$가해운전자.연령 %/% 10 == 3) {
+#     sample_dfs$가해운전자.연령[i] <- 30
+#   } else if (sample_dfs$가해운전자.연령 %/% 10 == 4) {
+#     sample_dfs$가해운전자.연령[i] <- 40
+#   } else if (sample_dfs$가해운전자.연령 %/% 10 == 5) {
+#     sample_dfs$가해운전자.연령[i] <- 50
+#   } else {
+#     sample_dfs$가해운전자.연령[i] <- 60
+#   }  
+# }
+####
+
+library(dplyr)
+
+#unique(sample_dfs$)
+#
+
+
+sample_dfs$법규위반 <- relevel(factor(sample_dfs$법규위반), ref= "안전거리미확보")
+
+sample_dfs$사고유형 <- relevel(factor(sample_dfs$사고유형), ref= "차대사람 - 보도통행중")
+
+sample_dfs$노면상태 <- relevel(factor(sample_dfs$노면상태), ref= "포장 - 건조")
+
+sample_dfs$기상상태 <- relevel(factor(sample_dfs$기상상태), ref= "맑음")
+
+sample_dfs$도로형태 <- relevel(factor(sample_dfs$도로형태), ref= "단일로 - 횡단보도상")
+
+sample_dfs$가해운전자.차종 <- relevel(factor(sample_dfs$가해운전자.차종), ref= "승용")
+
+sample_dfs$가해운전자.연령 <- relevel(factor(sample_dfs$가해운전자.연령), ref= "20대")
+
+sample_dfs$피해운전자.연령 <- relevel(factor(sample_dfs$피해운전자.연령), ref= "20대")
+
+sample_dfs$피해운전자.차종 <- relevel(factor(sample_dfs$피해운전자.차종), ref= "승용")
+
+
+unique(sample_dfs$발생시군구)
+
+str(sample_dfs)
+str(sample_dfs$사고유형)
+
+sample_dfs.fit <- polr(사고내용 ~., data = sample_dfs,  Hess=TRUE)
+sample_lm <- lm(사고내용 ~., data = sample_dfs)
+vif(sample_dfs.fit)
+
+require(car)
+install.packages("car")
+library(car)
+View(sample_dfs)
+
+str(sample_dfs)
+attach(sample_dfs)
+#sample_dfs <- sample_dfs[,-(11)]
+# AIC확인
+full.model <- glm(사고내용~.,data=sample_dfs,family = binomial)
+summary(full.model)
+reduced.model <- step(full.model,direction="both")
+
+
+sample_dfs<- sample_dfs[-9]
+# 순서형 로지스틱 
+sample_dfs.fit <- polr(사고내용 ~., data = sample_dfs,  Hess=TRUE)
+str(sample_dfs)
+summary(sample_dfs.fit)
+
+hanrim <- read.csv("한림읍.csv")
+View(hanrim)
+
+exp(coef(sample_dfs.fit))
+exp(sample_dfs.fit$zeta)
+
+# 사망자수 0,1,2
+# 예를들어 횡단중
+# 다른 변수가 고정되어있을 떄,횡단중의 유닛이 1증가할때 y = x(횡단중)*5.32
+# 0 vs (1 or 2) 의 비율, 또는 확률이 5.32
+# (0 or 1) vs 2 의 비율, 또는 확률이 또한 5.32

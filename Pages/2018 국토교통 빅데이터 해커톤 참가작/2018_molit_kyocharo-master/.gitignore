@@ -1,0 +1,12 @@
+0607hackathon-server/node_modules
+0607hackathon-server/data/*
+*.swp
+*lock.json
+
+0607hackathon/result/*/
+0607hackathon/result2/*
+0607hackathon/data/*
+0607hackathon/data/*/*
+0607hackathon/*.tar
+0607hackathon/*.gz
+!0607hackathon/.tmp

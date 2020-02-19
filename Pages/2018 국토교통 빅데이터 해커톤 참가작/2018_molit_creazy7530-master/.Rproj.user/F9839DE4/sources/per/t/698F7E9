@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1528392228241.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1278484063",
+    "id" : "698F7E9",
+    "lastKnownWriteTime" : 1528420432,
+    "last_content_update" : 1528420432682,
+    "path" : "F:/Creazy7530/r/20180607Ready.Rmd",
+    "project_path" : "r/20180607Ready.Rmd",
+    "properties" : {
+        "chunk_output_type" : "console",
+        "cursorPosition" : "214,22",
+        "last_setup_crc32" : "1226D1D6e6fedad5",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

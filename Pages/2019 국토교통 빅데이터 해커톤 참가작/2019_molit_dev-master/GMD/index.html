@@ -1,0 +1,92 @@
+<!doctype html>
+<meta charset="utf-8">
+<html lang="en">
+    <head>
+        <title>2019 - 국토교통빅데이터 해커톤</title>
+        <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:700&display=swap" rel="stylesheet">
+        <style>
+            
+            body{
+                background-color: #F2F2F2;
+                font-family: 'Nanum Gothic', sans-serif;
+            }
+            #id{
+                position: absolute;
+                width: 700px;
+                height: 400px;
+                top:calc(50% - 200px);
+                left:calc(50% - 350px);
+                text-align: center;
+            }
+            button{
+                background:#F6F9F0;
+                color:#FFC000;
+                border:none;
+                position:relative;
+                height:400px;
+                width: 200px;
+                font-size:1.6em;
+                padding:0 2em;
+                cursor:pointer;
+                transition:800ms ease all;
+                outline:none;
+                border-radius: 2px;
+                margin: 10px;
+            }
+            button:hover{
+                background:#fff;
+                color:#1AAB8A;
+            }
+            button:before,button:after{
+                content:'';
+                position:absolute;
+                top:0;
+                right:0;
+                height:2px;
+                width:0;
+                background: #1AAB8A;
+                transition:400ms ease all;
+            }
+            button:after{
+                right:inherit;
+                top:inherit;
+                left:0;
+                bottom:0;
+            }
+            button:hover:before,button:hover:after{
+                width:100%;
+                transition:800ms ease all;
+            }
+            H1{
+                color: #1AAB8A;
+                text-align: center;
+                margin: 40px;
+            }
+            #copyright{
+                position:absolute;
+                bottom:10px;
+                color:black;
+                text-align: center;
+                width: 100%;
+                margin: 0px;
+                padding: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <H1>
+            2019 국토교통 빅데이터 해커톤 DEV 팀
+        </H1>
+        <div id="id">
+            <button id="road" class="button" onclick="location.href='./road.html'">
+                도로<br><br>분석
+            </button>
+            <button id="data" class="button" onclick="location.href='./data.html'">
+                데이터<br><br>분석
+            </button>
+        </div>
+        <div id="copyright">
+                Copyright ⓒ InfoLab(Lee Donggun, Ryu dongjun, Kwang Woo Nam) . All right reserved.
+        </div>
+    </body>
+</html>

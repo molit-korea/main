@@ -1,0 +1,221 @@
+---
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(dplyr)
+library(stringr)
+library(maptools)
+library(sp)
+library(rgdal)
+library(tidyverse)
+library(broom)
+library(reshape2)
+```
+
+#Raw Data
+```{R}
+live.R <- read.table("../data/live16.txt", header = F, sep = ",")
+```
+
+
+#live
+```{r}
+live <-live.R[,c(1,3,10,14,84,85,127,128,
+                  200,201,211,212,277,
+                  281,282,286,287,288,289,
+                  295,300,306,307,309,311,312)]
+live$age1 <- 2017-live$V211
+live[live$V286 == 9999999,16] <- NA 
+```
+
+#homeless & 1인 가구
+```{r}
+hl <- live%>%
+  filter(V14 != 1 & V277 <= 1)
+
+hl_money <- live%>%
+  filter(V286<=1000)
+```
+
+#전체 가구 점유 유형에 따른 빈도수
+```{r}
+#live$V14
+kind <- data.frame(table(live$V14),stringsAsFactors = F)
+kind$Var1 <- c("자가","전세","보증금\n있는 월세","보증금\n없는 월세","사글세\n연세","무상")
+kind$Var1 <- factor(kind$Var1, 
+                    levels = c("자가","전세","보증금\n있는 월세","보증금\n없는 월세","사글세\n연세","무상"), 
+                    labels = c("자가","전세","보증금\n있는 월세","보증금\n없는 월세","사글세\n연세","무상"))
+str(kind)
+names(kind) <- c("점유형태","빈도")
+kind$per <- round(kind$`빈도`/sum(kind$`빈도`)*100,2)
+kind
+
+```
+
+
+#연령
+```{r}
+
+live$age.g <- "20대"
+live[live$age1>=30&live$age1<40,28] <- "30대"
+live[live$age1>=40&live$age1<50,28] <- "40대"
+live[live$age1>=50&live$age1<60,28] <- "50대"
+live[live$age1>=60&live$age1<70,28] <- "60대"
+live[live$age1>=70&live$age1<80,28] <- "70대"
+live[live$age1>=80,28] <- "80대 이상"
+table(live$age.g)
+
+live$kind <- "자가"
+live[live$V14 != 1,29] <- "임대"
+table(live$kind)
+live.a <- as.data.frame(cbind("점유형태" = live$kind,
+                              "연령" = live$age.g,
+                              "거처종류"=live$V10))
+
+live.ag.h <- as.data.frame(table(live.a[live.a$`점유형태`=="자가",2]))
+live.ag.h$per <- round(live.ag.h$Freq/sum(live.ag.h$Freq)*100,2)
+
+live.ag.hl <- as.data.frame(table(live.a[live.a$`점유형태`=="임대",2]))
+live.ag.hl$per <- round(live.ag.hl$Freq/sum(live.ag.hl$Freq)*100,2)
+
+live.ag <- rbind(live.ag.h[,-3], live.ag.hl[,-3])
+live.ag.per <- rbind(live.ag.h[,-2], live.ag.hl[,-2])
+
+names(live.ag) <- c("연령","빈도")
+live.ag$kind <- c(rep("자가",7),rep("임대",7))
+live.ag$kind <- factor(live.ag$kind,levels = c("자가","임대"))
+
+names(live.ag.per) <- c("연령","per")
+
+live.ag.per$kind <- c(rep("자가",7),rep("임대",7))
+live.ag.per$kind <- factor(live.ag.per$kind,levels = c("자가","임대"))
+
+```
+
+#자가 주택자 중 60세이상 주거유형 
+```{r}
+live.h <- live%>%
+  filter(live$V14 == 1 & live$age1 >= 60)
+
+live.h.f <- as.data.frame(table(live.h$V10))
+str(live.h.f)
+house <- c("일반단독",
+           "다가구단독",
+           "영업겸용단독",
+           "아파트",
+           "연립주택",
+           "다세대주택",
+           "비주거용\n건물내 주택",
+           "오피스텔",
+           "임시주거",
+           "기타")
+live.h.f$Var1 <- house
+live.h.f$Var1 <- factor(live.h.f$Var1,levels = house)
+live.h.f$per <- round(live.h.f$Freq/sum(live.h.f$Freq)*100,2)
+names(live.h.f) <- c("점유유형","빈도","per")
+
+```
+
+#전체가구 주거유형
+```{r}
+live.house.f <- data.frame(table(live$V10))
+str(live.house.f)
+live.house.f$Var1 <- house
+live.house.f$Var1 <- factor(live.house.f$Var1,levels = house)
+live.house.f$per <- round(live.house.f$Freq/sum(live.house.f$Freq)*100,2)
+names(live.house.f) <- c("점유유형","빈도","per")
+str(live.house.f)
+```
+
+
+#자가&60세이상&아파트&가구원수별
+
+```{r}
+live.p <- live.h%>%
+  filter(live.h$V10 == 4)
+live.p.f <- data.frame(table(live.p$V277))
+people <- c("1인","2인",
+            "3인","4인",
+            "5인","6인",
+            "7인","8인")
+people.fix <- c("1인","2인",
+            "3인","4인",
+            "5인","6인이상")
+people
+str(live.p.f)
+live.p.f$Var1 <- people
+live.p.f$Var1 <- factor(live.p.f$Var1,levels = people)
+live.p.f$per <- round(live.p.f$Freq/sum(live.p.f$Freq)*100,2)
+names(live.p.f) <- c("거주인원","빈도","per")
+live.p.f
+
+live.p.fix <- live.p.f[1:6,]
+live.p.fix$거주인원 <- as.character(live.p.fix$거주인원)
+live.p.fix[6,2] <- sum(live.p.f[6:8,2])
+live.p.fix[6,3] <- sum(live.p.f[6:8,3])
+live.p.fix$거주인원 <- people.fix
+live.p.fix$거주인원 <- factor(live.p.fix$거주인원,levels = people.fix)
+live.p.fix
+str(live.p.fix)
+```
+
+##자가&60세이상&아파트&2인이하
+```{r}
+live.hoas <- live.p%>%
+  filter(V277 <= 2)
+```
+
+##자가&60세이상&아파트&2인이하&85m2이상
+```{r}
+live.hoasmb <- live.hoas%>%
+  filter(V85 >=82.5)
+live.hoasmb.f <- data.frame(table(live.hoasmb$V3))
+name_kr = c("서울",
+            "부산",
+            "대구",
+            "인천",
+            "광주",
+            "대전",
+            "울산",
+            "세종",
+            "경기",
+            "강원",
+            "충북",
+            "충남",
+            "전북",
+            "전남",
+            "경북",
+            "경남",
+            "제주")
+live.hoasmb.f$Var1 <- name_kr
+str(live.hoasmb.f)
+live.hoasmb.f$Var1 <- factor(live.hoasmb.f
+                                $Var1, level = name_kr)
+live.hoasmb.f$per <- round(live.hoasmb.f$Freq/sum(live.hoasmb.f$Freq)*100,2)
+str(live.hoasmb.f)
+live.hoasmb.f
+live.hoasmb.f <- live.hoasmb.f%>%
+  arrange(desc(per))
+```
+
+
+```{r}
+country.p <- read.csv("../data/housepeople_country3.csv",header = T)
+country.p
+country <- country.p
+country$주거실태_전체 <- c(sum(table(live$V3)),table(live$V3))
+country$조건 <- c(sum(table(live.hoasmb$V3)),table(live.hoasmb$V3))
+country$prob <- round(country[,4]/country[,3])
+country$추정가구 <- country$전체*country$prob
+country
+write.csv(country, "../data/estimation.csv")
+```
+
+
+```{r}
+save.image("./filter.RData")
+```

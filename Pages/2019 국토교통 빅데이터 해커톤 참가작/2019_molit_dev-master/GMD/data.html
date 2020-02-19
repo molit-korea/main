@@ -1,0 +1,136 @@
+<html>
+    <meta charset="utf-8">
+    <head>
+        <title>2019 - 국토교통빅데이터 해커톤</title>
+        <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:700&display=swap" rel="stylesheet">
+        <style>
+            
+            body{
+                background-color: #F2F2F2;
+                font-family: 'Nanum Gothic', sans-serif;
+            }
+            #id{
+                width: 100%;
+                height: auto;
+                text-align: center;
+            }
+            .h1{
+                color: #1AAB8A;
+                text-align: center;
+                margin: 40px;
+                
+            }
+            #copyright{
+                color:black;
+                text-align: center;
+                width: 100%;
+                margin: 0px;
+                padding: 0px;
+            }
+            .map {
+                display: inline-block;
+                height: 400px;
+                width: 250px;
+            }
+            #view{
+                display: inline-block;
+                width: 430px;
+                height: 400px;
+            }
+            .label{
+                color:black;
+                size: 10px;
+                text-align: center;
+                width: 100%;
+                margin: 0px;
+                padding: 0px;
+            }
+            #sample{
+                color:black;
+            }
+            button{
+                background:#F6F9F0;
+                color:#FFC000;
+                border:none;
+                position:relative;
+                height:60px;
+                width: 200px;
+                font-size:1.6em;
+                padding:0 2em;
+                cursor:pointer;
+                transition:800ms ease all;
+                outline:none;
+                border-radius: 2px;
+                margin: 10px;
+            }
+            button:hover{
+                background:#fff;
+                color:#1AAB8A;
+            }
+            button:before,button:after{
+                content:'';
+                position:absolute;
+                top:0;
+                right:0;
+                height:2px;
+                width:0;
+                background: #1AAB8A;
+                transition:400ms ease all;
+            }
+            button:after{
+                right:inherit;
+                top:inherit;
+                left:0;
+                bottom:0;
+            }
+            button:hover:before,button:hover:after{
+                width:100%;
+                transition:800ms ease all;
+            }
+            .data{
+                width:100%;
+                height: auto;
+                display: inline-block;
+            }
+            #main{
+                width: 70%;
+                display: inline-block;
+                text-align: center;
+            }
+            #loading{
+                position: absolute;
+                z-index: 4;
+                width: 150px;
+                height: 150px;
+                top:calc(50% - 75px);
+                left:calc(50% - 75px);
+                background: white;
+                border-radius: 100%;
+                display: none;
+            }
+        </style>
+        <link rel="stylesheet" href="./ol.css" type="text/css">
+        <script src="./jquery.min.js"></script>
+        <script src="./ol.js"></script>
+    </head>
+    <body>
+        <div id="loading"><img src="./loading.gif"></div>
+        <div class="h1"><h1>데이터 분석</h1><div class="label"><a href="./index.html">(뒤로)</a></div></div>
+        <div id="id">
+            <div id="sample">
+                <button onclick="loading(3000,load_data1);">Sample 1</button>|
+                <button onclick="loading(3000,load_data2);">Sample 2</button>|
+                <button onclick="loading(3000,load_data3);">Sample 3</button>
+            </div>
+            <div id="main">
+                    
+            </div>
+            <div id="copyright">
+                    Copyright ⓒ InfoLab(Lee Donggun, Ryu dongjun, Kwang Woo Nam) . All right reserved.
+            </div>
+        </div>
+        
+        <script src="./openlayers.js"></script>
+        <script src="./sample.js"></script>
+    </body>
+</html>

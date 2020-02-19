@@ -1,0 +1,58 @@
+library(ggplot2)
+library(dplyr)
+library(stringr)
+library(maptools)
+library(sp)
+library(rgdal)
+library(tidyverse)
+library(broom)
+library(reshape2)
+
+name_kr = c("서울",
+            "부산",
+            "대구",
+            "인천",
+            "광주",
+            "대전",
+            "울산",
+            "세종",
+            "경기",
+            "강원",
+            "충북",
+            "충남",
+            "전북",
+            "전남",
+            "경북",
+            "경남",
+            "제주")
+
+live.R <- read.table("./data/live16.txt",header=F,sep = ",")
+live <- live.R[,c(1,3,10,14,84,85,127,128,
+                  200,201,202,211,212,277,
+                  281,282,286,287,288,289,
+                  293,294,295,300,306,307,309)]
+live$age1 <- 2019-live$V211
+live$age2 <- 2019-live$V212
+#small
+small <- live%>%
+  filter(V277<=2)
+#small&have
+small_h <- small%>%
+  filter(V14 == 1)
+#small&have&apt
+small_h_a <- small_h%>%
+  filter(V10 == 4)
+#small&have&apt&mb
+small_h_a_mb <- small_h_a%>%
+  filter(V84>25)
+#small&have&apt&mb&old
+small_h_a_mb_o <- small_h_a_mb%>%
+  filter(age1>=65)
+
+####no
+#no small
+n_small <- live%>%
+  filter(V277>2 & V84)
+#small_no have
+small_nh <- small%>%
+  filter(V14 != 1)

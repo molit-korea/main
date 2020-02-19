@@ -1,0 +1,21 @@
+/**
+ * 1. We may want to put elements in here which have different heights.
+ */
+.kuiFieldGroup {
+  display: flex;
+  align-items: center; /* 1 */
+}
+
+.kuiFieldGroupSection {
+  & + & {
+    margin-left: 10px;
+  }
+}
+
+.kuiFieldGroupSection--wide {
+  flex: 1 1 auto;
+
+  & > * {
+    width: 100%;
+  }
+}

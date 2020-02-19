@@ -1,0 +1,7 @@
+0607hackathon/result/*/
+0607hackathon/result2/*
+0607hackathon/data/*
+0607hackathon/data/*/*
+0607hackathon/*.tar
+0607hackathon/*.gz
+!0607hackathon/.tmp

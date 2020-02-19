@@ -1,0 +1,422 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 10500.18.0404.1406                               -->
+<datasource formatted-name='federated.0gp9vux0fxmd4v12217wr0x44aih' inline='true' source-platform='win' version='10.5' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <connection class='federated'>
+    <named-connections>
+      <named-connection caption='다세대_실거래가' name='excel-direct.1etcqsi1l6xq5q16g6jna1c5eq34'>
+        <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='C:/Users/user/Desktop/부동산 데이터/xlsx/다세대_실거래가.xlsx' interpretationMode='0' password='' server='' validate='no' />
+      </named-connection>
+      <named-connection caption='다세대_월세가' name='excel-direct.1bb10ie09mj69516hutlh03mfeu0'>
+        <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='C:/Users/user/Desktop/부동산 데이터/xlsx/다세대_월세가.xlsx' interpretationMode='0' password='' server='' validate='no' />
+      </named-connection>
+      <named-connection caption='다세대_전세가' name='excel-direct.0ks1cux0h8d4yo166u0rb17bqfeh'>
+        <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='C:/Users/user/Desktop/부동산 데이터/xlsx/다세대_전세가.xlsx' interpretationMode='0' password='' server='' validate='no' />
+      </named-connection>
+    </named-connections>
+    <relation join='inner' type='join'>
+      <clause type='join'>
+        <expression op='AND'>
+          <expression op='='>
+            <expression op='[다세대_실거래가].[계약날짜]' />
+            <expression op='[다세대_전세가].[계약날짜]' />
+          </expression>
+          <expression op='='>
+            <expression op='[다세대_실거래가].[구]' />
+            <expression op='[다세대_전세가].[구]' />
+          </expression>
+          <expression op='='>
+            <expression op='[다세대_실거래가].[동]' />
+            <expression op='[다세대_전세가].[동]' />
+          </expression>
+        </expression>
+      </clause>
+      <relation join='inner' type='join'>
+        <clause type='join'>
+          <expression op='AND'>
+            <expression op='='>
+              <expression op='[다세대_실거래가].[계약날짜]' />
+              <expression op='[다세대_월세가].[계약날짜]' />
+            </expression>
+            <expression op='='>
+              <expression op='[다세대_실거래가].[구]' />
+              <expression op='[다세대_월세가].[구]' />
+            </expression>
+            <expression op='='>
+              <expression op='[다세대_실거래가].[동]' />
+              <expression op='[다세대_월세가].[동]' />
+            </expression>
+          </expression>
+        </clause>
+        <relation connection='excel-direct.1etcqsi1l6xq5q16g6jna1c5eq34' name='다세대_실거래가' table='[다세대_실거래가$]' type='table'>
+          <columns gridOrigin='A1:F20522:no:A1:F20522:0' header='yes' outcome='6'>
+            <column datatype='date' name='계약날짜' ordinal='0' />
+            <column datatype='string' name='구' ordinal='1' />
+            <column datatype='string' name='동' ordinal='2' />
+            <column datatype='real' name='다세대_median_실거래' ordinal='3' />
+            <column datatype='integer' name='다세대_mean_실거래' ordinal='4' />
+            <column datatype='date' date-parse-format='yyyy' name='다세대_mean_건축년도' ordinal='5' />
+          </columns>
+        </relation>
+        <relation connection='excel-direct.1bb10ie09mj69516hutlh03mfeu0' name='다세대_월세가' table='[다세대_월세가$]' type='table'>
+          <columns gridOrigin='A1:F15166:no:A1:F15166:0' header='yes' outcome='6'>
+            <column datatype='date' name='계약날짜' ordinal='0' />
+            <column datatype='string' name='구' ordinal='1' />
+            <column datatype='string' name='동' ordinal='2' />
+            <column datatype='integer' name='다세대_median_월세' ordinal='3' />
+            <column datatype='integer' name='다세대_mean_월세' ordinal='4' />
+            <column datatype='integer' name='다세대_mean_건축년도' ordinal='5' />
+          </columns>
+        </relation>
+      </relation>
+      <relation connection='excel-direct.0ks1cux0h8d4yo166u0rb17bqfeh' name='다세대_전세가' table='[다세대_전세가$]' type='table'>
+        <columns gridOrigin='A1:F17073:no:A1:F17073:0' header='yes' outcome='6'>
+          <column datatype='date' name='계약날짜' ordinal='0' />
+          <column datatype='string' name='구' ordinal='1' />
+          <column datatype='string' name='동' ordinal='2' />
+          <column datatype='integer' name='다세대_median_전세' ordinal='3' />
+          <column datatype='integer' name='다세대_mean_전세' ordinal='4' />
+          <column datatype='integer' name='다세대_mean_건축년도' ordinal='5' />
+        </columns>
+      </relation>
+    </relation>
+    <cols>
+      <map key='[계약날짜 (다세대!월세가)]' value='[다세대_월세가].[계약날짜]' />
+      <map key='[계약날짜 (다세대!전세가)]' value='[다세대_전세가].[계약날짜]' />
+      <map key='[계약날짜]' value='[다세대_실거래가].[계약날짜]' />
+      <map key='[구 (다세대!월세가)]' value='[다세대_월세가].[구]' />
+      <map key='[구 (다세대!전세가)]' value='[다세대_전세가].[구]' />
+      <map key='[구]' value='[다세대_실거래가].[구]' />
+      <map key='[다세대_mean_건축년도 (다세대!월세가)]' value='[다세대_월세가].[다세대_mean_건축년도]' />
+      <map key='[다세대_mean_건축년도 (다세대!전세가)]' value='[다세대_전세가].[다세대_mean_건축년도]' />
+      <map key='[다세대_mean_건축년도]' value='[다세대_실거래가].[다세대_mean_건축년도]' />
+      <map key='[다세대_mean_실거래]' value='[다세대_실거래가].[다세대_mean_실거래]' />
+      <map key='[다세대_mean_월세]' value='[다세대_월세가].[다세대_mean_월세]' />
+      <map key='[다세대_mean_전세]' value='[다세대_전세가].[다세대_mean_전세]' />
+      <map key='[다세대_median_실거래]' value='[다세대_실거래가].[다세대_median_실거래]' />
+      <map key='[다세대_median_월세]' value='[다세대_월세가].[다세대_median_월세]' />
+      <map key='[다세대_median_전세]' value='[다세대_전세가].[다세대_median_전세]' />
+      <map key='[동 (다세대!월세가)]' value='[다세대_월세가].[동]' />
+      <map key='[동 (다세대!전세가)]' value='[다세대_전세가].[동]' />
+      <map key='[동]' value='[다세대_실거래가].[동]' />
+    </cols>
+    <metadata-records>
+      <metadata-record class='capability'>
+        <remote-name />
+        <remote-type>0</remote-type>
+        <parent-name>[다세대_실거래가]</parent-name>
+        <remote-alias />
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='integer' name='context'>2</attribute>
+          <attribute datatype='string' name='gridOrigin'>&quot;A1:F20522:no:A1:F20522:0&quot;</attribute>
+          <attribute datatype='boolean' name='header'>true</attribute>
+          <attribute datatype='integer' name='outcome'>6</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>계약날짜</remote-name>
+        <remote-type>7</remote-type>
+        <local-name>[계약날짜]</local-name>
+        <parent-name>[다세대_실거래가]</parent-name>
+        <remote-alias>계약날짜</remote-alias>
+        <ordinal>0</ordinal>
+        <local-type>date</local-type>
+        <aggregation>Year</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;DATE&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>구</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[구]</local-name>
+        <parent-name>[다세대_실거래가]</parent-name>
+        <remote-alias>구</remote-alias>
+        <ordinal>1</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>동</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[동]</local-name>
+        <parent-name>[다세대_실거래가]</parent-name>
+        <remote-alias>동</remote-alias>
+        <ordinal>2</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>다세대_median_실거래</remote-name>
+        <remote-type>5</remote-type>
+        <local-name>[다세대_median_실거래]</local-name>
+        <parent-name>[다세대_실거래가]</parent-name>
+        <remote-alias>다세대_median_실거래</remote-alias>
+        <ordinal>3</ordinal>
+        <local-type>real</local-type>
+        <aggregation>Sum</aggregation>
+        <precision>15</precision>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>다세대_mean_실거래</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[다세대_mean_실거래]</local-name>
+        <parent-name>[다세대_실거래가]</parent-name>
+        <remote-alias>다세대_mean_실거래</remote-alias>
+        <ordinal>4</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>다세대_mean_건축년도</remote-name>
+        <remote-type>7</remote-type>
+        <local-name>[다세대_mean_건축년도]</local-name>
+        <parent-name>[다세대_실거래가]</parent-name>
+        <remote-alias>다세대_mean_건축년도</remote-alias>
+        <ordinal>5</ordinal>
+        <local-type>date</local-type>
+        <aggregation>Year</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>계약날짜</remote-name>
+        <remote-type>7</remote-type>
+        <local-name>[계약날짜 (다세대!월세가)]</local-name>
+        <parent-name>[다세대_월세가]</parent-name>
+        <remote-alias>계약날짜</remote-alias>
+        <ordinal>6</ordinal>
+        <local-type>date</local-type>
+        <aggregation>Year</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;DATE&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>구</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[구 (다세대!월세가)]</local-name>
+        <parent-name>[다세대_월세가]</parent-name>
+        <remote-alias>구</remote-alias>
+        <ordinal>7</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>동</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[동 (다세대!월세가)]</local-name>
+        <parent-name>[다세대_월세가]</parent-name>
+        <remote-alias>동</remote-alias>
+        <ordinal>8</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>다세대_median_월세</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[다세대_median_월세]</local-name>
+        <parent-name>[다세대_월세가]</parent-name>
+        <remote-alias>다세대_median_월세</remote-alias>
+        <ordinal>9</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>다세대_mean_월세</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[다세대_mean_월세]</local-name>
+        <parent-name>[다세대_월세가]</parent-name>
+        <remote-alias>다세대_mean_월세</remote-alias>
+        <ordinal>10</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>다세대_mean_건축년도</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[다세대_mean_건축년도 (다세대!월세가)]</local-name>
+        <parent-name>[다세대_월세가]</parent-name>
+        <remote-alias>다세대_mean_건축년도</remote-alias>
+        <ordinal>11</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='capability'>
+        <remote-name />
+        <remote-type>0</remote-type>
+        <parent-name>[다세대_월세가]</parent-name>
+        <remote-alias />
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='integer' name='context'>0</attribute>
+          <attribute datatype='string' name='gridOrigin'>&quot;A1:F15166:no:A1:F15166:0&quot;</attribute>
+          <attribute datatype='boolean' name='header'>true</attribute>
+          <attribute datatype='integer' name='outcome'>6</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>계약날짜</remote-name>
+        <remote-type>7</remote-type>
+        <local-name>[계약날짜 (다세대!전세가)]</local-name>
+        <parent-name>[다세대_전세가]</parent-name>
+        <remote-alias>계약날짜</remote-alias>
+        <ordinal>12</ordinal>
+        <local-type>date</local-type>
+        <aggregation>Year</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;DATE&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>구</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[구 (다세대!전세가)]</local-name>
+        <parent-name>[다세대_전세가]</parent-name>
+        <remote-alias>구</remote-alias>
+        <ordinal>13</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>동</remote-name>
+        <remote-type>130</remote-type>
+        <local-name>[동 (다세대!전세가)]</local-name>
+        <parent-name>[다세대_전세가]</parent-name>
+        <remote-alias>동</remote-alias>
+        <ordinal>14</ordinal>
+        <local-type>string</local-type>
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <collation flag='1' name='LKO_RKR_S2' />
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>다세대_median_전세</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[다세대_median_전세]</local-name>
+        <parent-name>[다세대_전세가]</parent-name>
+        <remote-alias>다세대_median_전세</remote-alias>
+        <ordinal>15</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>다세대_mean_전세</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[다세대_mean_전세]</local-name>
+        <parent-name>[다세대_전세가]</parent-name>
+        <remote-alias>다세대_mean_전세</remote-alias>
+        <ordinal>16</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='column'>
+        <remote-name>다세대_mean_건축년도</remote-name>
+        <remote-type>20</remote-type>
+        <local-name>[다세대_mean_건축년도 (다세대!전세가)]</local-name>
+        <parent-name>[다세대_전세가]</parent-name>
+        <remote-alias>다세대_mean_건축년도</remote-alias>
+        <ordinal>17</ordinal>
+        <local-type>integer</local-type>
+        <aggregation>Sum</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+        </attributes>
+      </metadata-record>
+      <metadata-record class='capability'>
+        <remote-name />
+        <remote-type>0</remote-type>
+        <parent-name>[다세대_전세가]</parent-name>
+        <remote-alias />
+        <aggregation>Count</aggregation>
+        <contains-null>true</contains-null>
+        <attributes>
+          <attribute datatype='integer' name='context'>0</attribute>
+          <attribute datatype='string' name='gridOrigin'>&quot;A1:F17073:no:A1:F17073:0&quot;</attribute>
+          <attribute datatype='boolean' name='header'>true</attribute>
+          <attribute datatype='integer' name='outcome'>6</attribute>
+        </attributes>
+      </metadata-record>
+    </metadata-records>
+  </connection>
+  <aliases enabled='yes' />
+  <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+    <calculation class='tableau' formula='1' />
+  </column>
+  <column datatype='date' hidden='true' name='[계약날짜 (다세대!월세가)]' role='dimension' type='ordinal' />
+  <column datatype='date' hidden='true' name='[계약날짜 (다세대!전세가)]' role='dimension' type='ordinal' />
+  <column datatype='string' hidden='true' name='[구 (다세대!월세가)]' role='dimension' type='nominal' />
+  <column datatype='string' hidden='true' name='[구 (다세대!전세가)]' role='dimension' type='nominal' />
+  <column caption='다세대월세_mean_건축년도' datatype='integer' name='[다세대_mean_건축년도 (다세대!월세가)]' role='measure' type='quantitative' />
+  <column caption='다세대전세_mean_건축년도' datatype='integer' name='[다세대_mean_건축년도 (다세대!전세가)]' role='measure' type='quantitative' />
+  <column caption='다세대실거래_mean_건축년도' datatype='date' name='[다세대_mean_건축년도]' role='dimension' type='quantitative' />
+  <column datatype='string' hidden='true' name='[동 (다세대!월세가)]' role='dimension' type='nominal' />
+  <column datatype='string' hidden='true' name='[동 (다세대!전세가)]' role='dimension' type='nominal' />
+  <layout dim-ordering='alphabetic' dim-percentage='0.238636' measure-ordering='alphabetic' measure-percentage='0.618182' parameter-percentage='0.143182' show-structure='true' />
+  <semantic-values>
+    <semantic-value key='[Country].[Name]' value='&quot;South Korea&quot;' />
+  </semantic-values>
+</datasource>

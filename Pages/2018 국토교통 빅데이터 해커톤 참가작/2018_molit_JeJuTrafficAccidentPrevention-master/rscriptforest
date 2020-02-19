@@ -1,0 +1,66 @@
+getwd()
+setwd("D:\\빅데이터\\해커톤\\DATA\\정안재")
+
+library(rpart)
+library(partykit)
+library(MASS)
+library(ElemStatLearn)
+library(randomForest)
+library(xgboost)
+library(caret)
+
+sample <- read.csv("전처리끗.csv",header = TRUE, na.strings=c("","NA"))
+
+sample_df <- as.data.frame(sample)
+View(sample_df)
+
+row.has.na <- apply(sample_df, 1, function(x){any(is.na(x))})
+row.has.na
+sample_dfs<- sample_df[!row.has.na,]
+View(sample_dfs)
+str(sample_dfs)
+
+sample_dfs <- sample_dfs[,-c(1,2,4:7,8:10,12,13:21)]
+View(sample_dfs)
+sample_dfs <- sample_dfs[,-c(2,3)]
+sample_dfs <- sample_dfs[,-c(1)]
+
+set.seed(123)
+ind <- sample(2, nrow(sample_dfs), replace = TRUE, prob = c(0.7,0.3))
+train <- sample_dfs[ind==1,]
+test <- sample_dfs[ind==2,]
+str(train)
+str(test)
+
+set.seed(123)
+rf.sample <- randomForest(CNT~., data = train)
+rf.sample
+# oob 오차율은 10%
+plot(rf.sample)
+which.min(rf.sample$mse)
+
+set.seed(123)
+rf.sample.2 <- randomForest(CNT~., data = train, ntree = 473)
+rf.sample.2
+# oob 오차율은 9.9%
+
+varImPlot(rf.sample.2, scale = T, main = "변수중요도")
+
+rf.sample.test <- predict(rf.sample.2, newdata = test, type = "response")
+table(rf.sample.test, test$사고내용)
+str(test)
+
+# 변수 중요도
+varImpPlot(rf.sample.2)
+# 지면 온도가 가장 중요한변수, 그다음은 현지기압.
+importance(rf.sample.2)
+#숫자로보기
+rf.sample.test <- predict(rf.sample.2, newdata = test)
+rf.resid <- rf.sample.test - test$CNT
+mean(rf.resid^2) # MSE(Mean Square Error, 평균 제곱 오차)
+
+tttest <- data.frame(기온=11.1, 강수량=0.5, 풍속=4.5, 습도=72, 증기압=8, 이슬점온도=5.5, 
+                       현지기압= 1022.2, 일조=0.2, 적설=0, 시정=1000
+                       , 지면온도 = 4, 시간때 = 02)
+
+predict(rf.sample.2, tttest) 

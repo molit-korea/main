@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-KR">
+<head>
+    <meta charset="UTF-8">
+    <title>NEW POLL</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 80%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #floating-panel  {
+        position: absolute;
+        top: 10px;
+        left: 45%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #form {
+          height: 10%;
+      }
+
+      #form div {
+          height: 40%;
+          background-color: black;
+          color: whitesmoke;
+      }
+
+      #formShown {
+          background-color: black;
+          color: whitesmoke;
+          height: 60%;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+      }
+
+      #form-submit{
+          background-color: black;
+          color: whitesmoke;
+          height: 40%;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+      }
+    </style>
+</head>
+
+<body style="background-color: black">
+    <div id="floating-panel">
+        <input onclick="removeMarkers();" type=button value="Delete Markers">
+    </div>
+    <div id="map"></div>
+
+    <script type="text/javascript">
+        let map;
+        let markerCount = 0;
+        let markerList = [];
+
+        function initMap() {
+            let origin = {lat: 37.516904, lng: 126.985017};
+            let content = 'AAAAA';
+
+            let infoWindow = new google.maps.InfoWindow({
+                content: content,
+                maxWidth: 200
+            });
+
+            map = new google.maps.Map(document.getElementById('map'), {
+              center: origin,
+              zoom: 13
+            });
+
+          map.addListener('click', function(e) {
+              placeMarker(e.latLng);
+              if(markerList.length < 2) {
+                   //placeMarker(e.latLng);
+                   if(markerCount == 0) {
+                       document.getElementById("from_input").value = e.latLng;
+                   } else if(markerCount == 1) {
+                       document.getElementById("to_input").value = e.latLng;
+                   }
+                   markerCount++;
+              } else {
+                  google.maps.event.addDomListener(mapDiv, 'click', function() {
+                      window.alert("Maximum marker reached.")
+                  })
+              }
+          });
+        }
+
+        function placeMarker(latLng) {
+            let marker = new google.maps.Marker({
+                position: latLng,
+                lat: latLng.lat,
+                lng: latLng.lng,
+                map: map
+            });
+
+            marker.addListener('click', function() {
+                infoWindow.open(map, marker);
+            });
+
+            markerList.push(marker);
+        }
+
+        function setMapOnAll(map) {
+            for(var i = 0; i < markerList.length; i++) {
+                markerList[i].setMap(map);
+            }
+        }
+
+        function clearMarkers() {
+            setMapOnAll(null);
+        }
+
+        function removeMarkers() {
+            clearMarkers();
+            markerList = [];
+            markerCount = 0
+            document.getElementById("from_input").value = "";
+            document.getElementById("to_input").value = "";
+        }
+
+        function showConfirmPage() {
+            let confirmationWindow = window.open("", "", 'height=150, width=400');
+            confirmationWindow.document.write("CONFIRMATION");
+            confirmationWindow.document.write("<br>");
+            confirmationWindow.document.write("<br>");
+            confirmationWindow.document.write(markerList[0].position + "<br>");
+            confirmationWindow.document.write(markerList[1].position + "<br>");
+            if(confirmationWindow.focus) {
+                confimationWindow.focus()
+            }
+            return false;
+        }
+
+        function sendCoordinatesToDataServer() {
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "pollpost", true);
+            xhttp.send(markerList[0].position + "|" + markerList[1].position);
+        }
+
+        function printThis(value) {
+            let window = window.open("", "", 'height = 150, width = 400');
+            window.document.write(value);
+            if(window.focus) {
+                window.focus;
+            }
+            return false;
+        }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZxFTSoOUBkwfpoNWPg4s6mn0RjKWLrbo&callback=initMap"
+    async defer></script>
+
+    <br>
+    <br>
+    <hr>
+
+    <!--
+    <button id="submit" onclick="sendCoordinatesToDataServer()" style="color:whitesmoke; background-color: black">
+        SUBMIT
+    </button>
+    -->
+
+    <form id="form" action="{% url 'pollpost' %}" method="post">
+        {% csrf_token %}
+
+        <div>
+            <tr>
+                <td>
+                    <label for="fromCoord">From :</label>
+                </td>
+                <td>
+                    <input id="from_input" type="text" name="from_input" value="">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="toCoord">To :</label>
+                </td>
+                <td>
+                    <input id="to_input" type="text" name="to_input" value="">
+                </td>
+            </tr>
+        </div>
+
+        <input id="form-submit" type="submit" value="SUBMIT">
+    </form>
+</body>
+</html>

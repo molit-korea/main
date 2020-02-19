@@ -1,0 +1,37 @@
+[2017-08-24T10:51:36,854][INFO ][logstash.setting.writabledirectory] Creating directory {:setting=>"path.queue", :path=>"X:/elastic_stack/logstash-5.5.2/data/queue"}
+[2017-08-24T10:51:36,862][INFO ][logstash.setting.writabledirectory] Creating directory {:setting=>"path.dead_letter_queue", :path=>"X:/elastic_stack/logstash-5.5.2/data/dead_letter_queue"}
+[2017-08-24T10:51:36,896][INFO ][logstash.agent           ] No persistent UUID file found. Generating new UUID {:uuid=>"5c15c9d2-8a2e-4174-a57d-c941b6e508df", :path=>"X:/elastic_stack/logstash-5.5.2/data/uuid"}
+[2017-08-24T10:51:39,185][INFO ][logstash.outputs.elasticsearch] Elasticsearch pool URLs updated {:changes=>{:removed=>[], :added=>[http://127.0.0.1:9200/]}}
+[2017-08-24T10:51:39,189][INFO ][logstash.outputs.elasticsearch] Running health check to see if an Elasticsearch connection is working {:healthcheck_url=>http://127.0.0.1:9200/, :path=>"/"}
+[2017-08-24T10:51:39,351][WARN ][logstash.outputs.elasticsearch] Restored connection to ES instance {:url=>"http://127.0.0.1:9200/"}
+[2017-08-24T10:51:39,353][INFO ][logstash.outputs.elasticsearch] Using mapping template from {:path=>nil}
+[2017-08-24T10:51:39,445][INFO ][logstash.outputs.elasticsearch] Attempting to install template {:manage_template=>{"template"=>"logstash-*", "version"=>50001, "settings"=>{"index.refresh_interval"=>"5s"}, "mappings"=>{"_default_"=>{"_all"=>{"enabled"=>true, "norms"=>false}, "dynamic_templates"=>[{"message_field"=>{"path_match"=>"message", "match_mapping_type"=>"string", "mapping"=>{"type"=>"text", "norms"=>false}}}, {"string_fields"=>{"match"=>"*", "match_mapping_type"=>"string", "mapping"=>{"type"=>"text", "norms"=>false, "fields"=>{"keyword"=>{"type"=>"keyword", "ignore_above"=>256}}}}}], "properties"=>{"@timestamp"=>{"type"=>"date", "include_in_all"=>false}, "@version"=>{"type"=>"keyword", "include_in_all"=>false}, "geoip"=>{"dynamic"=>true, "properties"=>{"ip"=>{"type"=>"ip"}, "location"=>{"type"=>"geo_point"}, "latitude"=>{"type"=>"half_float"}, "longitude"=>{"type"=>"half_float"}}}}}}}}
+[2017-08-24T10:51:39,456][INFO ][logstash.outputs.elasticsearch] Installing elasticsearch template to _template/logstash
+[2017-08-24T10:51:39,574][INFO ][logstash.outputs.elasticsearch] New Elasticsearch output {:class=>"LogStash::Outputs::ElasticSearch", :hosts=>["//127.0.0.1"]}
+[2017-08-24T10:51:39,578][INFO ][logstash.pipeline        ] Starting pipeline {"id"=>"main", "pipeline.workers"=>16, "pipeline.batch.size"=>125, "pipeline.batch.delay"=>5, "pipeline.max_inflight"=>2000}
+[2017-08-24T10:51:40,656][INFO ][logstash.inputs.beats    ] Beats inputs: Starting input listener {:address=>"0.0.0.0:5044"}
+[2017-08-24T10:51:41,515][INFO ][logstash.pipeline        ] Pipeline main started
+[2017-08-24T10:51:41,685][INFO ][logstash.agent           ] Successfully started Logstash API endpoint {:port=>9600}
+[2017-08-24T10:55:17,975][WARN ][logstash.runner          ] SIGINT received. Shutting down the agent.
+[2017-08-24T10:55:17,986][WARN ][logstash.agent           ] stopping pipeline {:id=>"main"}
+[2017-08-24T10:55:19,300][FATAL][logstash.runner          ] SIGINT received. Terminating immediately..
+[2017-08-24T10:55:19,749][FATAL][logstash.runner          ] SIGINT received. Terminating immediately..
+[2017-08-24T10:55:20,074][FATAL][logstash.runner          ] SIGINT received. Terminating immediately..
+[2017-08-24T10:55:20,324][FATAL][logstash.runner          ] SIGINT received. Terminating immediately..
+[2017-08-24T10:55:20,522][FATAL][logstash.runner          ] SIGINT received. Terminating immediately..
+[2017-08-24T10:58:37,708][INFO ][logstash.outputs.elasticsearch] Elasticsearch pool URLs updated {:changes=>{:removed=>[], :added=>[http://127.0.0.1:9200/]}}
+[2017-08-24T10:58:37,713][INFO ][logstash.outputs.elasticsearch] Running health check to see if an Elasticsearch connection is working {:healthcheck_url=>http://127.0.0.1:9200/, :path=>"/"}
+[2017-08-24T10:58:37,904][WARN ][logstash.outputs.elasticsearch] Restored connection to ES instance {:url=>"http://127.0.0.1:9200/"}
+[2017-08-24T10:58:37,910][INFO ][logstash.outputs.elasticsearch] Using mapping template from {:path=>nil}
+[2017-08-24T10:58:38,109][INFO ][logstash.outputs.elasticsearch] Attempting to install template {:manage_template=>{"template"=>"logstash-*", "version"=>50001, "settings"=>{"index.refresh_interval"=>"5s"}, "mappings"=>{"_default_"=>{"_all"=>{"enabled"=>true, "norms"=>false}, "dynamic_templates"=>[{"message_field"=>{"path_match"=>"message", "match_mapping_type"=>"string", "mapping"=>{"type"=>"text", "norms"=>false}}}, {"string_fields"=>{"match"=>"*", "match_mapping_type"=>"string", "mapping"=>{"type"=>"text", "norms"=>false, "fields"=>{"keyword"=>{"type"=>"keyword", "ignore_above"=>256}}}}}], "properties"=>{"@timestamp"=>{"type"=>"date", "include_in_all"=>false}, "@version"=>{"type"=>"keyword", "include_in_all"=>false}, "geoip"=>{"dynamic"=>true, "properties"=>{"ip"=>{"type"=>"ip"}, "location"=>{"type"=>"geo_point"}, "latitude"=>{"type"=>"half_float"}, "longitude"=>{"type"=>"half_float"}}}}}}}}
+[2017-08-24T10:58:38,122][INFO ][logstash.outputs.elasticsearch] New Elasticsearch output {:class=>"LogStash::Outputs::ElasticSearch", :hosts=>["//127.0.0.1"]}
+[2017-08-24T10:58:38,125][INFO ][logstash.pipeline        ] Starting pipeline {"id"=>"main", "pipeline.workers"=>16, "pipeline.batch.size"=>125, "pipeline.batch.delay"=>5, "pipeline.max_inflight"=>2000}
+[2017-08-24T10:58:38,951][INFO ][logstash.inputs.beats    ] Beats inputs: Starting input listener {:address=>"0.0.0.0:5044"}
+[2017-08-24T10:58:39,046][INFO ][logstash.pipeline        ] Pipeline main started
+[2017-08-24T10:58:39,161][INFO ][logstash.agent           ] Successfully started Logstash API endpoint {:port=>9600}
+[2017-08-24T11:00:08,039][WARN ][logstash.runner          ] SIGINT received. Shutting down the agent.
+[2017-08-24T11:00:08,061][WARN ][logstash.agent           ] stopping pipeline {:id=>"main"}
+[2017-08-24T11:00:08,217][FATAL][logstash.runner          ] SIGINT received. Terminating immediately..
+[2017-08-24T11:00:08,405][FATAL][logstash.runner          ] SIGINT received. Terminating immediately..
+[2017-08-24T11:00:08,577][FATAL][logstash.runner          ] SIGINT received. Terminating immediately..
+[2017-08-24T11:00:08,708][FATAL][logstash.runner          ] SIGINT received. Terminating immediately..

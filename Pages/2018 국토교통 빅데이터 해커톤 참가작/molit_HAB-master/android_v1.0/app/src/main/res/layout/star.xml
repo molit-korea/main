@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:text="버스기사님에게 별을 선물해주세요!"
+        android:background="#79e5cb"
+        android:textColor="#ffffff"
+        android:id="@+id/driverstar"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:gravity="center" />
+
+
+    <TextView
+        android:id="@+id/q1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="18dp"
+        android:textColor="#000000"
+        android:gravity="center"
+        android:text=" 1. 기사님이 친절하셨나요?" />
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:rating="3"
+        android:max="5"
+        android:theme="@style/RatingBar"
+        android:id="@+id/a1"/>
+
+    <TextView
+        android:id="@+id/q2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:text="2. 기사님의 운전습관은 어땠나요?"/>
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:rating="3"
+        android:max="5"
+        android:theme="@style/RatingBar"
+        android:id="@+id/a2"/>
+
+    <TextView
+        android:id="@+id/q3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:text="3. 기사님이 교통 법규를 준수하셨나요?"/>
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:rating="3"
+        android:max="5"
+        android:theme="@style/RatingBar"
+        android:id="@+id/a3"/>
+    <TextView
+        android:id="@+id/q4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:textColor="#000000"
+        android:text="4. 기타로 하고싶은 말이 있다면 작성해주세요!"/>
+
+    <EditText
+        android:id="@+id/a4"
+        android:gravity="center"
+        android:layout_weight="0.2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ex)기사님이 너무 친절하세요!"/>
+
+    <Button
+        android:id="@+id/send"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/mint"
+        android:text="평가를 제출합니다!" />
+
+
+</LinearLayout>

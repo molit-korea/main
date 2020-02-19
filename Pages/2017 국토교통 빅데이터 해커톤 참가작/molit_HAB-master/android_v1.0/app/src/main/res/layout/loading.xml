@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/smint">
+
+    <ImageView
+
+        android:id="@+id/my"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/bus"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="190dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_below="@id/my"
+        android:layout_alignLeft="@id/my"
+        android:textSize="55dp"
+        android:gravity="right"
+        android:layout_marginLeft="10dp"
+        android:text=" 버스"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:gravity="left"
+        android:layout_below="@id/my"
+        android:layout_alignRight="@id/my"
+        android:textColor="#ffffff"
+        android:layout_marginRight="10dp"
+        android:textSize="55dp"
+
+        android:text="어때?"/>
+
+
+</RelativeLayout>

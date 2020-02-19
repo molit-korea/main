@@ -1,0 +1,16 @@
+fam <- read.table("./data/fam15.txt",header=F,sep = ",")
+mine<-fam[,34] == 1
+sum(fam[,34] == 1) / nrow(fam)
+sum(fam[mine,5] == 'A') / nrow(fam)
+mine_apt <- fam[mine,5] == 'A'
+mine <- fam[mine,]
+sum(mine[mine[,5] == 'A',47] == 11) / nrow(fam)
+
+
+
+live <- read.table("./data/live16.txt",header=F,sep = ",")
+live[,8]
+table(live[,211])
+ｓ
+
+oldlive3[-na,85]

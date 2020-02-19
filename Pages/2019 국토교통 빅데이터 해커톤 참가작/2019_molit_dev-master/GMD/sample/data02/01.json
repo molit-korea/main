@@ -1,0 +1,16 @@
+{
+    "01": "histogram.png",
+    "02": "distance.png",
+    "03": "visualize_map.png",
+    "04": "histogram_cluster.png",
+    "05": "show_map.png",
+    "06": "trip duration weekday.png",
+    "07": "trip duration weekend.png",
+    "08": "day of week.png",
+    "09": "month distribution.png",
+    "10": "pca graph.png",
+    "11": "weekday weekend.png",
+    "12": "trip distribution of PCA.png",
+    "13": "trip distribution of PCA2.png",
+    "14": "trip distribution of PCA3.png"
+}

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/listlayout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:textSize="26dp"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:text="날짜"
+        android:id="@+id/date2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="26dp"
+            android:gravity="bottom"
+            android:text="에"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="26dp"
+        android:textColor="#0033cc"
+        android:textStyle="bold"
+        android:gravity="end"
+        android:text="장소"
+        android:id="@+id/place2" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="26dp"
+            android:gravity="bottom"
+            android:text="에서"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="카드/현금"
+        android:gravity="end"
+        android:layout_weight="1"
+        android:textSize="26dp"
+        android:id="@+id/measure2" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="가격"
+            android:textSize="26dp"
+            android:textColor="#d11c5a"
+            android:textStyle="bold"
+            android:id="@+id/price2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="26dp"
+            android:textColor="#0033cc"
+            android:textStyle="bold"
+            android:gravity="bottom"
+            android:layout_weight="1"
+            android:text="번호"
+            android:id="@+id/outid" />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

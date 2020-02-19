@@ -1,0 +1,74 @@
+
+###연령
+small_h_age <- as.data.frame(table(small_h$age1),stringsAsFactors = F)
+small_h_age$Var1 <- as.numeric(small_h_age$Var1)
+small_nh_age <- as.data.frame(table(small_nh$age1),stringsAsFactors = F)
+small_nh_age$Var1 <- as.numeric(small_nh_age$Var1)
+
+
+
+###연령범주화
+small_a_g <- t(small%>%
+                 summarise("20대" = sum(small$age1 >=19 & small$age1<=29),
+                           "30대" = sum(small$age1 >=30 & small$age1<=39),
+                           "40대" = sum(small$age1 >=40 & small$age1<=49),
+                           "50대" = sum(small$age1 >=50 & small$age1<=59),
+                           "60대" = sum(small$age1 >=60 & small$age1<=69),
+                           "70대" = sum(small$age1 >=70 & small$age1<=79),
+                           "80대" = sum(small$age1 >=80 & small$age1<=89),
+                           "90대이상" = sum(small$age1>=90)))
+small_h_a_g <- t(small_h%>%
+                   summarise("20대" = sum(small_h$age1 >=19 & small_h$age1<=29),
+                             "30대" = sum(small_h$age1 >=30 & small_h$age1<=39),
+                             "40대" = sum(small_h$age1 >=40 & small_h$age1<=49),
+                             "50대" = sum(small_h$age1 >=50 & small_h$age1<=59),
+                             "60대" = sum(small_h$age1 >=60 & small_h$age1<=69),
+                             "70대" = sum(small_h$age1 >=70 & small_h$age1<=79),
+                             "80대" = sum(small_h$age1 >=80 & small_h$age1<=89),
+                             "90대이상" = sum(small_h$age1 >=90)))
+small_nh_a_g<- t(small_nh%>%
+                   summarise("20대" = sum(small_nh$age1 >=19 & small_nh$age1<=29),
+                             "30대" = sum(small_nh$age1 >=30 & small_nh$age1<=39),
+                             "40대" = sum(small_nh$age1 >=40 & small_nh$age1<=49),
+                             "50대" = sum(small_nh$age1 >=50 & small_nh$age1<=59),
+                             "60대" = sum(small_nh$age1 >=60 & small_nh$age1<=69),
+                             "70대" = sum(small_nh$age1 >=70 & small_nh$age1<=79),
+                             "80대" = sum(small_nh$age1 >=80 & small_nh$age1<=89),
+                             "90대이상" = sum(small_nh$age1 >=90)))
+s_a_g <- data.frame(연령=rownames(small_a_g),
+                      전체=small_a_g,
+                      자가=small_h_a_g,
+                      임차=small_nh_a_g)
+
+s_a_g
+s_a_g_m <- melt(s_a_g[,-2],variable.name = "주거유형")
+s_a_g_m
+
+
+
+
+
+###ggplot2
+ggplot()+
+  geom_line(aes(x=small_h_age$Var1,
+                y=small_h_age$Freq),cex=1,col="blue")+
+  geom_point(aes(x=small_h_age$Var1,
+                y=small_h_age$Freq),col="black",pch=1)+
+#  geom_line(aes(x=small_nh_age$Var1,
+#                y=small_nh_age$Freq),cex=1,col="red")+
+  geom_polygon(aes(x=c(60,small_h_age[small_h_age$Var1>=60,1],max(small_h_age$Var1)),
+                   y=c(0,small_h_age[small_h_age$Var1>=60,2],0)),
+               fill="red",col="black",cex=1, alpha = .4)+
+  geom_vline(xintercept = 60, linetype = 'dashed')+
+  geom_hline(yintercept = 0)+
+  theme_bw()
+
+ggplot(s_a_g_m)+
+  geom_bar(mapping = aes(x=`주거유형`,
+                         y=value,
+                         fill=`연령`),
+           stat = "identity",
+           position = "fill",
+           col = "black")+
+  theme_bw()
+

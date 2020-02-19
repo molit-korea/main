@@ -1,0 +1,134 @@
+---
+editor_options:
+  chunk_output_type: console
+---
+#DATA load
+```{r}
+load("./filter.RData")
+library(ggplot2)
+library(dplyr)
+library(stringr)
+library(maptools)
+library(sp)
+library(rgdal)
+library(tidyverse)
+library(broom)
+library(reshape2)
+```
+
+#homeless & 1인가구 
+
+무주택자 특성 파악을 통한 주거 취약층 선정
+
+```{R}
+ggplot()+
+  geom_jitter(mapping = aes(x=hl$age1,
+                            y=hl$V286),
+              width = 2, height = 2,col = "yellowgreen",
+              alpha = .35,cex=3)+
+  ylim(0,1000)+ theme_bw() + ylab("월 평균 가구 소득") + xlab("연령(2016년 기준 나이)")
+ggplot()+theme_bw() + 
+  geom_jitter(mapping = aes(x=hl$age1,
+                            y=hl$V286),
+              width = 2, height = 2,col = "yellowgreen",
+              alpha = .35,cex=3)+
+  geom_vline(xintercept = c(30.0000,60.0000), col = "black", linetype = "dashed") +  geom_hline(yintercept = c(126.0000), col = "black", linetype = "dashed")+
+  ylim(0,500) + 
+  ylab("월 평균 가구 소득") + xlab("연령(2016년 기준 나이)")
+
+
+
+```
+
+
+#점유 유형별 가구 비중
+
+```{r}
+ggplot(kind)+
+  geom_bar(mapping = aes(x = `점유형태`,
+                         y = `per`), stat = "identity", position = "dodge",
+           fill = c("red",rep("yellowgreen",5)),col ="black")+theme_bw()+
+  geom_text(mapping = aes(x=`점유형태`,
+                          y=`per`+1,
+                          label= `per`))+theme_void()+
+  geom_text(mapping = aes(x=`점유형태`,
+                          y=-2,
+                          label = `점유형태`), size = 4.5)
+#  geom_text(mapping = aes(x=4,
+#                          y=40, label= "자가(61.42%) > 임대(38.58%)"), size = 5)
+```
+
+
+
+
+
+```{r}
+ggplot()+
+  geom_bar(mapping = aes(x=`kind`,
+                         y=`빈도`,
+                         fill =`연령`), data = live.ag, 
+           stat = "identity", position = "stack", col = "black")+
+#  geom_text(mapping = aes(x=`kind`,
+#                         y=c(cumsum(rev(live.ag[1:7,2])),cumsum(rev(live.ag[8:14,2]))),
+#                          label = paste(live.ag$`빈도`,'%')),data = live.ag)+
+  theme(legend.position = "right")+theme_void()
+
+```
+
+
+#전체가구의 주거유형
+
+```{r}
+ggplot()+
+  geom_bar(mapping = aes(x = `점유유형`,
+                         y = `per`), data = live.house.f,stat = "identity", position = "dodge")+
+  geom_text(mapping = aes(x = `점유유형`,
+                         y = `per`+1,
+                         label = paste(`per`,"%")), data = live.house.f,)+
+  geom_text(mapping = aes(x = `점유유형`,
+                         y = -2,
+                         label = `점유유형`), data = live.house.f,)+theme_void()
+```
+
+#자가&60세이상&아파트&가구원수별
+
+```{r}
+ggplot()+
+  geom_bar(mapping = aes(x = `거주인원`,
+                         y = `per`), data = live.p.fix,stat = "identity", position = "dodge")+
+  geom_text(mapping = aes(x = `거주인원`,
+                         y = `per`+1,
+                         label = paste(`per`,"%")), data = live.p.fix,)+
+  geom_text(mapping = aes(x = `거주인원`,
+                         y = -2,
+                         label = `거주인원`), data = live.p.fix,)+theme_void()
+```
+
+##자가&60세이상&아파트&2인이하
+```{r}
+ggplot(live.hoas)+
+  geom_jitter(mapping = aes(x=V85,
+                            y=V286),
+              width = 2, height = 2,col = "yellowgreen",
+              alpha = .35,cex=3)+
+  geom_vline(xintercept = c(82.5), col = "black", linetype = "dashed")+
+#  geom_hline(yintercept = c(126), col = "black", linetype = "dashed")+
+  theme_bw()+xlab("주거면적")+ylab("월 평균 소득")
+```
+
+##자가&60세이상&아파트&2인이하&82.5m2 이상
+
+```{r,fig.width=10}
+ggplot(live.hoasmb.f)+
+  geom_bar(mapping = aes(x=c(1:17),
+                     y=per,
+                     fill = Var1),stat = "identity",
+           position ="dodge")+
+  geom_text(mapping = aes(x=c(1:17),
+                          y=rep(-1,17),
+                          label=Var1))+
+  geom_text(mapping = aes(x=c(1:17),
+                          y=per+0.5,
+                          label=paste(per,"%")))+
+  theme_void()
+```
