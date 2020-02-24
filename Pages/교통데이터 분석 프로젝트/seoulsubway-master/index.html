@@ -1,0 +1,1548 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-55184745-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-55184745-3');
+    </script>
+
+    <meta charset="utf-8">
+    <title>Isochrone map of Seoul Subway</title>    
+    <script src="https://unpkg.com/delaunator@3.0.2/delaunator.min.js"></script>    
+    <script src="geoLine.js"></script>
+    <script src="nodeData.js"></script>
+    <script src="linkData.js"></script>
+    <script src="groupData.js"></script>
+
+    <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" />
+
+    <style type="text/css">
+
+        html {
+            min-height: 100% !important;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* border 제거 */
+        body {
+            margin-left : 0;
+            margin-right : 0;
+            margin-top : 0;
+            margin-bottom : 0;
+            border: 0;
+            background-color: black;
+        }
+        .container {
+            position: relative;
+        }
+        /* canvas를 viewport 크기로 만들기 */
+        canvas {
+            width: 100vw;
+            height: 100vh;
+            display: block;
+        }
+
+        #text {
+            background-color: transparent;  /* needed because webgl-tutoraisl.css sets canvas bg color to white */
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            z-index: 10;
+            -webkit-text-fill-color: aliceblue;
+        }
+    </style>
+    <script type="text/javascript">
+
+        var gl; // A global variable for the WebGL context
+      
+        //https://www.geeksforgeeks.org/implementation-priority-queue-javascript/
+        
+        class QElement { 
+            constructor(element, priority) 
+            { 
+                this.element = element; 
+                this.priority = priority; 
+            } 
+        }         
+        
+        class PriorityQueue {         
+            
+            constructor() 
+            { 
+                this.items = []; 
+            } 
+        
+           
+            enqueue(element, priority) 
+            { 
+                
+                var qElement = new QElement(element, priority); 
+                var contain = false; 
+            
+                for (var i = 0; i < this.items.length; i++) { 
+                    if (this.items[i].priority > qElement.priority) { 
+                       
+                        this.items.splice(i, 0, qElement); 
+                        contain = true; 
+                        break; 
+                    } 
+                } 
+            
+                if (!contain) { 
+                    this.items.push(qElement); 
+                } 
+            } 
+            dequeue() 
+            {                
+                if (this.isEmpty()) 
+                    return "Underflow"; 
+                return this.items.shift(); 
+            } 
+            front() 
+            {                 
+                if (this.isEmpty()) 
+                    return "No elements in Queue"; 
+                return this.items[0]; 
+            } 
+            rear() 
+            {              
+            if (this.isEmpty()) 
+            return "No elements in Queue"; 
+            return this.items[this.items.length - 1]; 
+            } 
+            isEmpty() 
+            {                 
+                return this.items.length == 0; 
+            } 
+        } 
+
+        // 이 코드나 관련된 데이터를 사용하실 경우, 코드에 다음의 주석을 반드시 남겨주시기 바랍니다.
+        // source :  https://github.com/vuski/seoulsubway
+
+
+        function ShaderVars() {
+            var shader;
+         
+            var zscale;
+            var timelimit;
+            var translation;
+            var originNode;
+            var drawGroup;
+
+           ShaderVars.prototype.setUniformLoc =  function () {
+                this.translation = gl.getUniformLocation(this.shader, "trans");                
+                this.zscale = gl.getUniformLocation(this.shader, "zscale");
+                this.timelimit = gl.getUniformLocation(this.shader, "timeCriteria");
+                this.originNode = gl.getUniformLocation(this.shader, "origin");
+                this.drawGroup = gl.getUniformLocation(this.shader, "drawGroup");
+            } 
+            var posAttrLoc; 
+            var colorAttrLoc; 
+            var groupAttrLoc; 
+            var distAttrLoc;
+            var idAttrLoc;
+            var checkedAttrLoc;
+            
+        }
+
+        function BufferObject() {
+            var vbo;            
+            var idxbo;
+            var numObj;
+            var numIndex;
+        }
+
+        function Graph() {
+            var rowOffset;
+            var colIndex;
+            var value;
+        }
+
+        var shaderIsochrone;
+        var boIsochrone;
+
+        var shaderSbNode;
+        var boSbNode
+
+        var shaderSbLink;
+        var boSbLink;
+
+        var canvas;
+        var textCanvas; 
+        var ctx;
+
+        var scrW;
+        var scrH;
+        var whRatio;
+         
+        var cenX = 954423.0;
+        var cenY = 1950874.0;
+        var zoomR = 1;
+        var minX = cenX-10000*zoomR;
+        var maxX = cenX+10000*zoomR;
+        var minY;    
+        var calR;
+        var maxY;  
+        
+        var graph;
+        var originNode =0;
+
+        var drag = false;
+        var oldx, oldy;
+        var dx = 0, dy = 0;
+        var mx,my;               
+
+        var drawGroup = 0;
+        var nodeData;
+        var linkData;
+        var checkedNodeRaw;
+        var checkedNode;
+        var nodeDataRawNumFromSample;
+        var predecessor;
+
+        var checkedNodeCurrentSet = new Set();   
+        var solution;
+        var helpOn = true;
+
+
+        function main() {
+
+            canvas = document.getElementById("glcanvas");
+            textCanvas = document.getElementById("text");
+            
+
+            gl = initWebGL(canvas);      // Initialize the GL context
+            // Only continue if WebGL is available and working
+            if (!gl) return;
+
+            console.log(gl.getParameter(gl.ALIASED_LINE_WIDTH_RANGE));
+
+
+            recalculateMaxY();
+            
+            //1회만 하는 초기화
+            checkedNodeRaw = new Array(nodeDataRaw.length);
+            for (var i=0 ; i<nodeDataRaw.length ; i++) {
+                checkedNodeRaw[i] = -1;
+            }
+
+            //현재 그룹에 맞게 노드와 링크 데이터를 재정비한다.
+            refreshData();              
+            setCSRGraph();
+            
+
+
+            //subway station shader
+            shaderSbNode = new ShaderVars();
+            boSbNode = new BufferObject();
+            shaderSbNode.shader = getShader("sbNodeVertex", "sbNodeFragment");
+            shaderSbNode.setUniformLoc();             
+            setNodeDataToBuffer();
+
+
+            shaderSbLink = new ShaderVars();
+            boSbLink = new BufferObject();
+            shaderSbLink.shader = getShader("sbLinkVertex", "sbLinkFragment");
+            shaderSbLink.setUniformLoc();             
+            setLinkDataToBuffer();
+
+
+            //isochronemap shader
+            shaderIsochrone = new ShaderVars();
+            boIsochrone = new BufferObject();
+            shaderIsochrone.shader = getShader("isoVertex", "isoFragment");    
+            shaderIsochrone.setUniformLoc();
+            setIsochroneToBuffer();
+               
+
+            
+            
+            
+            
+
+            
+            
+            
+            
+            
+            resize(gl.canvas);
+            
+            //알아서 주사율 맞춰서 조정
+
+            textCanvas.addEventListener("mousedown", mouseDown, false);
+            textCanvas.addEventListener("mouseup", mouseUp, false);            
+            textCanvas.addEventListener("mousemove", mouseMove, false);           
+            textCanvas.addEventListener("wheel", mouseWheel, false);     
+
+            //http://bencentra.com/code/2014/12/05/html5-canvas-touch-events.html
+            // Set up touch events for mobile, etc
+            //textCanvas.addEventListener("touchstart", touchStart, false);
+            textCanvas.addEventListener("touchend", mouseUp, false);            
+            textCanvas.addEventListener("touchmove", mouseMove, false);           
+           
+/*
+            // Prevent scrolling when touching the canvas
+            document.body.addEventListener("touchstart", function (e) {
+                if (e.target == textCanvas) {
+                    e.preventDefault();
+                }
+            }, false);
+            document.body.addEventListener("touchend", function (e) {
+                if (e.target == textCanvas) {
+                    e.preventDefault();
+                }
+            }, false);
+            document.body.addEventListener("touchmove", function (e) {
+                if (e.target == textCanvas) {
+                    e.preventDefault();
+                }
+            }, false);
+*/
+
+
+            window.addEventListener('keydown', keydown);
+                
+            requestAnimationFrame(render);
+
+        }
+
+
+        function render() {
+
+            gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);      // Clear the color as well as the depth buffer.
+
+            resize(gl.canvas);
+            gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+            recalculateMaxY();            
+            
+            //gl.lineWidth(50);
+            //AttrLoc를 일단 모든 경우에 대해서 지정해 주어야 문제가 안 생김. 해결하려면 함수 구조체를 쓰지 말아야 함            
+            gl.vertexAttribPointer(boSbNode.colorAttrLoc, 3, gl.FLOAT, false, 0, 4*2* boSbNode.numObj);
+            gl.vertexAttribPointer(boSbNode.groupAttrLoc, 1, gl.FLOAT, false, 0, 4*5* boSbNode.numObj);
+            gl.vertexAttribPointer(boSbNode.idAttrLoc, 1, gl.FLOAT, false, 0, 4*6* boSbNode.numObj);
+            gl.vertexAttribPointer(boSbNode.checkedAttrLoc, 1, gl.FLOAT, false, 0, 4*7* boSbNode.numObj);
+
+            
+             //gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+            gl.useProgram(shaderIsochrone.shader);
+            gl.uniform4f(shaderIsochrone.translation, cenX, cenY, maxX-minX, whRatio );
+            gl.bindBuffer(gl.ARRAY_BUFFER, boIsochrone.vbo);
+            gl.vertexAttribPointer(boIsochrone.posAttrLoc, 2, gl.FLOAT, false, 0, 0);
+            gl.vertexAttribPointer(boIsochrone.distAttrLoc, 1, gl.FLOAT, false, 0, 4*2* boIsochrone.numObj);
+            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, boIsochrone.idxbo);
+            gl.drawElements(gl.TRIANGLES, boIsochrone.numIndex, gl.UNSIGNED_SHORT, 0);
+   
+            
+
+            gl.enable(gl.BLEND);
+            gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+            gl.useProgram(shaderSbLink.shader);
+            gl.uniform4f(shaderSbLink.translation, cenX, cenY, maxX-minX, whRatio );
+            gl.uniform1f(shaderSbLink.drawGroup, drawGroup );
+            gl.bindBuffer(gl.ARRAY_BUFFER, boSbLink.vbo);     
+            gl.vertexAttribPointer(shaderSbLink.posAttrLoc, 2, gl.FLOAT, false, 0, 0);
+            gl.vertexAttribPointer(shaderSbLink.colorAttrLoc, 4, gl.FLOAT, false, 0, 4*2* boSbLink.numObj);
+            gl.vertexAttribPointer(shaderSbLink.groupAttrLoc, 1, gl.FLOAT, false, 0, 4*6* boSbLink.numObj); 
+            gl.vertexAttribPointer(shaderSbLink.checkedAttrLoc, 1, gl.FLOAT, false, 0, 4*7* boSbLink.numObj);     
+            gl.drawArrays(gl.TRIANGLES, 0, boSbLink.numObj);
+
+            gl.enable(gl.BLEND);
+            gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+            gl.useProgram(shaderSbNode.shader);
+            gl.uniform4f(shaderSbNode.translation, cenX, cenY, maxX-minX, whRatio );
+            gl.uniform1f(shaderSbNode.originNode, originNode );
+            gl.uniform1f(shaderSbNode.drawGroup, drawGroup );
+            gl.bindBuffer(gl.ARRAY_BUFFER, boSbNode.vbo);
+            gl.vertexAttribPointer(boSbNode.posAttrLoc, 2, gl.FLOAT, false, 0, 0);
+            gl.vertexAttribPointer(boSbNode.colorAttrLoc, 3, gl.FLOAT, false, 0, 4*2* boSbNode.numObj);
+            gl.vertexAttribPointer(boSbNode.groupAttrLoc, 1, gl.FLOAT, false, 0, 4*5* boSbNode.numObj);
+            gl.vertexAttribPointer(boSbNode.idAttrLoc, 1, gl.FLOAT, false, 0, 4*6* boSbNode.numObj);
+            gl.vertexAttribPointer(boSbNode.checkedAttrLoc, 1, gl.FLOAT, false, 0, 4*7* boSbNode.numObj);
+            gl.drawArrays(gl.POINTS, 0, boSbNode.numObj);
+
+            
+
+            
+
+            if (helpOn) {
+                
+
+                    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);    
+
+                    ctx.textAlign = 'center';
+
+
+                    ctx.textBaseline = "top";
+                    //ctx.font = "50px '맑은 고딕'";        
+                    //ctx.fillStyle = "rgba(255,255,255,1)";                
+                    //ctx.fillText(nodeData[originNode].ln+"/"+nodeData[originNode].nm, scrW/2,scrH/20);
+                    ctx.font = "bold 40px '맑은 고딕'";        
+                    ctx.fillStyle = "rgba(220,220,220,1)";
+                    ctx.fillText("수도권 지하철 시간 거리 지도 ver 0.9", scrW/2,30);
+                    ctx.font = "bold 20px '맑은 고딕'";  
+                    ctx.fillStyle = "rgba(150,150,150,1)";
+                    ctx.fillText("출발역으로부터 30 /60 /90 /120분 권역", scrW/2,80);
+
+                    ctx.font = "30px '맑은 고딕'";  
+                    ctx.fillStyle = "rgba(200,200,200,1)";
+                    ctx.fillText("←  "+groupData[drawGroup]+"  →", scrW/2, 120);
+
+
+                    ctx.textBaseline = "bottom";
+                    ctx.textAlign = 'left';
+                    
+                    ctx.font = "15px '맑은 고딕'";
+                    ctx.fillStyle = "rgba(255,255,255,1)";
+                    ctx.fillText("*. 휴대폰 조작은 구현되어 있지 않습니다.pc로 접속해주세요",15, scrH-220); 
+
+                    ctx.font = "15px '맑은 고딕'";
+                    ctx.fillStyle = "rgba(200,200,200,1)";
+                    ctx.fillText("*. 키보드 h 키를 눌러서 아래 설명을 숨길 수 있습니다.",15, scrH-200); 
+
+                    ctx.font = "20px '맑은 고딕'";
+                    ctx.fillStyle = "rgba(150,150,150,1)";
+                    ctx.fillText("마우스를 역 근처로 옮기면 해당 역을 출발점으로 둔 시간거리지도를 볼 수 있습니다",15, scrH-170); 
+
+                    ctx.font = "20px '맑은 고딕'";
+                    ctx.fillStyle = "rgba(150,150,150,1)";
+                    ctx.fillText("마우스로 역을 클릭하여 소요시간이 표시되는 여러 개의 목적지를 설정할 수 있습니다." ,15, scrH-145); 
+
+                    //ctx.font = "20px '맑은 고딕'";
+                    //ctx.fillStyle = "rgba(150,150,150,1)";
+                    //ctx.fillText("한 곳의 출발지로부터 다수의 목적지까지 소요시간을 보여줍니다." ,15, scrH-120); 
+
+                    ctx.font = "20px '맑은 고딕'";
+                    ctx.fillStyle = "rgba(150,150,150,1)";
+                    ctx.fillText("마우스로 선택한 역을 다시 클릭하면 취소할 수 있습니다. 키보드 r 키로 전체 역을 취소할 수 있습니다" ,15, scrH-120); 
+
+                    ctx.font = "20px '맑은 고딕'";
+                    ctx.fillStyle = "rgba(150,150,150,1)";
+                    ctx.fillText("마우스 휠버튼으로 화면을 확대축소하거나 움직일 수 있습니다(zoom&pan)" ,15, scrH-85); 
+
+                    ctx.font = "20px '맑은 고딕'";
+                    ctx.fillStyle = "rgba(150,150,150,1)";
+                    ctx.fillText("키보드 좌우 화살표키를 눌러 건설 예정 노선이 반영된 시간 거리 지도를 볼 수 있습니다" ,15, scrH-60); 
+
+                    ctx.font = "14px '맑은 고딕'";
+                    ctx.fillStyle = "rgba(150,150,150,1)";
+                    ctx.fillText("*. 건설 예정 시기는 정확하지 않을 수 있습니다. 타당성 조사중이거나 건설 여부가 불투명한 노선도 포함되어 있습니다." ,15, scrH-45); 
+
+                    ctx.font = "20px '맑은 고딕'";
+                    ctx.fillStyle = "rgba(150,150,150,1)";
+                    ctx.fillText("https://www.vw-lab.com/68" ,15, scrH-20); 
+
+                    if (originNode>=0) {
+                        ctx.font = "bold 30px '맑은 고딕'";
+                        ctx.fillStyle = "rgba(255,255,255,1)";
+                        ctx.fillText(nodeData[originNode].ln+"/"+nodeData[originNode].nm
+                                        , (nodeData[originNode].x-cenX)/(maxX-minX)*(scrW/2)+(scrW/2)
+                                        ,  (nodeData[originNode].y-cenY)/(maxX-minX)*(scrH/2*whRatio)*-1+scrH/2-15); 
+
+
+
+                        checkedNodeCurrentSet.forEach((value, key, s) => {
+                        ctx.font = "bold 20px '맑은 고딕'";
+                        ctx.fillStyle = "rgba(255,255,255,1)";
+                        ctx.fillText(nodeData[value].nm + " | "+ Math.floor(solution[value]/60) +"분"
+                                        , (nodeData[value].x-cenX)/(maxX-minX)*(scrW/2)+(scrW/2)
+                                        ,  (nodeData[value].y-cenY)/(maxX-minX)*(scrH/2*whRatio)*-1+scrH/2-15); 
+
+                        //console.log(value +" | " + nodeData[value].nm + "|"+ solution[value] );
+                        });
+                    }
+
+            }
+            else {
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);  
+
+                ctx.textAlign = 'center';
+                ctx.textBaseline = "top";
+                ctx.font = "30px '맑은 고딕'";  
+                ctx.fillStyle = "rgba(200,200,200,1)";
+                ctx.fillText("←  "+groupData[drawGroup]+"  →", scrW/2, 30);
+
+
+                ctx.textBaseline = "bottom";
+                ctx.textAlign = 'left';
+                ctx.font = "15px '맑은 고딕'";
+                ctx.fillStyle = "rgba(200,200,200,1)";
+                ctx.fillText("'h' key : 도움말",15, scrH-20); 
+
+                if (originNode>=0) {
+                        ctx.font = "bold 30px '맑은 고딕'";
+                        ctx.fillStyle = "rgba(255,255,255,1)";
+                        ctx.fillText(nodeData[originNode].ln+"/"+nodeData[originNode].nm
+                                        , (nodeData[originNode].x-cenX)/(maxX-minX)*(scrW/2)+(scrW/2)
+                                        ,  (nodeData[originNode].y-cenY)/(maxX-minX)*(scrH/2*whRatio)*-1+scrH/2-15); 
+
+
+
+                        checkedNodeCurrentSet.forEach((value, key, s) => {
+                        ctx.font = "bold 20px '맑은 고딕'";
+                        ctx.fillStyle = "rgba(255,255,255,1)";
+                        ctx.fillText(nodeData[value].nm + " | "+ Math.floor(solution[value]/60) +"분"
+                                        , (nodeData[value].x-cenX)/(maxX-minX)*(scrW/2)+(scrW/2)
+                                        ,  (nodeData[value].y-cenY)/(maxX-minX)*(scrH/2*whRatio)*-1+scrH/2-15); 
+
+                        //console.log(value +" | " + nodeData[value].nm + "|"+ solution[value] );
+                        });
+                    }
+            }
+        
+
+
+           
+            //requestAnimationFrame(render);
+        }
+
+
+        function doSolveSSSP() {
+
+            var startTime = new Date().getTime();
+            solution = new Float32Array(nodeData.length);
+            predecessor = new Array(nodeData.length);
+            for (var i=0 ; i<nodeData.length ; i++) {
+                solution[i] = 3600*10;
+                predecessor[i] = -1;
+            }
+            var timeDistance = 99999;
+            solution = solveSSSP(originNode,timeDistance, graph, solution);
+            var endTime = new Date().getTime();
+            //console.log((endTime-startTime)+"ms");
+            gl.bindBuffer(gl.ARRAY_BUFFER, boIsochrone.vbo);
+            gl.bufferSubData(gl.ARRAY_BUFFER, 4 * 2 * boIsochrone.numObj, new Float32Array(solution));
+
+            var checkedNodeSet = new Set();   
+            checkedNodeCurrentSet = new Set();
+            checkedNodeSet.add(nodeDataRawNumFromSample[originNode]);         
+            //점 체크용
+            for (var i=0 ; i<checkedNode.length ; i++) {
+                if (checkedNode[i]==10) { //일단 지난번 경로 선택은 초기화 시킨다.                    
+                    checkedNode[i] = -1;                   
+                }
+            }
+            
+            for (var i=0 ; i<checkedNode.length ; i++) {
+                if (checkedNode[i]==1) {    
+                    checkedNodeCurrentSet.add(i);                        
+                    checkedNodeSet.add(nodeDataRawNumFromSample[i]);               
+                    var traceIndex = predecessor[i];     
+                    //두번째 조건식 없으면 경로들이 덮어쓰면서 지워짐. 덩달아 루프 시간 단축 효과               
+                    while(predecessor[traceIndex]>=0 && checkedNode[traceIndex] != 1) {  
+                        checkedNode[traceIndex] = 10;
+                        checkedNodeSet.add(nodeDataRawNumFromSample[traceIndex]);    
+                        traceIndex = predecessor[traceIndex];
+                    }
+                }
+            }             
+            gl.bindBuffer(gl.ARRAY_BUFFER, boSbNode.vbo);
+            gl.bufferSubData(gl.ARRAY_BUFFER, 4*7* boSbNode.numObj, new Float32Array(checkedNode));
+
+            var checked;
+            var checkedMark = new Array(boSbLink.numObj);
+            //라인 체크용
+            count = 0;
+            //console.log("size:"+checkedNodeSet.size);
+            for (var i=0 ; i<geoLine.length ; i++) {                
+                if ( checkedNodeSet.has(geoLine[i].fr) && checkedNodeSet.has(geoLine[i].to) ) {
+                    checked = 1;
+                } else {
+                    checked = -1;
+                }
+                
+                for (var j=0 ; j< geoLine[i].crd.length-1 ;j++ ) {
+                    for (var c = 0; c<6; c++) {
+                        checkedMark[count*6+c] = checked;
+                    }                   
+                    count++;
+                }
+            }
+            gl.bindBuffer(gl.ARRAY_BUFFER, boSbLink.vbo);
+            gl.bufferSubData(gl.ARRAY_BUFFER, 4*7* boSbLink.numObj, new Float32Array(checkedMark));
+            
+
+        }
+
+        function solveSSSP(startNode,timeDistance, graph, solution)  {
+
+            var i;
+            var startTime,endTime;	
+            var currentNode, nextNodeId;
+            var scanBegin, scanEnd;
+
+            var currentQueue = new PriorityQueue();
+            //시작점의 정보를 입력            
+            solution[startNode] = 0;  
+            predecessor[startNode] = -1;                     
+            currentQueue.enqueue(startNode, 0.0);
+
+            //int cnt = 0;
+
+            while (!currentQueue.isEmpty()) {
+
+                var currentNodeQ = currentQueue.front();
+                currentNode = currentNodeQ.element;
+                startTime = currentNodeQ.priority;
+
+                scanBegin = graph.rowOffset[currentNode];
+                scanEnd = graph.rowOffset[currentNode + 1];
+                //console.log(scanBegin+","+scanEnd);
+                for (i = scanBegin; i < scanEnd; i++) {
+
+                    endTime = startTime + graph.value[i];
+                    nextNodeId = graph.colIndex[i];
+                    if (endTime < timeDistance) {
+
+                        if (solution[nextNodeId] > endTime) {					
+                            solution[nextNodeId] = endTime; 
+                            predecessor[nextNodeId] = currentNode;                  			
+                            currentQueue.enqueue(nextNodeId, endTime);
+                        }
+                    }
+                }
+                currentQueue.dequeue(); 
+                
+            } //while currentQueue >0            
+            return solution;
+        }
+
+        function setCSRGraph() {
+
+            graph = new Graph();
+            graph.rowOffset = new Array(nodeData.length);
+            graph.colIndex = new Array(linkData.length);
+            graph.value = new Array(linkData.length);
+
+            var rowIndex = 0;   
+
+            for (var i=0; i<linkData.length ; i++) {                
+                
+                while (rowIndex <= linkData[i][0]) {
+                    graph.rowOffset[rowIndex] = i;
+                    rowIndex++;
+                }
+                graph.colIndex[i] = linkData[i][1];
+                if (nodeData[linkData[i][0]].gr > drawGroup 
+                        || nodeData[linkData[i][1]].gr > drawGroup) {
+                    graph.value[i] = 36000;
+                } else {
+                    graph.value[i] = linkData[i][2];
+                }
+               
+            }
+            graph.rowOffset[rowIndex] = linkData.length;
+
+        }
+
+        
+        function setIsochroneToBuffer() {
+
+            //var startTime = new Date().getTime();
+            var dpoints = new Array(nodeData.length);
+            var position = new Array(nodeData.length*2);
+            var distance = new Array(nodeData.length);
+            for (var i=0; i<nodeData.length ; i++) {
+                dpoints[i] = [nodeData[i].x, nodeData[i].y];      
+                position[i*2+0] = nodeData[i].x;
+                position[i*2+1] = nodeData[i].y;
+                distance[i] = 999999;
+            }
+
+            const delaunay = Delaunator.from(dpoints);
+            //console.log(delaunay.triangles);
+            
+            var triangleIndex = new Uint16Array(delaunay.triangles.length);
+            for (var i=0 ; i<delaunay.triangles.length ; i++) {
+                triangleIndex[i] = delaunay.triangles[i];
+            }
+
+            boIsochrone.numObj = nodeData.length;
+            boIsochrone.numIndex = delaunay.triangles.length;
+
+
+            boIsochrone.vbo = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, boIsochrone.vbo);
+            gl.bufferData(gl.ARRAY_BUFFER,  4 * 3 * boIsochrone.numObj , gl.DYNAMIC_DRAW);
+            gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(position));
+            doSolveSSSP();//새로 계산해서 subData넣는다.
+            //gl.bufferSubData(gl.ARRAY_BUFFER, 4 * 2 * boIsochrone.numObj, new Float32Array(distance));
+
+            boIsochrone.posAttrLoc = gl.getAttribLocation(shaderIsochrone.shader, "pos"); 
+            boIsochrone.distAttrLoc = gl.getAttribLocation(shaderIsochrone.shader, "distance"); 
+
+            gl.enableVertexAttribArray(boIsochrone.posAttrLoc);   
+            gl.enableVertexAttribArray(boIsochrone.distAttrLoc);   
+
+            boIsochrone.idxbo = gl.createBuffer();
+            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, boIsochrone.idxbo);
+            gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,   new Uint16Array(triangleIndex) , gl.STATIC_DRAW);
+            var endTime = new Date().getTime();
+            //console.log("done:"+(endTime-startTime));
+        }
+
+        function setLinkDataToBuffer() {
+
+            var startTime = new Date().getTime();
+            var count = 0;
+            for (var i=0 ; i<geoLine.length; i++) {                
+                for (var j=0 ; j<geoLine[i].crd.length-1 ; j++) {
+                    if (geoLine[i].crd[j][0] == geoLine[i].crd[j+1][0]
+                    && geoLine[i].crd[j][1] == geoLine[i].crd[j+1][1]) {
+                        geoLine[i].crd = geoLine[i].crd.slice(0,j+1).concat(geoLine[i].crd.slice(j+2));
+                        j--;
+                    }
+                } //중복점 제거
+                count += (geoLine[i].crd.length-1)*6; //*6은 삼각형 두개
+            }
+            boSbLink.numObj = count;    //점의 수를 가리킴
+            //console.log(boSbLink.numObj);
+
+            var pos = new Array(boSbLink.numObj * 2); // xy2개
+            var color = new Array(boSbLink.numObj * 4); //rgb 3개
+            var group = new Array(boSbLink.numObj); //
+            var checked = new Array(boSbLink.numObj);
+
+            //var order = [0, 1, 2, 2,1,3];
+
+            count = 0;
+            var r,g,b,a,groupSub;
+            var thickness = 200;
+
+            for (var i=0 ; i<geoLine.length ; i++) {
+
+                r = parseInt(geoLine[i].cl.substring(1,3), 16)/255.0;
+                g = parseInt(geoLine[i].cl.substring(3,5), 16)/255.0;
+                b = parseInt(geoLine[i].cl.substring(5), 16)/255.0;                
+                groupSub = geoLine[i].gr;
+
+                var coord = geoLine[i].crd;
+
+                var direction0 = normalize(coord[0][0],coord[0][1], coord[1][0], coord[1][1]); 
+                var dr =  rotate(direction0, -90);
+                
+
+                var p0 = [coord[0][0]+dr[0]*thickness, coord[0][1]+dr[1]*thickness];
+                var p1 = [coord[0][0]-dr[0]*thickness, coord[0][1]-dr[1]*thickness];
+                //console.log(p0);
+                if (coord.length==2) { //점이 두개면 각각 직각으로 돌려서 삼각형
+
+                    var p2 = [coord[1][0]+dr[0]*thickness, coord[1][1]+dr[1]*thickness];
+                    var p3 = [coord[1][0]-dr[0]*thickness, coord[1][1]-dr[1]*thickness];
+
+                    pos[count*12 + 0] = p0[0];
+                    pos[count*12 + 1] = p0[1];
+                    pos[count*12 + 2] = p1[0];
+                    pos[count*12 + 3] = p1[1];
+                    pos[count*12 + 4] = p2[0];
+                    pos[count*12 + 5] = p2[1];
+                    pos[count*12 + 6] = p2[0];
+                    pos[count*12 + 7] = p2[1];
+                    pos[count*12 + 8] = p1[0];
+                    pos[count*12 + 9] = p1[1];
+                    pos[count*12 + 10] = p3[0];
+                    pos[count*12 + 11] = p3[1];
+
+                    for (var c = 0; c<6; c++) {
+                        color[count*24+c*4+0] = r;
+                        color[count*24+c*4+1] = g;
+                        color[count*24+c*4+2] = b;
+                        color[count*24+c*4+3] = (c<4&&c!=1)? 1.0 :-1.0;
+                        group[count*6+c] = groupSub;
+                        checked[count*6+c] = -1;
+                    }
+                    count++;
+                   
+                } else { //점이 두개 이상이면 일단 두번째 점까지
+
+                    var direction1 = normalize(coord[1][0],coord[1][1], coord[2][0], coord[2][1]); 
+                    dr = normalize0([-direction0[0]+direction1[0], -direction0[1]+direction1[1]]);
+                    if (isNaN(dr[0])||!isFinite[dr[0]]) dr = rotate(direction1, -90);
+                    var dr2 =  rotate(direction0, -90);
+                    var dotValue = dotVectors(dr,dr2);
+                    //console.log(dotValue);
+                    var p2 = [coord[1][0]+dr[0]*thickness/dotValue, coord[1][1]+dr[1]*thickness/dotValue];
+                    var p3 = [coord[1][0]-dr[0]*thickness/dotValue, coord[1][1]-dr[1]*thickness/dotValue];
+
+                    pos[count*12 + 0] = p0[0];
+                    pos[count*12 + 1] = p0[1];
+                    pos[count*12 + 2] = p1[0];
+                    pos[count*12 + 3] = p1[1];
+                    pos[count*12 + 4] = p2[0];
+                    pos[count*12 + 5] = p2[1];
+                    pos[count*12 + 6] = p2[0];
+                    pos[count*12 + 7] = p2[1];
+                    pos[count*12 + 8] = p1[0];
+                    pos[count*12 + 9] = p1[1];
+                    pos[count*12 + 10] = p3[0];
+                    pos[count*12 + 11] = p3[1];
+
+                    for (var c = 0; c<6; c++) {
+                        color[count*24+c*4+0] = r;
+                        color[count*24+c*4+1] = g;
+                        color[count*24+c*4+2] = b;
+                        color[count*24+c*4+3] = (c<4&&c!=1)? 1.0 :-1.0;
+                        group[count*6+c] = groupSub;
+                        checked[count*6+c] = -1;
+                    }                   
+
+                    //치환해서 다음으로 넘기기
+                    p0 = p2;
+                    p1 = p3;
+                    direction0 = direction1;
+                    count++;
+
+                    for (var j=2 ; j<coord.length-1 ;j++ ) {
+
+                        direction1 = normalize(coord[j][0],coord[j][1], coord[j+1][0], coord[j+1][1]); 
+                        dr = normalize0([-direction0[0]+direction1[0], -direction0[1]+direction1[1]]);
+                        if (isNaN(dr[0])||!isFinite[dr[0]]) dr = rotate(direction1, -90);
+                        dr2 =  rotate(direction0, -90);
+                        dotValue = dotVectors(dr,dr2);
+                        p2 = [coord[j][0]+dr[0]*thickness/dotValue, coord[j][1]+dr[1]*thickness/dotValue];
+                        p3 = [coord[j][0]-dr[0]*thickness/dotValue, coord[j][1]-dr[1]*thickness/dotValue];
+                        
+
+                        pos[count*12 + 0] = p0[0];
+                        pos[count*12 + 1] = p0[1];
+                        pos[count*12 + 2] = p1[0];
+                        pos[count*12 + 3] = p1[1];
+                        pos[count*12 + 4] = p2[0];
+                        pos[count*12 + 5] = p2[1];
+                        pos[count*12 + 6] = p2[0];
+                        pos[count*12 + 7] = p2[1];
+                        pos[count*12 + 8] = p1[0];
+                        pos[count*12 + 9] = p1[1];
+                        pos[count*12 + 10] = p3[0];
+                        pos[count*12 + 11] = p3[1];
+
+                        for (var c = 0; c<6; c++) {
+                            color[count*24+c*4+0] = r;
+                            color[count*24+c*4+1] = g;
+                            color[count*24+c*4+2] = b;
+                            color[count*24+c*4+3] = (c<4&&c!=1)? 1.0 :-1.0;
+                            group[count*6+c] = groupSub;
+                            checked[count*6+c] = -1;
+                        }    
+
+                        p0 = p2;
+                        p1 = p3;
+                        direction0 = direction1;
+                        count++;
+                        //console.log(nodeData[i]);
+                        //console.log((pos[i*2]-cenX)/(maxX-minX));
+                        //console.log(color[i*3 + 0]+","+color[i*3 + 1]+","+color[i*3 + 2]);
+                    }
+
+                    
+                 
+                    //여기까지면 마지막 점만 남기고 다 추가함
+                    dr = rotate(direction0, -90);
+                    p2 = [coord[coord.length-1][0]+dr[0]*thickness, coord[coord.length-1][1]+dr[1]*thickness];
+                    p3 = [coord[coord.length-1][0]-dr[0]*thickness, coord[coord.length-1][1]-dr[1]*thickness];
+
+                    //마지막 점 추가
+                    pos[count*12 + 0] = p0[0];
+                    pos[count*12 + 1] = p0[1];
+                    pos[count*12 + 2] = p1[0];
+                    pos[count*12 + 3] = p1[1];
+                    pos[count*12 + 4] = p2[0];
+                    pos[count*12 + 5] = p2[1];
+                    pos[count*12 + 6] = p2[0];
+                    pos[count*12 + 7] = p2[1];
+                    pos[count*12 + 8] = p1[0];
+                    pos[count*12 + 9] = p1[1];
+                    pos[count*12 + 10] = p3[0];
+                    pos[count*12 + 11] = p3[1];
+
+                    for (var c = 0; c<6; c++) {
+                        color[count*24+c*4+0] = r;
+                        color[count*24+c*4+1] = g;
+                        color[count*24+c*4+2] = b;
+                        color[count*24+c*4+3] = (c<4&&c!=1)? 1.0 :-1.0;
+                        group[count*6+c] = groupSub;
+                        checked[count*6+c] = -1;
+                    }
+
+                    count++;
+                }
+                
+                
+            }
+            console.log("count:"+count);
+            console.log( boSbLink.numObj);
+            //console.log(4*8*boSbLink.numObj );
+            boSbLink.vbo = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, boSbLink.vbo);
+
+            gl.bufferData(gl.ARRAY_BUFFER, 4*8*boSbLink.numObj , gl.STATIC_DRAW);
+            gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(pos));
+            gl.bufferSubData(gl.ARRAY_BUFFER, 4*2* boSbLink.numObj, new Float32Array(color));
+            gl.bufferSubData(gl.ARRAY_BUFFER, 4*6* boSbLink.numObj, new Float32Array(group));
+            gl.bufferSubData(gl.ARRAY_BUFFER, 4*7* boSbLink.numObj, new Float32Array(checked));
+
+            shaderSbLink.posAttrLoc = gl.getAttribLocation(shaderSbLink.shader, "pos"); 
+            shaderSbLink.colorAttrLoc = gl.getAttribLocation(shaderSbLink.shader, "color"); 
+            shaderSbLink.groupAttrLoc = gl.getAttribLocation(shaderSbLink.shader, "grpclass"); 
+            shaderSbLink.checkedAttrLoc = gl.getAttribLocation(shaderSbLink.shader, "checked"); 
+
+            gl.enableVertexAttribArray(shaderSbLink.posAttrLoc);   
+            gl.enableVertexAttribArray(shaderSbLink.colorAttrLoc);   
+            gl.enableVertexAttribArray(shaderSbLink.groupAttrLoc);  
+            gl.enableVertexAttribArray(shaderSbLink.checkedAttrLoc);  
+            var endTime = new Date().getTime();
+            console.log((endTime-startTime)+"ms");
+        }
+
+
+        function setNodeDataToBuffer() {
+
+            boSbNode.numObj = nodeDataRaw.length;
+            //console.log(boSbNode.numObj);
+            var pos = new Array(boSbNode.numObj * 2);
+            var color = new Array(boSbNode.numObj * 3);
+            var group = new Array(boSbNode.numObj);
+            var id = new Array(boSbNode.numObj);
+            
+
+            for (var i=0 ; i<boSbNode.numObj ; i++) {
+
+                pos[i*2 + 0] = nodeDataRaw[i].x;
+                pos[i*2 + 1] = nodeDataRaw[i].y;
+                            
+                color[i*3 + 0] = parseInt(nodeDataRaw[i].cl.substring(1,3), 16)/255.0;
+                color[i*3 + 1] = parseInt(nodeDataRaw[i].cl.substring(3,5), 16)/255.0;
+                color[i*3 + 2] = parseInt(nodeDataRaw[i].cl.substring(5), 16)/255.0;
+               
+                group[i] = nodeDataRaw[i].gr;
+                id[i] = nodeDataRaw[i].no;                
+                
+            }
+
+            boSbNode.vbo = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, boSbNode.vbo);
+
+            gl.bufferData(gl.ARRAY_BUFFER, 4*8*boSbNode.numObj , gl.STATIC_DRAW);
+            gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Float32Array(pos));
+            gl.bufferSubData(gl.ARRAY_BUFFER, 4*2* boSbNode.numObj, new Float32Array(color));
+            gl.bufferSubData(gl.ARRAY_BUFFER, 4*5* boSbNode.numObj, new Float32Array(group));
+            gl.bufferSubData(gl.ARRAY_BUFFER, 4*6* boSbNode.numObj, new Float32Array(id));
+            gl.bufferSubData(gl.ARRAY_BUFFER, 4*7* boSbNode.numObj, new Float32Array(checkedNode));
+
+            boSbNode.posAttrLoc = gl.getAttribLocation(shaderSbNode.shader, "pos"); 
+            boSbNode.colorAttrLoc = gl.getAttribLocation(shaderSbNode.shader, "color"); 
+            boSbNode.groupAttrLoc = gl.getAttribLocation(shaderSbNode.shader, "grpclass"); 
+            boSbNode.idAttrLoc = gl.getAttribLocation(shaderSbNode.shader, "nodeId"); 
+            boSbNode.checkedAttrLoc = gl.getAttribLocation(shaderSbNode.shader, "checked"); 
+
+            gl.enableVertexAttribArray(boSbNode.posAttrLoc);   
+            gl.enableVertexAttribArray(boSbNode.colorAttrLoc);   
+            gl.enableVertexAttribArray(boSbNode.groupAttrLoc);  
+            gl.enableVertexAttribArray(boSbNode.idAttrLoc);  
+            gl.enableVertexAttribArray(boSbNode.checkedAttrLoc);  
+        }
+
+
+      
+        function initWebGL(canvas) {
+            gl = null;
+
+            try {
+                // Try to grab the standard context. If it fails, fallback to experimental.
+                gl = canvas.getContext("webgl")|| canvas.getContext("experimental-webgl");
+            }
+            catch (e) { }
+
+            // If we don't have a GL context, give up now
+            if (!gl) {
+                alert("Unable to initialize WebGL. Your browser may not support it.");
+                gl = null;
+            }
+
+
+            resize(gl.canvas);
+            gl.viewport(0, 0, scrW, scrH);
+            gl.clearColor(0.0, 0.0, 0.0, 1.0); 
+            gl.enable(gl.DEPTH_TEST);  
+            gl.depthFunc(gl.LEQUAL); 
+            gl.enable(gl.BLEND);
+            gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+            gl.getExtension('OES_standard_derivatives');
+
+            //console.log(gl.getParameter(gl.SAMPLE_COVERAGE_VALUE));  // 0.5
+            //console.log(gl.getParameter(gl.SAMPLE_COVERAGE_INVERT)); // false
+            //gl.enable(gl.SAMPLE_COVERAGE);
+            //gl.sampleCoverage(1, false);
+            
+            
+            //gl.getExtension('OES_element_index_uint');
+            return gl;
+        }
+
+        function getShader(vertexName, fragmentName) {
+
+            var vertexShaderSource = document.getElementById(vertexName).text;
+            var fragmentShaderSource = document.getElementById(fragmentName).text;
+
+            var vertexShader = gl.createShader(gl.VERTEX_SHADER);
+            var fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+
+            gl.shaderSource(vertexShader, vertexShaderSource);
+            gl.shaderSource(fragmentShader, fragmentShaderSource);
+
+            gl.compileShader(vertexShader);
+            gl.compileShader(fragmentShader);
+
+            if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
+                alert("Error compiling vertex shader : " + gl.getShaderInfoLog(vertexShader));                    
+                gl.deleteShader(vertexShader);
+                return null;
+            }
+
+            if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
+                alert("Error compiling fragment shader : " + gl.getShaderInfoLog(fragmentShader));                    
+                gl.deleteShader(fragmentShader);
+                return null;
+            }
+
+            var shaderProgram = gl.createProgram();
+
+            gl.attachShader(shaderProgram, vertexShader);
+            gl.attachShader(shaderProgram, fragmentShader);
+
+            gl.linkProgram(shaderProgram);
+
+            if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+                alert("Failed to link shaders");                   
+                gl.deleteProgram(shaderProgram);
+                return null;
+            }
+            return shaderProgram;
+        }
+
+
+        function refreshData() {
+
+            var nodeDataMatcher = new Array(nodeDataRaw.length);            
+            for (var i=0 ; i<nodeDataRaw.length ; i++) nodeDataMatcher[i] = -1;
+            
+            var counter =0;
+            for (var i=0 ; i<nodeDataRaw.length ; i++) {
+                if (nodeDataRaw[i].gr <= drawGroup) {
+                    nodeDataMatcher[i] = counter;
+                    counter++;                
+                }
+            }
+            
+            nodeData = new Array(counter);
+            counter = 0;
+            for (var i=0 ; i<linkDataRaw.length ; i++) {
+                if (nodeDataRaw[linkDataRaw[i][0]].gr<=drawGroup 
+                    && nodeDataRaw[linkDataRaw[i][1]].gr<=drawGroup ) counter++;   
+            }
+            linkData = new Array(counter);
+
+            checkedNode = new Array(nodeData.length);
+            nodeDataRawNumFromSample = new Array(nodeData.length);
+            counter = 0;
+            for (var i=0 ; i<nodeDataRaw.length ; i++) {
+                if (nodeDataMatcher[i] != -1) {
+                    nodeData[counter] = nodeDataRaw[i];
+                    nodeData[counter].no = counter;
+                    checkedNode[counter] = checkedNodeRaw[i];
+                    nodeDataRawNumFromSample[counter] = i;
+                    counter++;
+                }
+            }
+
+            counter = 0;
+            for (var i=0 ; i<linkDataRaw.length ; i++) {
+                if (nodeDataRaw[linkDataRaw[i][0]].gr<=drawGroup 
+                    && nodeDataRaw[linkDataRaw[i][1]].gr<=drawGroup ) {
+                        linkData[counter] = new Array(3);
+                        linkData[counter][0] = nodeDataMatcher[linkDataRaw[i][0]];
+                        linkData[counter][1] = nodeDataMatcher[linkDataRaw[i][1]];
+                        linkData[counter][2] = linkDataRaw[i][2];
+                        counter++;
+                   
+                }
+            }
+
+            
+
+
+        }
+
+        function resize(canvas) {
+            // 브라우저에서 canvas가 표시되는 크기 탐색
+            var displayWidth = canvas.clientWidth;
+            var displayHeight = canvas.clientHeight;
+
+            // canvas가 같은 크기가 아닐 때 확인
+            if (canvas.width != displayWidth ||
+                canvas.height != displayHeight) {
+
+                // canvas를 동일한 크기로 수정
+                canvas.width = displayWidth;
+                canvas.height = displayHeight;
+                textCanvas.width = displayWidth;
+                textCanvas.height = displayHeight;
+            }
+            ctx = textCanvas.getContext("2d");
+            
+            
+
+            
+        }
+
+        function recalculateMaxY() {
+
+            scrW = canvas.width;
+            scrH = canvas.height;
+            minX = cenX-10000*zoomR;
+            maxX = cenX+10000*zoomR;
+            calR = (maxX - minX) / scrW;
+            maxY = cenY +(scrH *calR/2);
+            minY = cenY -(scrH *calR/2);            
+            whRatio = scrW / scrH ;            
+            //console.log(scrW+","+scrH+","+cenX+","+cenY+","+calR+","+whRatio);
+        }
+
+        
+        //justmove
+        function mouseMove(e) {
+            
+            if (drag) { // 드래그하면 화면 이동
+                //console.log("mousedrag");
+                //console.log(e.pageX+","+e.pageY);
+                dx = (e.pageX - oldx)*calR*2;
+                dy = (e.pageY - oldy)*calR*2;
+                cenX = cenX - dx;
+                cenY = cenY + dy;               
+                //console.log(dx*calR +","+dy*calR);
+                oldx = e.pageX, oldy = e.pageY;
+                e.preventDefault();
+            } else {  //그냥 움직일때는 최단경로 찾는다
+                //console.log("mousemove");
+                recalculateMaxY();
+                mx = (e.pageX-scrW/2)/(scrW/2)*(maxX-minX)+cenX;
+                my = -(e.pageY-scrH/2)/(scrH/2)/whRatio*(maxX-minX)+cenY;
+                //console.log(mx+","+my);
+                originNode = getNearestStation(mx, my);               
+                if (originNode != -1) { //10km 안쪽의 점을 찾으면
+                    doSolveSSSP();
+                }   
+            }
+            requestAnimationFrame(render);
+            //console.log(e.pageX +"." + e.pageY);
+            //console.log(1);
+        }
+
+
+
+        function mouseDown(e) {
+            
+            if (e.button==1) {  //휠클릭
+                //console.log("mouseDown");
+                drag = true;
+                oldx = e.pageX, oldy = e.pageY;
+            } else if (e.button==0) {  //왼쪽 클릭
+                //노드 체크
+                if (originNode>-1) {               
+                    checkedNode[originNode] *= -1;
+                    checkedNodeRaw[nodeDataRawNumFromSample[originNode]] *= -1;
+                    gl.bindBuffer(gl.ARRAY_BUFFER, boSbNode.vbo);
+                    gl.bufferSubData(gl.ARRAY_BUFFER, 4*7* boSbNode.numObj, new Float32Array(checkedNode));
+                    console.log(nodeDataRawNumFromSample[originNode]);
+                }
+            }
+           
+            e.preventDefault();
+            requestAnimationFrame(render);
+            return false;
+        }
+
+        function mouseUp(e) {
+            drag = false;
+            if (originNode>-1) {
+
+            }
+            requestAnimationFrame(render);
+        }
+
+        function mouseWheel(e) {
+
+            var zoomRCheck = zoomR * ( e.deltaY>0? 1+0.3*e.deltaY/100 : 1+0.2307692*e.deltaY/100);
+            if (zoomRCheck < 0.1 || zoomRCheck > 7.0) return;               
+           
+            zoomR = zoomRCheck;
+            cenX -= e.deltaY>0? (maxX-minX)*(e.pageX-scrW/2)/(scrW/2)*0.3*e.deltaY/100
+                                : (maxX-minX)*(e.pageX-scrW/2)/(scrW/2)*0.2307692*e.deltaY/100;
+            cenY += e.deltaY>0? (maxX-minX)/whRatio*(e.pageY-scrH/2)/(scrH/2)*0.3*e.deltaY/100
+                                : (maxX-minX)/whRatio*(e.pageY-scrH/2)/(scrH/2)*0.2307692*e.deltaY/100;     
+           
+            //console.log(e.deltaX+","+e.deltaY);
+            requestAnimationFrame(render);
+        }
+        
+        function touchStart(e) {
+            //console.log("mouseDown");
+            drag = true;
+            oldx = e.pageX, oldy = e.pageY;
+            e.preventDefault();
+            requestAnimationFrame(render);
+            return false;
+        }
+        function keydown(e) {
+
+            //console.log("keyCode :"+e.keyCode);
+            switch(e.keyCode) {
+
+              case 37: //left arrow
+                if (drawGroup==0) drawGroup = 11;
+                else drawGroup--;
+                refreshData();
+                setCSRGraph();
+                originNode = getNearestStation(mx, my); 
+                setIsochroneToBuffer();                               
+                console.log(drawGroup);
+                break;
+              case 39: //right arrow
+                if (drawGroup==11) drawGroup = 0;
+                else drawGroup++;
+                refreshData();
+                setCSRGraph();
+                originNode = getNearestStation(mx, my); 
+                setIsochroneToBuffer();                            
+                console.log(drawGroup);
+                break;
+              case 82: //reset
+                
+                for (var i=0 ; i<checkedNode.length ; i++) {
+                    checkedNode[i] = -1;
+                    checkedNodeRaw[i] = -1;
+                }
+                for (var i=checkedNode.length ; i<checkedNodeRaw.length ; i++) {                   
+                    checkedNodeRaw[i] = -1;
+                }                               
+                
+                gl.bindBuffer(gl.ARRAY_BUFFER, boSbNode.vbo);
+                gl.bufferSubData(gl.ARRAY_BUFFER, 4*7* boSbNode.numObj, new Float32Array(checkedNode));
+                break;
+                case 72: //help
+                    helpOn = !helpOn;
+                break;
+            }
+            requestAnimationFrame(render);
+            e.preventDefault();
+
+        }
+
+       
+        
+
+        function getNearestStation(mx, my) {
+
+            var origin = -1;
+            var nearestDist = 10000;
+            var x,y, dist;
+            for (var i=0 ; i<nodeData.length ; i++) {
+                x = nodeData[i].x;
+                y = nodeData[i].y;
+                dist = Math.sqrt((mx-x)*(mx-x)+(my-y)*(my-y));
+                if (dist<nearestDist) {
+                    nearestDist = dist;
+                    origin = nodeData[i].no;
+                }
+            }
+            return origin;
+        }
+
+        function normalize(ox,oy, x,y) {
+
+            var dist = Math.sqrt( (x-ox) *(x-ox) + (y-oy)*(y-oy) );
+            return  [(x-ox) /dist , (y-oy)/dist];
+
+        }
+
+        function normalize0(v) {
+
+            var len = Math.sqrt( v[0] *v[0] + v[1]*v[1] );
+            return  [v[0] /len , v[1]/len];
+
+        }
+
+        function len(v) {
+            return Math.sqrt( v[0] *v[0] + v[1]*v[1] );
+        }
+
+        function rotate(normal, degree) {
+            var theta = Math.PI * (degree/180.0);
+            var sinT = Math.sin(theta);
+            var cosT = Math.cos(theta);
+            return [normal[0]*cosT-normal[1]*sinT, normal[0]*sinT+normal[1]*cosT]; 
+        }
+
+        function dotVectors(v1, v2) {
+            return (v1[0]*v2[0] + v1[1]*v2[1]);
+        }
+
+
+    </script>
+
+    <script id="isoVertex" type="notjs">
+        attribute vec2 pos;
+        attribute float distance;  
+        
+        uniform vec4 trans;
+
+        varying float dist;
+
+        void main() {
+       
+            vec2 position = (pos-trans.xy)/trans.z;           
+            gl_Position =  vec4(position.x , position.y *trans.w, 0,1.0);    
+               
+            dist = distance;
+        }
+
+    </script>
+
+    <script id="isoFragment" type="notjs">
+
+        precision highp float;
+
+        varying float dist;
+        float alpha = 1.0;
+
+        vec4 colorFunc(vec4 source) {
+            return source *vec4(vec3(6),1)*vec4(0.1);
+
+
+        }
+
+        
+
+        void main() {
+            
+            float timeCriteria = 600.0;
+            //vec3 color1= vec3(0.8, 0.0, 0.0)*1.0;
+            vec3 color2= vec3(0.313, 0.407, 0.674)*0.3;
+            vec3 color1 = vec3(0.8, 0.8, 0.7)*0.8;
+            //vec3 color2 = vec3(0.482, 0.8, 0.768)*0.2;
+            //vec3 color1 = vec3(0.482, 0.8, 0.768);
+            //vec3 color2= vec3(0.941,0.976,0.909 );
+            vec4 color3 = vec4(0);//vec4(0.05, 0.1, 0.1,0.0);
+
+            if (dist<timeCriteria*3.0) {
+                gl_FragColor = (vec4(mix(color1, color2, 0.3), alpha)+color3);//* (dist/(timeCriteria*3.0))*(dist/(timeCriteria*3.0))*(dist/(timeCriteria*3.0));
+            } else if (dist<timeCriteria*6.0) {
+                gl_FragColor = (vec4(mix(color1, color2, 0.6), alpha)+color3);//* (dist/(timeCriteria*6.0))*(dist/(timeCriteria*6.0))*(dist/(timeCriteria*6.0));
+            } else if (dist<timeCriteria*9.0) {
+                gl_FragColor = (vec4(mix(color1, color2, 0.8), alpha)+color3);//* (dist/(timeCriteria*9.0))*(dist/(timeCriteria*9.0))*(dist/(timeCriteria*9.0));
+            } else if (dist<timeCriteria*12.0) {
+                gl_FragColor = (vec4(mix(color1, color2, 1.0), alpha)+color3);//* (dist/(timeCriteria*12.0))*(dist/(timeCriteria*12.0))*(dist/(timeCriteria*12.0));
+            }else {
+                discard;
+            }
+
+            /*
+            if (dist<timeCriteria) {
+                gl_FragColor = vec4(mix(color1, color2, 0.0), alpha);
+            } else if (dist<timeCriteria*2.0) {
+                gl_FragColor = vec4(mix(color1, color2, 0.1), alpha);
+            } else if (dist<timeCriteria*3.0) {
+                gl_FragColor = vec4(mix(color1, color2, 0.2), alpha);
+            } else if (dist<timeCriteria*4.0) {
+                gl_FragColor = vec4(mix(color1, color2, 0.3), alpha);
+            } else if (dist<timeCriteria*5.0) {
+                gl_FragColor = vec4(mix(color1, color2, 0.4), alpha);
+            } else if (dist<timeCriteria*6.0) {
+                gl_FragColor = vec4(mix(color1, color2, 0.5), alpha);
+            } else if (dist<timeCriteria*9.0) {
+                gl_FragColor = vec4(mix(color1, color2, 0.7), alpha);
+            } else if (dist<timeCriteria*12.0) {
+                gl_FragColor = vec4(mix(color1, color2, 0.9), alpha);
+            }else {
+                discard;
+            }
+            */
+
+
+            /*
+            if (dist<timeCriteria) {
+                gl_FragColor = colorFunc(vec4(0, 0, 0.0156, alpha));
+            } else if (dist<timeCriteria*2.0) {
+                gl_FragColor = colorFunc(vec4(0.169, 0.058, 0.431, alpha)) ;
+            } else if (dist<timeCriteria*3.0) {
+                gl_FragColor = colorFunc(vec4(0.537254902,	0.156862745,	0.505882353 , alpha));
+            } else if (dist<timeCriteria*4.0) {
+                gl_FragColor = colorFunc(vec4(0.878431373,	0.298039216,	0.403921569, alpha));
+            } else if (dist<timeCriteria*5.0) {
+                gl_FragColor = colorFunc(vec4(0.996078431,	0.631372549,	0.431372549,  alpha));
+            } else if (dist<timeCriteria*6.0) {
+                gl_FragColor = colorFunc(vec4(0.988235294,	0.992156863,	0.749019608,  alpha));    
+            } else if (dist<timeCriteria*9.0) {
+                gl_FragColor = colorFunc(vec4(0.7,	0.7,	0.7,  alpha-0.3));    
+            } else if (dist<timeCriteria*12.0) {
+                gl_FragColor = colorFunc(vec4(0.7,	0.7,	0.7,  alpha-0.4));    
+            }else {
+                discard;
+            }*/
+
+        
+        }
+
+    </script>
+
+    <script id="sbNodeVertex" type="notjs">
+        
+        precision highp float;
+        attribute vec2 pos;
+        attribute vec3 color;
+        attribute float grpclass;
+        attribute float nodeId;
+        attribute float checked;
+
+        uniform vec4 trans;
+        uniform float origin;
+       
+
+        varying vec4 col1;
+        varying float grp;
+        varying float checkedFrag;
+
+        void main() {
+                        
+            vec2 position = (pos-trans.xy)/trans.z;
+
+            if (nodeId==origin) gl_PointSize = 20.0;
+            else if(checked>9.0) gl_PointSize = 10.0;
+            else if(checked>0.0) gl_PointSize = 15.0;
+            else  gl_PointSize = 5.0;
+             
+            gl_Position =  vec4(position.x , position.y *trans.w, 0,1.0); 
+            grp = grpclass;
+            checkedFrag = checked;
+            if (checked>9.0) { //최단거리 선상의 점
+                col1 = vec4(color,1.0);              
+            }
+            else if (checked > 0.0) { //체크한 점
+                col1 = vec4(1,1,1,1);
+            }
+            else  // 나머지
+            {
+                col1 = vec4(color,0.5);
+            }
+        }
+
+    </script>
+
+    <script id="sbNodeFragment" type="notjs">
+        
+        #ifdef GL_OES_standard_derivatives
+        #extension GL_OES_standard_derivatives : enable
+        #endif
+        precision highp float;
+
+        uniform float drawGroup;
+
+        varying vec4 col1;
+        varying float grp;
+        varying float checkedFrag;
+
+        void main() {
+          
+            if (grp > drawGroup) {
+                discard;
+            } else {
+                float r = 0.0, delta = 0.0, alpha = 1.0;
+                vec2 cxy = 2.0 * gl_PointCoord - 1.0;
+                r = dot(cxy, cxy);
+            #ifdef GL_OES_standard_derivatives
+                delta = fwidth(r);
+                alpha = 1.0 - smoothstep(1.0 - delta, 1.0 + delta, r);
+            #endif
+            if (checkedFrag>0.0&&checkedFrag<2.0) {
+                gl_FragColor = col1;
+            } else {
+                gl_FragColor = col1 *alpha;
+            }
+              
+            }
+        }
+
+    </script>
+    <script id="sbLinkVertex" type="notjs">
+        
+        precision highp float;
+        attribute vec2 pos;
+        attribute vec4 color;
+        attribute float grpclass;
+        attribute float checked;
+
+        uniform vec4 trans;
+ 
+
+        varying vec4 col1;
+        varying float grp;
+        varying float checked1; 
+
+        void main() {
+           
+            vec2 position = (pos-trans.xy)/trans.z;          
+            gl_Position =  vec4(position.x , position.y *trans.w, 0,1.0);   
+            col1 = color;
+            checked1 = checked;
+            grp = grpclass;
+        }
+       
+
+    </script>
+
+    <script id="sbLinkFragment" type="notjs">
+       
+        precision highp float;
+
+        uniform float drawGroup;
+
+        varying vec4 col1;
+        varying float grp;
+        varying float checked1; 
+
+        void main() {
+            if (grp > drawGroup ) {
+                discard;
+            } else {            
+                if (grp > -1.0 ) {
+                    if (checked1 >0.0) {
+                        if (abs(col1.w)<0.9) gl_FragColor = vec4(col1.xyz,1.0);
+                        //gl_FragColor = vec4(col1.xyz,1.0);
+                        //else discard;
+                        else gl_FragColor = vec4(col1.xyz,1.0*(-25.0*abs(col1.w)+94.0));
+                    }  else {
+                        //gl_FragColor = vec4(col1.xyz,0.1);
+                        if (abs(col1.w)<0.3) gl_FragColor = vec4(col1.xyz*0.6,1.0);
+                        //else discard;
+                        else gl_FragColor = vec4(col1.xyz*0.6,1.0*(-25.0*abs(col1.w)+8.5));
+                    }   
+                } else {
+                    discard;
+                }
+            }
+         
+        }
+
+    </script>
+</head>
+<body onload="main()">
+    <canvas id="glcanvas"></canvas>    
+    <canvas id="text"></canvas>
+</body>
+</html>
+
+
