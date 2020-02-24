@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>오픈 API v3 - 지도 생성</title>
+
+  <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=${CLIENT_ID}&amp;submodules=geocoder"></script><script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps-geocoder.js"></script>
+
+  <style>
+    html, body, #map {
+      /* Height and width fallback for older browsers. */
+      height: 100%;
+      width: 100%;
+
+      /* Set the height to match that of the viewport. */
+      height: 100vh;
+
+      /* Set the width to match that of the viewport. */
+      width: 100vw;
+
+      /* Remove any browser-default margins. */
+      margin: 0;
+      z-index: 1;
+    }
+
+    #bar {
+      position: absolute;
+      top: 12px;
+      left: 11px;
+      width: 354px;
+      height: 50px;
+      border-radius: 3px;
+      border: 1px solid #cecece;
+      border-bottom: 1px solid #c0c0c0;
+      border-top: 1px solid #e9e9e9;
+      background-color: #fff;
+      z-index: 2;
+    }
+
+    div#keyword_search{
+      box-sizing: border-box;
+      width: 100%;
+      padding: 10px 10px 10px 10px;
+      height: 51px;
+      background-color: #fff;
+      text-align: center;
+    }
+    input.keyword{
+      padding: 0px;
+      border : 0px;
+      height: 31px;
+      float: left;
+      width : 300px;
+      font-size: 16px;
+    }
+
+    #base {
+      background: #2929a3;
+      display: inline-block;
+      height: 44px;
+      margin-left: 8px;
+      margin-top: 22px;
+      position: relative;
+      width: 60px;
+    }
+    #base:before {
+      border-bottom: 14px solid #2929a3;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      content: "";
+      height: 0;
+      left: 0;
+      position: absolute;
+      top: -14px;
+      width: 0;
+    }
+
+    span.name{
+      padding-left: 5px;
+      padding-top : 10px;
+      color :white;
+      font-size : 10px;
+    }
+
+    div.avg_value{
+      padding-left: 5px;
+      color :white;
+      font-weight: bold;
+    }
+  </style>
+  <script type="text/javascript" src="http://localhost:3000/javascripts/socket.io.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+</head>
+<body>
+<div id ="map">
+  <!--<form>
+    <fieldset id = "bar">
+      <div id = "keyword_search">
+        <input type="text" class="keyword" placeholder="아파트, 지역 또는 학교명으로 검색" value="">
+        <button type="submit" class="btn-search">검색</button>
+      </div>
+    </fieldset>
+  </form>
+-->
+</div>
+</body>
+
+<script type="text/javascript">
+    var socket = io.connect('http://localhost:3002');
+
+    var startPoint = {'lat':37.5666805, 'lng':126.9784147, 'zoom':5};
+
+    var map = new naver.maps.Map('map', {
+        center: new naver.maps.LatLng(startPoint.lat, startPoint.lng),
+        zoom: startPoint.zoom,
+        mapTypeId: naver.maps.MapTypeId.NORMAL
+    });
+
+    var markers = [];
+
+    var positions = [{'lat':37.3595704,'lng':127.105399}, {'lat':37.3458634,'lng':126.884063}];
+
+    updateCity(map);
+
+    naver.maps.Event.addListener(map, 'idle', function() {
+        var zoom = map.zoom;
+        console.log(zoom);
+        if(zoom>=12)
+            updateTarget(map);
+        else if(zoom <=13 && zoom >=10)
+            updateDong(map);
+        else if(zoom <=9 && zoom >=6)
+            updateDistrict(map);
+        else if(zoom <= 5)
+            updateCity(map);
+    });
+
+    function updateTarget(map) {
+            var bounds = map.getBounds();
+            var southWest = bounds.getSW();
+            var northEast = bounds.getNE();
+
+            socket.emit('bound', {'sw':southWest,'ne':northEast, 'type':'<%=type%>'});
+    }
+
+    socket.on('marker',function(positions){
+        updateMarkers(map,markers);
+        for (var key in positions) {
+
+            console.log(positions[key].key); // 아파트 이름
+            console.log(positions[key].avg_trade_price.value); // 아파트 이름
+            console.log(positions[key].location.hits.hits[0]._source.location.lat); // 아파트 이름
+            console.log(positions[key].location.hits.hits[0]._source.location.lon); // 아파트 이름
+
+
+            var position = new naver.maps.LatLng(positions[key].location.hits.hits[0]._source.location.lat, positions[key].location.hits.hits[0]._source.location.lon);
+
+            var avg;
+            if(positions[key].avg_trade_price.value>=10000)
+                avg = parseInt(Math.round(positions[key].avg_trade_price.value/1000)/10) + '.' + parseInt(Math.round(positions[key].avg_trade_price.value/1000)%10) +'억';
+            else
+                avg = parseInt(Math.round(positions[key].avg_trade_price.value)) + '만원';
+
+            var marker = new naver.maps.Marker({
+                map: map,
+                position: position,
+                text : positions[key].avg_trade_price.value,
+                icon: {
+                    content: [
+                        '<div id="base">',
+                        '<span class="name">'+ positions[key].key +'</span>',
+
+                        '<div class="avg_value">'+ avg +'</div>',
+                        '</div>'
+                    ].join(''),
+                    size: new naver.maps.Size(38, 58),
+                    anchor: new naver.maps.Point(19, 58),
+                },
+            });
+            markers.push(marker);
+        };
+    });
+
+    function updateDong(map) {
+
+        var bounds = map.getBounds();
+        var southWest = bounds.getSW();
+        var northEast = bounds.getNE();
+
+        socket.emit('dong', {'sw':southWest,'ne':northEast, 'type':'<%=type%>'});
+    }
+
+    function updateDistrict(map) {
+
+        var bounds = map.getBounds();
+        var southWest = bounds.getSW();
+        var northEast = bounds.getNE();
+
+        socket.emit('district', {'sw':southWest,'ne':northEast, 'type':'<%=type%>'});
+    }
+    function updateCity(map) {
+
+        var bounds = map.getBounds();
+        var southWest = bounds.getSW();
+        var northEast = bounds.getNE();
+
+        socket.emit('city', {'sw':southWest,'ne':northEast, 'type':'<%=type%>'});
+    }
+
+    function updateMarkers(map, markers) {
+
+        var mapBounds = map.getBounds();
+        var marker, position;
+
+        for (var i = 0; i < markers.length; i++) {
+
+            marker = markers[i]
+            position = marker.getPosition();
+
+            hideMarker(map, marker);
+        }
+
+        markers = [];
+    }
+
+    function hideMarker(map, marker) {
+
+        if (!marker.getMap()) return;
+        marker.setMap(null);
+    }
+
+
+</script>
+</html>
