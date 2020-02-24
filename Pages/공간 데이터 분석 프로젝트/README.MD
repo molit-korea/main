@@ -202,8 +202,9 @@
   - 행정동 경계 중 이용 목적과 중요하게 관련된 부분이 있을 경우 위에 기술한 관련 정보를 통해 직접 경계를 확인하신 후 사용하시기 바랍니다.
   
 
-## http://www.vworld.kr/dev/v4api.do
+## [VWorld 오픈 API](http://www.vworld.kr/dev/v4api.do)
 
+- 오픈플랫폼의 오픈 API 서비스는 국가 공간정보의 개방, 공유, 참여를 통해 공간정보의 자율적이고 창조적인 다양한 애플리케이션을 개발할 수 있도록 기술과 서비스를 제공합니다.
 
 
 ## <img src="geoserver-master/doc/en/themes/geoserver/static/GeoServer_500.png" width="353">
@@ -261,8 +262,14 @@ Please read [the contribution guidelines](https://github.com/geoserver/geoserver
 Visit the [website](http://geoserver.org/) or read the [docs](http://docs.geoserver.org/). 
 
 
-## https://openlayers.org/en/latest/examples/
+## [OpenLayers Examples](https://openlayers.org/en/latest/examples/)
 
-## https://leafletjs.com/
+## [Leaflet](https://leafletjs.com/)
 
-## https://deck.gl/ (https://brunch.co.kr/@sonjoosik/8
+- An open-source JavaScript library for mobile-friendly interactive maps 
+
+## [DECK.GL](https://deck.gl/)
+
+- deck.gl is a WebGL-powered framework for visual exploratory data analysis of large datasets.
+
+##[Uber의 데이터 시각화 도구 Kepler.gl - 손주식](https://brunch.co.kr/@sonjoosik/8)
