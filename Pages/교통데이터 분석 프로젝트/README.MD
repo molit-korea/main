@@ -15,23 +15,23 @@ https://www.vw-lab.com/68
 
 04778 서울특별시 성동구 왕십리로4길 3, 2층
 
-- 브이더블유랩(VW LAB)은 물리적 건조환경과 그 바탕을 이루는 물질과 사회 현상에 관심을 가지고 있습니다.
+브이더블유랩(VW LAB)은 물리적 건조환경과 그 바탕을 이루는 물질과 사회 현상에 관심을 가지고 있습니다.
 
 
-- 브이더블유랩(VW LAB)은 다음의 분야에 강점을 지니고 있습니다.
+브이더블유랩(VW LAB)은 다음의 분야에 강점을 지니고 있습니다.
 
-  - 건축 및 도시 전반의 물리적 현상에 대한 데이터 분석
+건축 및 도시 전반의 물리적 현상에 대한 데이터 분석
 
-  - 그와 관련된 대용량 공간 정보의 시각화
+그와 관련된 대용량 공간 정보의 시각화
 
-- VW LAB (VW LAB) is  interested in physical built environment and its fundamentals such as social phenomena and material kinds.
+VW LAB (VW LAB) is  interested in physical built environment and its fundamentals such as social phenomena and material kinds.
 
-- VW LAB has strengths in the following areas:
+VW LAB has strengths in the following areas:
 
-  - Data Analysis and Visualization on physical phenomena throughout architecture and urban environment
+Data Analysis and Visualization on physical phenomena throughout architecture and urban environment
 
 
-- VW LAB is led by Kim, Seung Bum
+VW LAB is led by Kim, Seung Bum
 
 
 출처: https://vw-lab.tistory.com/1 [VW LAB]
