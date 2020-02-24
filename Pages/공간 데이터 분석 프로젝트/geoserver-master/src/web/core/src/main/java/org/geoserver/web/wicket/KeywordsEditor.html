@@ -1,0 +1,26 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<body>
+  <wicket:panel>
+      <ul>
+        <li>
+          <label for="keywords"><wicket:message key="currentKeywords">Current Keywords</wicket:message></label>
+          <select id="keywords" class="select" wicket:id="keywords" multiple="multiple" style="width:25em;"></select>
+          <button wicket:id="removeKeywords" type="submit"><wicket:message key="removeSelected">Remove selected</wicket:message></button>
+        </li>
+        <li>
+
+          <label for="newKeyword"><wicket:message key="newKeyword">New Keyword</wicket:message></label>
+          <input id="newKeyword" class="text" type="text" wicket:id="newKeyword"/>
+
+
+          <!--label for="lang"><wicket:message key="language">Language</wicket:message></label-->
+          <select id="lang" class="text" type="text" wicket:id="lang"></select>
+
+          <label for="vocab"><wicket:message key="vocabulary">Vocabulary</wicket:message></label>
+          <input id="vocab" class="text" type="text" wicket:id="vocab"/>
+        </li>
+      </ul>
+      <button wicket:id="addKeyword" type="submit"> <wicket:message key="addKeyword">Add</wicket:message> </button>
+   </wicket:panel>
+</body>
+</html>

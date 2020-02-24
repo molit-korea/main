@@ -1,0 +1,14 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+    <body>
+        <wicket:extend>
+        <p wicket:id="loggedOut">
+            <wicket:message key="GeoServerErrorPage.loginRequired"></wicket:message>
+        </p>
+        <p wicket:id="trace-explanation">
+            <a target="_blank" wicket:id="userListLink"></a>
+        </p>
+        <div wicket:id="traceback" 
+            style="padding-top: 16px; white-space: pre; font-family: monospace"> </div>
+        </wicket:extend>
+    </body>
+</html>

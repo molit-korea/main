@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">	
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/" >
+<body>
+	<wicket:panel>
+		<fieldset>
+			<ul>
+			<li>	
+			<div wicket:id="baseDirectory"></div>
+			</li>
+			<li>	
+			<label for="fileSystemBlockSize"><wicket:message key="fileSystemBlockSize"/></label>
+			<input id="fileSystemBlockSize" wicket:id="fileSystemBlockSize" type="text" class="text" />
+			</li>
+			<li>
+			<label for="layout"><wicket:message key="fileSystemLayout"/></label>
+			<select class="select" id="layout" wicket:id="fileSystemLayout"/>
+			</li>
+			</ul>
+		</fieldset>
+	</wicket:panel>
+</body>
+</html>

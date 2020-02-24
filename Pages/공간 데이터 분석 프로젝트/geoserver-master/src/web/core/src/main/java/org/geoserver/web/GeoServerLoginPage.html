@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/" xml:lang="en" lang="en">
+<body>
+  <wicket:extend>
+    <div class="page-pane button-group">
+      <span wicket:id="loginforms">
+      	<form style="display: inline-block;" wicket:id="loginform" method="post" action="../j_spring_security_check">
+      		<button class="positive icon" type="submit">
+      			<div><img src="#" wicket:id="link.icon"/><!-- span wicket:id="link.label"></span --></div>
+      		</button>
+	        <script type="text/javascript">
+	            $('input, textarea').placeholder();
+	        </script>	      		
+      	</form>
+      </span>
+
+    </div>
+    </wicket:extend>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<html xmlns:wicket="http://wicket.apache.org/">
+<head></head>
+<body>
+<wicket:extend>
+  <form wicket:id="form">
+  <ul>
+   <li>
+    <fieldset>
+      <ul>
+        <li>
+          <label><wicket:message key="workspace">Workspace and Namespace</wicket:message></label>
+          <select wicket:id="workspace" style="width: 260px;"></select>
+        </li>
+        <li>
+          <label><wicket:message key="store">Store</wicket:message></label>
+          <select wicket:id="store" style="width: 260px;"></select>
+        </li>
+        <li>
+          <label><wicket:message key="resourceAndLayer">Resource and Layer</wicket:message></label>
+          <select wicket:id="resourceAndLayer" style="width: 260px;"></select>
+        </li>
+        <li>
+          <label><wicket:message key="duplicateCount"># of times to duplicate the selected CatalogInfo</wicket:message></label>
+          <input type="text" class="text" wicket:id="duplicateCount" style="width: 260px;"/>
+        </li>
+        <li>
+          <label><wicket:message key="sufix">Sufix to append to the resource name (plus the count)</wicket:message></label>
+          <input type="text" class="text" wicket:id="sufix" style="width: 260px;"/>
+        </li>
+        <li class="choiceItem">
+          <input type="checkbox" wicket:id="recursive" size="6" /> 
+          <label for="recursive">
+            <wicket:message key="recursive">recursive</wicket:message>
+          </label>
+        </li>
+      </ul>
+    </fieldset>
+   </li>
+   <li>
+    <div class="button-group selfclear">
+       <a href="#" wicket:id="submit"><wicket:message key="submit">Start</wicket:message></a>
+       <a href="#" wicket:id="cancel"><wicket:message key="cancel">Cancel</wicket:message></a>
+       <span wicket:id="progress"></span>
+    </div>
+   </li>
+  </ul>
+  </form>
+</wicket:extend>
+</body>
+</html>

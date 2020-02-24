@@ -1,0 +1,22 @@
+<project>
+
+  <parent>
+    <groupId>org.geoserver</groupId>
+    <artifactId>extension</artifactId>
+    <version>2.17-SNAPSHOT</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.geoserver.extension</groupId>
+  <artifactId>gs-charts</artifactId>
+  <packaging>jar</packaging>
+  <name>Chart external graphics support</name>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>org.geotools</groupId>
+      <artifactId>gt-charts</artifactId>
+    </dependency>
+  </dependencies>
+</project>

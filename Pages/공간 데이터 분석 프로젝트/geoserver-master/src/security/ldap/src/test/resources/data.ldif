@@ -1,0 +1,77 @@
+version: 1
+dn: dc=example,dc=com
+objectClass: domain
+objectClass: top
+dc: example
+
+dn: ou=People,dc=example,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: People
+description: Container for user entries
+
+dn: ou=Groups,dc=example,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: Groups
+
+dn: cn=admin,ou=Groups,dc=example,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: admin
+member: cn=admin
+
+
+dn: uid=admin,ou=People,dc=example,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+givenName: admin
+sn: admin
+uid: admin
+cn: uid=admin,ou=People,dc=example,dc=com
+userPassword: {SHA}0DPiKuNIrrVmD8IUCuw1hQxNqZc=
+telephoneNumber: 1
+
+dn: cn=other,ou=Groups,dc=example,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: other
+member: cn=admin
+member: cn=other
+
+
+dn: uid=other,ou=People,dc=example,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+givenName: other
+sn: other
+uid: other
+cn: uid=other,ou=People,dc=example,dc=com
+userPassword: {SHA}0JQeaNqPOBUf+Gph/Fn3xc+fyqI=
+telephoneNumber: 2
+
+dn: cn=extra,ou=Groups,dc=example,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: extra
+member: cn=extra
+member: cn=nested
+
+dn: uid=nestedUser,ou=People,dc=example,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+givenName: nestedUser
+sn: nestedUser
+uid: nestedUser
+cn: uid=nestedUser,ou=People,dc=example,dc=com
+userPassword: {SHA}0JQeaNqPOBUf+Gph/Fn3xc+fyqI=
+telephoneNumber: 777
+
+dn: cn=nested,ou=Groups,dc=example,dc=com
+objectClass: top
+objectClass: groupOfNames
+cn: nested
+member: cn=nestedUser
+
+
+

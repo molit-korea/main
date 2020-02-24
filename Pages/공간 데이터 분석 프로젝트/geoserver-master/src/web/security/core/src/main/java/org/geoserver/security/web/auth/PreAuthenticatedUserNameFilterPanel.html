@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:wicket="http://wicket.apache.org/">
+<body>
+<wicket:head>
+<style type="text/css">
+  ul.horizontal div {
+    display:inline;
+  }
+</style>
+</wicket:head>
+<wicket:extend>
+    <li>
+       <wicket:child></wicket:child>
+    </li>                  
+      <li>
+        <fieldset>
+        <legend>
+		  <span><wicket:message key="roleSource"></wicket:message></span>
+		   <a href="#" wicket:id="roleSourceHelp" class="help-link"></a>
+		 </legend>
+        <ul id="roleSource" class="horizontal">          		 		  	          
+           <li><select wicket:id="roleSource"></select></li>
+	      <li>
+	        <div wicket:id="container">
+	          <div wicket:id="panel"/>
+	        </div>
+	      </li>                 
+        </ul>  
+        </fieldset>
+      </li>
+</wicket:extend>
+</body>
+</html>

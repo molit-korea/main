@@ -1,0 +1,24 @@
+<assembly>
+  <id>wps-plugin</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <fileSets>
+    <fileSet>
+      <directory>release/target/dependency</directory>
+      <outputDirectory></outputDirectory>
+      <includes>
+        <include>gs-wps*</include>
+        <include>gs-web-wps*</include>
+        <include>gt-process-geometry*</include>
+        <include>gt-xsd-wps*</include>
+        <include>net.opengis.wps*</include>
+        <include>serializer*</include>
+      </includes>
+      <excludes>
+        <exclude>gs-wps-cluster-hazelcast*</exclude>
+      </excludes>
+    </fileSet>
+  </fileSets>
+</assembly>

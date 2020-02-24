@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<wicket:head>
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title wicket:id="pageTitle">GeoServer</title>
+    <link href="#" rel="shortcut icon" wicket:id="faviconLink"/>
+	<wicket:link>
+      <link rel="stylesheet" href="css/blueprint/screen.css" type="text/css" media="screen, projection" />
+      </wicket:link>
+      <wicket:link>
+      <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print" />
+      </wicket:link>
+      <wicket:link> 
+	  <link rel="stylesheet" href="css/geoserver.css" type="text/css" media="screen, projection" />
+	  </wicket:link>
+      <!--[if IE]>
+      <wicket:link>
+        <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection" />
+        </wicket:link>
+      <![endif]-->
+      <wicket:link>
+      <script type="text/javascript" src="js/jquery.placeholder.js"></script>
+      </wicket:link>
+    <wicket:link>
+        <script type="text/javascript" src="js/jquery.fullscreen.js"></script>
+    </wicket:link>
+	</wicket:head>
+<body>
+  <div id="header">
+    <div class="wrap">
+      <h2><a wicket:id="home" class="pngfix" href="#"><span wicket:id="label">GeoServer 2.0</span></a></h2>
+      <div class="button-group selfclear">
+	      <span wicket:id="loginforms">
+	      	<form style="display: inline-block;" wicket:id="loginform" method="post" action="../j_spring_security_check">
+	      		<span wicket:id="login.include"></span>
+	      		<button class="positive icon" type="submit">
+	      			<div><img src="#" wicket:id="link.icon"/><span wicket:id="link.label"></span></div>
+	      		</button>
+		        <script type="text/javascript">
+		            $('input, textarea').placeholder();
+		        </script>	      		
+	      	</form>
+	      </span>
+	      
+	      <span wicket:id="loggedinasform" class="username"><wicket:message key="loggedInAs">Logged in as</wicket:message> <span wicket:id="loggedInUsername">User von Testenheimer</span>.</span>
+	      <span wicket:id="logoutforms">
+	      	<form style="display: inline-block;" wicket:id="logoutform" method="post" action="j_spring_security_logout">
+	      		<button class="positive icon" type="submit">
+	      			<div><img src="#" wicket:id="link.icon"/><span wicket:id="link.label"></span></div>
+	      		</button>
+	      	</form>		      
+	      </span>
+      </div>
+    </div><!-- /.wrap -->
+  </div><!-- /#header -->
+  <div id="main">
+    <div class="wrap selfclear">
+    <div id="sidebar">
+      <div wicket:id="nodeIdContainer"><center wicket:id="nodeId">192.168.1.4</center></div>
+      <ul id="navigation">
+        <li class="navigation-tab" wicket:id="category">
+          <div class="navigation-tab-header">
+            <span wicket:id="category.header">[Category Header]</span>
+          </div>
+          <ul class="navigation-tab-content plain">
+            <li class="nav-administer-service" wicket:id="category.links">
+              <a wicket:id="link">
+                <img src="#" wicket:id="link.icon"/><span wicket:id="link.label"></span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="navigation-tab" wicket:id="standalone">
+          <div class="navigation-tab-single">
+             <a wicket:id="link" href="#"><span wicket:id="link.label">[Link]</span></a>
+          </div>
+        </li>
+      </ul>
+      <div class="devtoolbar" wicket:id="devButtons" title="Developer helper actions. This bar must not be available in releases"></div>
+    </div><!-- /#sidebar -->
+    <div id="page" class="selfclear">
+      <div class="page-header">
+        <div id="topFeedback" wicket:id="topFeedback"></div>
+        <h1 wicket:id="gbpTitle" id="header-title"></h1>
+        <p wicket:id="gbpDescription" id="header-description"></p>
+        <div wicket:id="headerPanel" class="header-panel"></div>
+      </div>
+        
+      <div class="page-pane selfclear" id="page-pane">
+        <wicket:child></wicket:child>
+      </div>
+      <div class="page-footer">
+        <div id="bottomFeedback" wicket:id="bottomFeedback"></div>
+      </div>
+    </div><!-- /#page -->
+    </div><!-- /.wrap> -->
+  </div><!-- /#main -->
+  <div id="ajaxFeedback" style="display: none">
+    <img alt="Loading..." wicket:id="ajaxFeedbackImage"/>
+  </div>
+</body>
+</html>
