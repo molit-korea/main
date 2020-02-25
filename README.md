@@ -31,7 +31,7 @@
 
 | 팀명    | 인원수| 상훈 | 내용 | 화면 |
 |---------|-------|------|-----|------------|
-| Knock Knock | 서강석 외 총 3명 | 국토부장관상 | 데이터마이닝을 통하여 합리적 주거지 선정 방안 |       |
+| Knock Knock | 서강석 외 총 3명 | 국토부장관상 | 데이터마이닝을 통하여 합리적 주거지 선정 방안 | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2018%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2018_molit_knockknock-master/knockknock.png" width="200">      |
 | 데이터브라더스 | 명완식 외 총 5명 | 국토연구원장상 | 인구이동, 부동산 거래 및 담합지역 예측 기반 정책 제안 | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2018%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2018_molit_DataBrothers-master/DataBrothers.png" width="200">      |
 | Ultra Violet | 최홍범 외 총 4명 | 교통안전공단 이사장상 | 도로 분석 및 프로파일링 모델 설계를 이용한 교통사고 예방 |      |
 | Data Runners | 성창현 외 총 4명 | 한국교통연구원장상 | 도로 흐름 영향 분석 및 개선 방안 도출(버스 승하차, 신호 연동 등) | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2018%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2018_molit_dataRunners-master/dataRunners.png" width="200">     |
