@@ -18,7 +18,7 @@
 |:------:|:----:|:----:|:----:|:----:|
 | 최적화맥스: 분노의 도로 | 이준혁 외 총 5명 | 국토부장관상 | 교통 흐름의 동적 시각화 및 <br>인공지능 딥러닝을 이용한 예측 |        |
 | Gentri Hackers | 박민제 외 총 4명 | 국토연구원장상 | 젠트리피케이션 발생 원인 및<br>지역 예측을 통한 맞춤형 정책 <br>제안 |        |
-| [황금마티즈](https://github.com/fsinc2020/main/tree/master/Pages/2017%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/molit_HAB-master) | 김시온 외 총 5명 | 교통안전공단 이사장상 | DTG(전자기록계)의 정보와 교통<br>사고 정보를 Spark엔진으로 분석<br>하고 실제 승객의 피드백을 통해<br>운전 안전도 향상 | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2017%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/molit_HAB-master/%ED%99%A9%EA%B8%88%EB%A7%88%ED%8B%B0%EC%A6%88_molit_HAB.png" width="200" target="new">       |
+| [황금마티즈](https://github.com/fsinc2020/main/tree/master/Pages/2017%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/molit_HAB-master) | 김시온 외 총 5명 | 교통안전공단 이사장상 | DTG(전자기록계)의 정보와 교통<br>사고 정보를 Spark엔진으로 분석<br>하고 실제 승객의 피드백을 통해<br>운전 안전도 향상 | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2017%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/molit_HAB-master/%ED%99%A9%EA%B8%88%EB%A7%88%ED%8B%B0%EC%A6%88_molit_HAB.png" width="150" target="new">       |
 | 도구스테 | 오진영 외 총 2명 | 한국교통연구원장상 | DTG 데이터를 활용한 광역 <br>시내버스 개선 노선 도출 |        |
 | 미디어맵 | 이하늘 외 총 5명 | 국토연구원장상 | 미디어 기반 상권 분석을 통하여 <br>미래 상권과 젠트리피케이션 분석 |        |
 | 참가팀 1 |  |  |  |       |
