@@ -15,7 +15,7 @@
 ### 2017 국토교통 빅데이터 해커톤 참가작
 
 | 팀명    | 인원수| 상훈 | 내용 | 화면 |
-|-----------------|----------------|------------------------------|-----|------------|
+|:---- --:|:----:|:----:|:----:|:----:|
 | 최적화맥스: 분노의 도로 | 이준혁 외 총 5명 | 국토부장관상 | 교통 흐름의 동적 시각화 및<br>인공지능 딥러닝을 이용한 예측 |        |
 | Gentri Hackers | 박민제 외 총 4명 | 국토연구원장상 | 젠트리피케이션 발생 원인 및<br>지역 예측을 통한 맞춤형 정책 제안 |        |
 | [황금마티즈](https://github.com/fsinc2020/main/tree/master/Pages/2017%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/molit_HAB-master) | 김시온 외 총 5명 | 교통안전공단 이사장상 | DTG(전자기록계)의 정보와<br>교통사고 정보를 Spark엔진으로 분석하고<br>실제 승객의 피드백을 통해 운전 안전도 향상 | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2017%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/molit_HAB-master/%ED%99%A9%EA%B8%88%EB%A7%88%ED%8B%B0%EC%A6%88_molit_HAB.png" width="200" target="new">       |
@@ -30,7 +30,7 @@
 ### 2018 국토교통 빅데이터 해커톤 참가작
 
 | 팀명    | 인원수| 상훈 | 내용 | 화면 |
-|---------|-------|------|-----|------------|
+|:---- --:|:----:|:----:|:----:|:----:|
 | [Knock Knock](https://github.com/fsinc2020/main/tree/master/Pages/2018%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2018_molit_knockknock-master) | 서강석 외 총 3명 | 국토부장관상 | 데이터마이닝을 통하여 합리적 주거지 선정 방안 | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2018%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2018_molit_knockknock-master/knockknock.png" width="200" target="new">      |
 | [데이터브라더스](https://github.com/fsinc2020/main/tree/master/Pages/2018%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2018_molit_DataBrothers-master) | 명완식 외 총 5명 | 국토연구원장상 | 인구이동, 부동산 거래 및 담합지역 예측 기반 정책 제안 | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2018%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2018_molit_DataBrothers-master/DataBrothers.png" width="200" target="new">      |
 | [Ultra Violet](https://github.com/fsinc2020/main/tree/master/Pages/2018%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2018_molit_kyocharo-master) | 최홍범 외 총 4명 | 교통안전공단 이사장상 | 도로 분석 및 프로파일링 모델 설계를 이용한 교통사고 예방 | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2018%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2018_molit_kyocharo-master/ultraviolet_kyocharo.png" width="200" target="new">     |
@@ -45,7 +45,7 @@
 ### 2019 국토교통 빅데이터 해커톤 참가작
 
 | 팀명    | 인원수| 상훈 | 내용 | 화면 |
-|----------------|----------------|-------------|-----|------------|
+|:---- --:|:----:|:----:|:----:|:----:|
 | [해피스테이](https://github.com/fsinc2020/main/tree/master/Pages/2019%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2019_molit_HappyStay-master) | 이창훈 외 총 4명 | 국토부장관상 | 자녀가 독립한 중장년 부부 가구와 보호종료 청소년을 이어주는 한국형 홈스테이 플랫폼으로서 보호종료 청소년의 주거 안정을 통한 충분한 자립 준비 기간 제공 | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2019%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2019_molit_HappyStay-master/HappyStay.png" width="200"> |
 | [공일공일랩](https://github.com/fsinc2020/main/tree/master/Pages/2019%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2019_molit_0101lab-master) | 박현 외 총 5명 |  | 2차 교통사고 예방을 위한 스마트폰 App 및 IoT 사고 안내 사인물 | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2019%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2019_molit_0101lab-master/0101lab.png" width="2000"> |
 | [어벤저스](https://github.com/fsinc2020/main/tree/master/Pages/2019%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2019_molit_Avengers-master) | 김지미 외 총 5명 |  | 교통 정체 상황, 날씨 및 미세먼지, 퇴근 후 일정 등을 토대로 도로교통정보와 출근길 행동 패턴, 개인화 데이터를 조합하여 다양한 이동 수단과 경로를 추천하는 통근길 도우미 App | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2019%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2019_molit_Avengers-master/Avengers.png" width="200"> |
