@@ -56,7 +56,7 @@
     <td>팀명</td> <td>인원수</td> <td>상훈</td> <td>내용</td> <td>화면</td>  
   </tr>
   <tr>
-    <td>[포르투나](https://github.com/fsinc2020/main/tree/master/Pages/2019%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2019_molit_Fortuna-master)</td> 
+    <td>포르투나</td> 
     <td>황세희 외 총 3명</td> 
     <td></td> 
     <td>고속도로 세부 교통량 현황 데이터와 카카오 내비의 빅데이터를 이용하여 인기있는 여행지 추천과 작년 지역별 월 구간 교통량을 비교하여 교통이 혼잡 예상 지역을 표시해주어 쾌적한 여행을 돕는 어플리케이션</td> 
