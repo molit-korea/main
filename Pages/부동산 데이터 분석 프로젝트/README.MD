@@ -1,5 +1,5 @@
 # 부동산 데이터 분석 프로젝트
-## [RealEstate_BigData_Analysis_Project](https://github.com/fsinc2020/main/tree/master/Pages/%EB%B6%80%EB%8F%99%EC%82%B0%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/RealEstate_BigData_Analysis_Project-master)
+## [RealEstate_BigData_Analysis_Project](/Pages/부동산%20데이터%20분석%20프로젝트/RealEstate_BigData_Analysis_Project-master)
 - 국토교통부에서 제공하는 아파트/오피스텔 실거래가 빅데이터를 활용한 분석 프로젝트 (https://github.com/ddolsoon/RealEstate_BigData_Analysis_Project)
 
 ### Step
@@ -84,7 +84,7 @@ node app.js (서버 실행)
 - 히스토그램을 통한 아파트 층수별 거래수 
 ![image](https://user-images.githubusercontent.com/25413011/41417204-a1547bb2-7027-11e8-9fba-430754c58a63.png)
 
-## [Budongsan](https://github.com/fsinc2020/main/tree/master/Pages/%EB%B6%80%EB%8F%99%EC%82%B0%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/budongsan)
+## [Budongsan](/Pages/부동산%20데이터%20분석%20프로젝트/budongsan)
 
 - https://github.com/keepcosmos/budongsan
 - **현재 데이터는 2016년까지만 제공됩니다. http://rtdown.molit.go.kr/download/downloadMainList.do**
@@ -156,10 +156,10 @@ molit.rt.get("apt", "서울특별시", colnames.locale="ko")
   * 실거래가격지수 통계 조회 서비스
   * 아파트 실거래 가격 지수 조회 서비스
 
-## [《파이썬을 활용한 부동산 데이터 분석》 예제 코드](https://github.com/fsinc2020/main/tree/master/Pages/%EB%B6%80%EB%8F%99%EC%82%B0%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/python-real-estate-master)
+## [《파이썬을 활용한 부동산 데이터 분석》 예제 코드](/Pages/부동산%20데이터%20분석%20프로젝트/python-real-estate-master)
 - https://github.com/wikibook/python-real-estate
 
-## [View동산](https://github.com/fsinc2020/main/tree/master/Pages/%EB%B6%80%EB%8F%99%EC%82%B0%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/realestate-server-master)
+## [View동산](/Pages/부동산%20데이터%20분석%20프로젝트/realestate-server-master)
 
 ### 부동산 시세 변동 확인 & 지역 커뮤니티 서비스
 - https://github.com/ParkChunSo/realestate-server
@@ -168,12 +168,12 @@ molit.rt.get("apt", "서울특별시", colnames.locale="ko")
 원하는 지역의 부동산 시세 변동을 확인하고 지역별 커뮤니티를 활용하여 정보를 공유하는 웹 페이지 입니다.
 
 ### 시스템 구성도
-![screenshot_1](https://github.com/fsinc2020/main/blob/master/Pages/%EB%B6%80%EB%8F%99%EC%82%B0%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/realestate-server-master/image/system.PNG)
+![screenshot_1](/Pages/부동산%20데이터%20분석%20프로젝트/realestate-server-master/image/system.PNG)
 
 ### 실행 화면
-![screenshot_2](https://github.com/fsinc2020/main/blob/master/Pages/%EB%B6%80%EB%8F%99%EC%82%B0%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/realestate-server-master/image/chart_page.PNG)
-![screenshot_3](https://github.com/fsinc2020/main/blob/master/Pages/%EB%B6%80%EB%8F%99%EC%82%B0%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/realestate-server-master/image/search_page.PNG)
-![screenshot_4](https://github.com/fsinc2020/main/blob/master/Pages/%EB%B6%80%EB%8F%99%EC%82%B0%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/realestate-server-master/image/community_page.PNG)
+![screenshot_2](/Pages/부동산%20데이터%20분석%20프로젝트/realestate-server-master/image/chart_page.PNG)
+![screenshot_3](/Pages/부동산%20데이터%20분석%20프로젝트/realestate-server-master/image/search_page.PNG)
+![screenshot_4](/Pages/부동산%20데이터%20분석%20프로젝트/realestate-server-master/image/community_page.PNG)
 
 ### 구현 사항
 
