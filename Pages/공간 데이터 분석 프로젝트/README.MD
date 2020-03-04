@@ -1,7 +1,8 @@
 ﻿# 공간 데이터 분석 프로젝트
 
-## 대한민국 행정동 경계(admdongkor)
+## [대한민국 행정동 경계(admdongkor)](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B3%B5%EA%B0%84%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/admdongkor-master)
 
+- https://github.com/vuski/admdongkor
 - 저작권 관련 사항은 본 문서의 끝부분에 기술하였으니 참고하시기 바랍니다.  
 
 ### 대한민국 행정동 경계 파일입니다.
