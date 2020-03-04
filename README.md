@@ -89,13 +89,13 @@
 - [자동 시각화 시스템(AVS)](https://avs.auto/) (https://avs.auto/)
 
 ### [부동산 데이터 분석 프로젝트](/Pages/부동산%20데이터%20분석%20프로젝트)
-- https://github.com/ddolsoon/RealEstate_BigData_Analysis_Project
+- [국토교통부에서 제공하는 아파트/오피스텔 실거래가 빅데이터를 활용한 분석 프로젝트](/Pages/부동산%20데이터%20분석%20프로젝트/RealEstate_BigData_Analysis_Project-master) (https://github.com/ddolsoon/RealEstate_BigData_Analysis_Project)
 
-- https://github.com/keepcosmos/budongsan
+- [국토교통부(molit.go.kr)와 한국 감정원에서 제공하는 아파트, 단독/다가구, 연립/다세대 주택 실거래 정보 분석을 위한 dataset과 함수](/Pages/부동산%20데이터%20분석%20프로젝트/budongsan) (https://github.com/keepcosmos/budongsan)
 
-- https://github.com/wikibook/python-real-estate
+- [《파이썬을 활용한 부동산 데이터 분석》 예제 코드](/Pages/부동산%20데이터%20분석%20프로젝트/python-real-estate-master) (https://github.com/wikibook/python-real-estate)
 
-- https://github.com/ParkChunSo/realestate-server
+- [View동산 - 부동산 시세 변동 확인 & 지역 커뮤니티 서비스](/Pages/부동산%20데이터%20분석%20프로젝트/realestate-server-master) (https://github.com/ParkChunSo/realestate-server)
 
 ### [주요 공공 데이터 찾기](/Pages/주요%20공공%20데이터%20찾기)
 - 한국도로공사 고속도로 공공데이터 포털 (http://data.ex.co.kr/)
