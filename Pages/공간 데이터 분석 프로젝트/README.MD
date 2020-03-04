@@ -208,8 +208,7 @@
 - 오픈플랫폼의 오픈 API 서비스는 국가 공간정보의 개방, 공유, 참여를 통해 공간정보의 자율적이고 창조적인 다양한 애플리케이션을 개발할 수 있도록 기술과 서비스를 제공합니다.
 
 
-## <img src="geoserver-master/doc/en/themes/geoserver/static/GeoServer_500.png" width="353" target="_blank" rel="noopener">
-[![텍스트](geoserver-master/doc/en/themes/geoserver/static/GeoServer_500.png width="353" target="_blank" rel="noopener")](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B3%B5%EA%B0%84%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/geoserver-master)
+## [![텍스트](geoserver-master/doc/en/themes/geoserver/static/GeoServer_500.png)](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B3%B5%EA%B0%84%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/geoserver-master)
 
 [![Gitter](https://badges.gitter.im/geoserver/geoserver.svg)](https://gitter.im/geoserver/geoserver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
