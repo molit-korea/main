@@ -100,15 +100,14 @@
 ### 주요 공공 데이터 찾기
 - 한국도로공사 고속도로 공공데이터 포털 (http://data.ex.co.kr/)
 - NSDI 국가공간정보포털 (http://www.nsdi.go.kr/)
-- 건축물데이터 개방 시스템 http://open.eais.go.kr/ 
-- 교통DB(KTDB) https://www.ktdb.go.kr/ 
-- 지능형교통체계관리시스템 표준노드링크 http://nodelink.its.go.kr/data/data01.aspx 
-- 교통데이터거래소 https://www.diamond-e.kr/ 
+- 건축물데이터 개방 시스템 (http://open.eais.go.kr/)
+- 교통DB(KTDB) (https://www.ktdb.go.kr/) 
+- 지능형교통체계관리시스템 표준노드링크 (http://nodelink.its.go.kr/data/data01.aspx) 
+- 교통데이터거래소 (https://www.diamond-e.kr/) 
 - 공공데이터 포털 (https://www.data.go.kr)
 - 국토교통부 실거래가 공개시스템 (https://rt.molit.go.kr)
 - 서울 열린데이터광장 (https://data.seoul.go.kr/) 
 - 서울특별시 서울부동산정보광장 (http://land.seoul.go.kr/land/)
-- KB부동산 (https://onland.kbstar.com/quics?page=okbland)
 - KOSIS 국가통계포털 주제별통계 (http://kosis.kr/statisticsList/statisticsListIndex.do?menuId=M_01_01&vwcd=MT_ZTITLE&parmTabId=M_01_01)
 - 통계청 MDIS 마이크로데이터 통합 서비스 (https://mdis.kostat.go.kr/)
 - 온나라부동산정보 (http://www.onnara.go.kr)
