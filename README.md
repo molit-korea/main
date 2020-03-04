@@ -109,7 +109,7 @@ https://avs.auto/
 - 서울 열린데이터광장 (https://data.seoul.go.kr/) 
 - 서울특별시 서울부동산정보광장 (http://land.seoul.go.kr/land/)
 - KB부동산 (https://onland.kbstar.com/quics?page=okbland)
-- KOSIS 국가통계포털 주제별통계 (http://kosis.kr/statisticsList/statisticsListIndex.do?menuId=M_01_01&vwcd=MT_ZTITLE&parmTabId=M_01_01#SubCont)
+- KOSIS 국가통계포털 주제별통계 (http://kosis.kr/statisticsList/statisticsListIndex.do?menuId=M_01_01&vwcd=MT_ZTITLE&parmTabId=M_01_01)
 - 통계청 MDIS 마이크로데이터 통합 서비스 (https://mdis.kostat.go.kr/)
 - 온나라부동산정보 (http://www.onnara.go.kr)
 - 국토교통 통계누리 (http://stat.molit.go.kr)
