@@ -77,8 +77,8 @@
 - [DECK.GL](https://deck.gl/) (https://deck.gl/) 
 - [Uber의 데이터 시각화 도구 Kepler.gl](https://brunch.co.kr/@sonjoosik/8) - 손주식 (https://brunch.co.kr/@sonjoosik/8)
 
-### [교통 데이터 분석 프로젝트](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B5%90%ED%86%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)
-- https://github.com/vuski/seoulsubway 
+### [교통 데이터 분석 프로젝트](/main/tree/master/Pages/%EA%B5%90%ED%86%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)
+- [수도권 지하철 시간 거리 지도]() (https://github.com/vuski/seoulsubway)
 
 - https://www.vw-lab.com/44 
 
