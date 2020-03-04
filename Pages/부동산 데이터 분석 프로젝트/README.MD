@@ -1,7 +1,6 @@
 # 부동산 데이터 분석 프로젝트
 ## [RealEstate_BigData_Analysis_Project](https://github.com/fsinc2020/main/tree/master/Pages/%EB%B6%80%EB%8F%99%EC%82%B0%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/RealEstate_BigData_Analysis_Project-master)
-- https://github.com/ddolsoon/RealEstate_BigData_Analysis_Project
-국토교통부에서 제공하는 아파트/오피스텔 실거래가 빅데이터를 활용한 분석 프로젝트
+- 국토교통부에서 제공하는 아파트/오피스텔 실거래가 빅데이터를 활용한 분석 프로젝트 (https://github.com/ddolsoon/RealEstate_BigData_Analysis_Project)
 
 ### Step
 
