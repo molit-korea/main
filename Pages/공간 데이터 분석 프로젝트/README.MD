@@ -208,7 +208,7 @@
 - 브이월드 2D/3D 기반의 다양한 국가공간정보 및 검색기능을 외부에 웹 서비스(WebService) 형태로 공개하여 사용자가 원하는 지도 컨텐츠를 만들 수 있는 웹 개발 프로그램입니다.
 
 
-## [![텍스트](geoserver-master/doc/en/themes/geoserver/static/GeoServer_500.png)](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B3%B5%EA%B0%84%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/geoserver-master)
+## [![텍스트](geoserver-master/doc/en/themes/geoserver/static/GeoServer_500.png)](/Pages/공간%20데이터%20분석%20프로젝트/geoserver-master)
 
 [![Gitter](https://badges.gitter.im/geoserver/geoserver.svg)](https://gitter.im/geoserver/geoserver?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
