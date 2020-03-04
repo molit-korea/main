@@ -66,7 +66,7 @@
 ### [공간 데이터 분석 프로젝트](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B3%B5%EA%B0%84%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)
 - [대한민국 행정동 경계(admdongkor)](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B3%B5%EA%B0%84%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/admdongkor-master) https://github.com/vuski/admdongkor
 
-- [[VWorld 오픈 API]](http://www.vworld.kr/dev/v4api.do) http://www.vworld.kr/dev/v4api.do
+- [VWorld 오픈 API](http://www.vworld.kr/dev/v4api.do) http://www.vworld.kr/dev/v4api.do
 
 - [![텍스트](geoserver-master/doc/en/themes/geoserver/static/GeoServer_500.png)](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B3%B5%EA%B0%84%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/geoserver-master) https://github.com/geoserver/geoserver
 
