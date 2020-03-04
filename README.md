@@ -64,17 +64,17 @@
 | [TRANSFORMER](https://github.com/fsinc2020/main/tree/master/Pages/2019%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2019_molit_transformer-master) | 김도현 외<br>총 2명 |  | 공공데이터를 활용하여 수요자<br>에게 초기 입지 지역을 추천하고<br>민간사업자의 공급 확대를<br>유도하는 부동산 플랫폼 | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2019%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2019_molit_transformer-master/transformer.png" width="180" target="_blank" rel="noopener"> |
  
 ### [공간 데이터 분석 프로젝트](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B3%B5%EA%B0%84%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)
-- https://github.com/vuski/admdongkor
+- [대한민국 행정동 경계(admdongkor)](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B3%B5%EA%B0%84%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/admdongkor-master) https://github.com/vuski/admdongkor
 
-- http://www.vworld.kr/dev/v4api.do
+- [[VWorld 오픈 API]](http://www.vworld.kr/dev/v4api.do) http://www.vworld.kr/dev/v4api.do
 
-- https://github.com/geoserver/geoserver
+- [![텍스트](geoserver-master/doc/en/themes/geoserver/static/GeoServer_500.png)](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B3%B5%EA%B0%84%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/geoserver-master) https://github.com/geoserver/geoserver
 
-- https://openlayers.org/en/latest/examples/
+- [OpenLayers Examples](https://openlayers.org/en/latest/examples/) https://openlayers.org/en/latest/examples/
 
-- https://leafletjs.com/
+- [Leaflet](https://leafletjs.com/) https://leafletjs.com/
 
-- https://deck.gl/ (https://brunch.co.kr/@sonjoosik/8)
+- [DECK.GL](https://deck.gl/) https://deck.gl/ (https://brunch.co.kr/@sonjoosik/8)
 
 ### [교통 데이터 분석 프로젝트](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B5%90%ED%86%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)
 - https://github.com/vuski/seoulsubway 
