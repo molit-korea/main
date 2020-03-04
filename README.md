@@ -63,18 +63,7 @@
 | [safetyZONE](https://github.com/fsinc2020/main/tree/master/Pages/2019%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2019_molit_safezone-master) | 안승섭 외<br>총 5명 |  | 국내 이륜자동차의 사건/사고<br>발생 지역을 빅데이터 네트워크<br>분석기법을 이용하여 분석 | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2019%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2019_molit_safezone-master/safezone.png" width="180" target="_blank" rel="noopener"> |
 | [TRANSFORMER](https://github.com/fsinc2020/main/tree/master/Pages/2019%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2019_molit_transformer-master) | 김도현 외<br>총 2명 |  | 공공데이터를 활용하여 수요자<br>에게 초기 입지 지역을 추천하고<br>민간사업자의 공급 확대를<br>유도하는 부동산 플랫폼 | <img src="https://github.com/fsinc2020/main/blob/master/Pages/2019%20%EA%B5%AD%ED%86%A0%EA%B5%90%ED%86%B5%20%EB%B9%85%EB%8D%B0%EC%9D%B4%ED%84%B0%20%ED%95%B4%EC%BB%A4%ED%86%A4%20%EC%B0%B8%EA%B0%80%EC%9E%91/2019_molit_transformer-master/transformer.png" width="180" target="_blank" rel="noopener"> |
  
-
-### 부동산
-- https://github.com/ddolsoon/RealEstate_BigData_Analysis_Project
-
-- https://github.com/keepcosmos/budongsan
-
-- https://github.com/wikibook/python-real-estate
-
-- https://github.com/ParkChunSo/realestate-server
-
-
-### 공간
+### [공간 데이터 분석 프로젝트](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B3%B5%EA%B0%84%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)
 - https://github.com/vuski/admdongkor
 
 - http://www.vworld.kr/dev/v4api.do
@@ -87,7 +76,7 @@
 
 - https://deck.gl/ (https://brunch.co.kr/@sonjoosik/8)
 
-### 교통데이터
+### [교통 데이터 분석 프로젝트](https://github.com/fsinc2020/main/tree/master/Pages/%EA%B5%90%ED%86%B5%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)
 - https://github.com/vuski/seoulsubway 
 
 - https://www.vw-lab.com/44 
@@ -98,7 +87,16 @@
 
 - https://avs.auto/ 
 
-### 주요 공공 데이터 찾기
+### [부동산 데이터 분석 프로젝트](https://github.com/fsinc2020/main/tree/master/Pages/%EB%B6%80%EB%8F%99%EC%82%B0%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EB%B6%84%EC%84%9D%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8)
+- https://github.com/ddolsoon/RealEstate_BigData_Analysis_Project
+
+- https://github.com/keepcosmos/budongsan
+
+- https://github.com/wikibook/python-real-estate
+
+- https://github.com/ParkChunSo/realestate-server
+
+### [주요 공공 데이터 찾기](https://github.com/fsinc2020/main/tree/master/Pages/%EC%A3%BC%EC%9A%94%20%EA%B3%B5%EA%B3%B5%20%EB%8D%B0%EC%9D%B4%ED%84%B0%20%EC%B0%BE%EA%B8%B0)
 - 한국도로공사 고속도로 공공데이터 포털 (http://data.ex.co.kr/)
 - NSDI 국가공간정보포털 (http://www.nsdi.go.kr/)
 - 건축물데이터 개방 시스템 (http://open.eais.go.kr/)
