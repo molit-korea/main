@@ -4,23 +4,33 @@
 
 ## 목차
 
-- [2017 국토교통 빅데이터 해커톤 참가작](/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작)
-- [2018 국토교통 빅데이터 해커톤 참가작](/Pages/2018%20국토교통%20빅데이터%20해커톤%20참가작)
 - [2019 국토교통 빅데이터 해커톤 참가작](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작)
+- [2018 국토교통 빅데이터 해커톤 참가작](/Pages/2018%20국토교통%20빅데이터%20해커톤%20참가작)
+- [2017 국토교통 빅데이터 해커톤 참가작](/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작)
 - [공간 데이터 분석 프로젝트](/Pages/공간%20데이터%20분석%20프로젝트)
 - [교통데이터 분석 프로젝트](/Pages/교통데이터%20분석%20프로젝트)
 - [부동산 데이터 분석 프로젝트](/Pages/부동산%20데이터%20분석%20프로젝트)
 - [주요 공공 데이터 찾기](/Pages/주요%20공공%20데이터%20찾기)
 
-### 2017 국토교통 빅데이터 해커톤 참가작
 
-| 팀명 | 인원수| 상훈 | 내용 | 화면 |
+### 2019 국토교통 빅데이터 해커톤 참가작
+
+| 팀명    | 인원수| 상훈 | 내용 | 화면 |
 |:------:|:----:|:----:|:----:|:----:|
-| [최적화맥스:<br>분노의 도로](/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_OptimizationMax) | 이준혁 외<br>총 5명 | 국토부장관상 | 교통 흐름의 동적 시각화<br>및 인공지능 딥러닝을<br>이용한 예측 | <img src="/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_OptimizationMax/OptimizationMax.png" width="180" target="_blank" rel="noopener"> |
-| [Gentri<br>Hackers](/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_GentriHackers) | 박민제 외<br>총 4명 | 국토연구원장상 | 젠트리피케이션 발생 원인 및 지역<br>예측을 통한 맞춤형 정책제안 | <img src="/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_GentriHackers/GentriHackers.png" width="180" target="_blank" rel="noopener"> |
-| [황금마티즈](/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_HAB-master) | 김시온 외<br>총 5명 | 교통안전공단<br>이사장상 | DTG(전자기록계)의 정보와<br>교통사고 정보를<br>Spark엔진으로 분석하고<br>실제 승객의 피드백을 통해<br>운전 안전도 향상 | <img src="/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_HAB-master/molit_HAB.png" width="180" target="_blank" rel="noopener"> |
-| [드구스테](/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_deguste) | 오영진 외<br>총 2명 | 한국교통연구원장상 | DTG 데이터를 활용한 광역<br>시내버스 개선 노선 도출 | <img src="/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_deguste/deguste.png" width="180" target="_blank" rel="noopener"> |
-| [미디어맵](/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_MediaMap) | 이하늘 외<br>총 5명 | 국토연구원장상 | 미디어 기반 상권 분석을<br>통하여 미래 상권과<br>젠트리피케이션 분석 | <img src="/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_MediaMap/MediaMap.png" width="180" target="_blank" rel="noopener"> |
+| [해피스테이](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_HappyStay-master) | 이창훈 외<br>총 4명 | 대상<br>(국토부장관상) | <b>정책문제해결(주거안정)</b><br>------------------------------<br>보호종료 청소년의 자립을<br>지원하기 위한 한국형 홈스테이<br>서비스 플랫폼 제안 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_HappyStay-master/HappyStay.png" width="180" target="_blank" rel="noopener"> |
+| [Data<br>Miner](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_data_miner-master) | 최진우 외<br>총 3명 | 최우수상<br>(한국감정원장상) | <b>정책문제해결(주거안정)</b><br>------------------------------<br>건축물 대장, 공시지가 정보 등을<br>활용하여 저소득 독거노인 가구<br>위한 공공주택 입지선정 제안 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_data_miner-master/data_miner.png" width="180" target="_blank" rel="noopener"> |
+| [DEV](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_dev-master) | 이동건 외<br>총 3명 | 최우수상<br>(교통안전공단<br>이사장상) | <b>정책문제해결(생활교통개선)</b><br>------------------------------<br>교통사고를 예방하기 위해, 딥러닝<br>기술을 활용,도로 상 위험요소<br>(싱크홀, 갈라짐 등) 실시간 식별 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_dev-master/dev.png" width="180" target="_blank" rel="noopener"> |
+| [어벤저스](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_Avengers-master) | 김지미 외<br>총 5명 | 우수상<br>(교통연구원장상) | <b>정책문제해결(생활교통개선)</b><br>------------------------------<br>기상상황, 출근길 도로 상황 등을<br>고려한 교통수단 추천 및<br>최적경로 안내 서비스 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_Avengers-master/Avengers.png" width="180" target="_blank" rel="noopener"> |
+| [Peoplus](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_Peoplus-master) | 박대종 외<br>총 5명 | 우수상<br>(국토교통<br>과학기술<br>진흥원장상) | <b>창업 아이디어 기획</b><br>------------------------------<br>시간단위 요금제 기반 근거리<br>전용 대리운전 서비스 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_Peoplus-master/Peoplus.png" width="180" target="_blank" rel="noopener"> |
+| [MAY](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_MAY-master) |  정중현 외<br>총 3명 | 우수상<br>(국토연구원장상) | <b>창업 아이디어 기획</b><br>------------------------------<br>출도착시간 등 대중교통 정보를<br>통합 제공하여, 사용자 맞춤형<br>여행경로‧수단을 제공하는 서비스 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_MAY-master/MAY.png" width="180" target="_blank" rel="noopener"> |
+| [0101Lab](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_0101lab-master) | 박현 외<br>총 5명 |  | 2차 교통사고 예방을 위한<br>스마트폰 App 및 IoT 사고 안내<br>사인물 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_0101lab-master/0101lab.png" width="180" target="_blank" rel="noopener"> |
+| [정체가뭐죠](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_delay-master) | 채경민 외<br>총 3명 |  | 공공데이터를 통한 서울외곽<br>순환고속도로 정체 해소 방안 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_delay-master/delay.png" width="180" target="_blank" rel="noopener"> |
+| [포르투나](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_Fortuna-master) | 황세희 외<br>총 3명 |  | 인기있는 여행지와 교통 혼잡 예상<br>지역을표시, 쾌적한 여행을 돕는<br>어플리케이션 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_Fortuna-master/Fortuna.png" width="180" target="_blank" rel="noopener"> |
+| [굿라이트](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_goodlight-master) |  |  | 근거리통신(하이패스)과 경광등을<br>이용한 긴급상황 알림 시스템 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_goodlight-master/goodlight.png" width="180" target="_blank" rel="noopener"> |
+| [Jugeo](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_jugeo-master) | 박철민 외<br>총 4명 |  | 한국형 RPR플랫폼 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_jugeo-master/jugeo.png" width="180" target="_blank" rel="noopener"> |
+| [Pick Me Up](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_pick-me-up-master) | 김형광 외<br>총 3명 |  | 공공데이터를 통한<br>주거지역 분석 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_pick-me-up-master/pick-me-up.png" width="180" target="_blank" rel="noopener"> |
+| [safetyZONE](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_safezone-master) | 안승섭 외<br>총 5명 |  | 국내 이륜자동차의 사건/사고<br>발생 지역을 빅데이터 네트워크<br>분석기법을 이용하여 분석 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_safezone-master/safezone.png" width="180" target="_blank" rel="noopener"> |
+| [TRANSFORMER](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_transformer-master) | 김도현 외<br>총 2명 |  | 공공데이터를 활용하여 수요자<br>에게 초기 입지 지역을 추천하고<br>민간사업자의 공급 확대를<br>유도하는 부동산 플랫폼 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_transformer-master/transformer.png" width="180" target="_blank" rel="noopener"> |
 
 
 ### 2018 국토교통 빅데이터 해커톤 참가작
@@ -44,25 +54,18 @@
 | [데이타짜](/Pages/2018%20국토교통%20빅데이터%20해커톤%20참가작/2018_molit_hackathon-master) | 박준원 외<br>총 5명 |  | 개별차량 이동경로 데이터와<br>공공데이터를 활용하여 출근길<br>경로의 평균속도 예측 | <img src="/Pages/2018%20국토교통%20빅데이터%20해커톤%20참가작/2018_molit_hackathon-master/데이타짜.png" width="180" target="_blank" rel="noopener"> |
 | [Alchemist](/Pages/2018%20국토교통%20빅데이터%20해커톤%20참가작/Alchemist-master) | 서지원 외<br>총 4명 |  | 효율적인 주택시장을 위한<br>임대주택 최적 세대수 및 지역<br>도출 | <img src="/Pages/2018%20국토교통%20빅데이터%20해커톤%20참가작/Alchemist-master/Alchemist.png" width="180" target="_blank" rel="noopener"> |
 
-### 2019 국토교통 빅데이터 해커톤 참가작
 
-| 팀명    | 인원수| 상훈 | 내용 | 화면 |
+### 2017 국토교통 빅데이터 해커톤 참가작
+
+| 팀명 | 인원수| 상훈 | 내용 | 화면 |
 |:------:|:----:|:----:|:----:|:----:|
-| [해피스테이](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_HappyStay-master) | 이창훈 외<br>총 4명 | 대상<br>(국토부장관상) | <b>정책문제해결(주거안정)</b><br>------------------------------<br>보호종료 청소년의 자립을<br>지원하기 위한 한국형 홈스테이<br>서비스 플랫폼 제안 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_HappyStay-master/HappyStay.png" width="180" target="_blank" rel="noopener"> |
-| [Data<br>Miner](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_data_miner-master) | 최진우 외<br>총 3명 | 최우수상<br>(한국감정원장상) | <b>정책문제해결(주거안정)</b><br>------------------------------<br>건축물 대장, 공시지가 정보 등을<br>활용하여 저소득 독거노인 가구<br>위한 공공주택 입지선정 제안 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_data_miner-master/data_miner.png" width="180" target="_blank" rel="noopener"> |
-| [DEV](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_dev-master) | 이동건 외<br>총 3명 | 최우수상<br>(교통안전공단<br>이사장상) | <b>정책문제해결(생활교통개선)</b><br>------------------------------<br>교통사고를 예방하기 위해, 딥러닝<br>기술을 활용,도로 상 위험요소<br>(싱크홀, 갈라짐 등) 실시간 식별 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_dev-master/dev.png" width="180" target="_blank" rel="noopener"> |
-| [어벤저스](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_Avengers-master) | 김지미 외<br>총 5명 | 우수상<br>(교통연구원장상) | <b>정책문제해결(생활교통개선)</b><br>------------------------------<br>기상상황, 출근길 도로 상황 등을<br>고려한 교통수단 추천 및<br>최적경로 안내 서비스 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_Avengers-master/Avengers.png" width="180" target="_blank" rel="noopener"> |
-| [Peoplus](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_Peoplus-master) | 박대종 외<br>총 5명 | 우수상<br>(국토교통<br>과학기술<br>진흥원장상) | <b>창업 아이디어 기획</b><br>------------------------------<br>시간단위 요금제 기반 근거리<br>전용 대리운전 서비스 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_Peoplus-master/Peoplus.png" width="180" target="_blank" rel="noopener"> |
-| [MAY](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_MAY-master) |  정중현 외<br>총 3명 | 우수상<br>(국토연구원장상) | <b>창업 아이디어 기획</b><br>------------------------------<br>출도착시간 등 대중교통 정보를<br>통합 제공하여, 사용자 맞춤형<br>여행경로‧수단을 제공하는 서비스 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_MAY-master/MAY.png" width="180" target="_blank" rel="noopener"> |
-| [0101Lab](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_0101lab-master) | 박현 외<br>총 5명 |  | 2차 교통사고 예방을 위한<br>스마트폰 App 및 IoT 사고 안내<br>사인물 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_0101lab-master/0101lab.png" width="180" target="_blank" rel="noopener"> |
-| [정체가뭐죠](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_delay-master) | 채경민 외<br>총 3명 |  | 공공데이터를 통한 서울외곽<br>순환고속도로 정체 해소 방안 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_delay-master/delay.png" width="180" target="_blank" rel="noopener"> |
-| [포르투나](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_Fortuna-master) | 황세희 외<br>총 3명 |  | 인기있는 여행지와 교통 혼잡 예상<br>지역을표시, 쾌적한 여행을 돕는<br>어플리케이션 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_Fortuna-master/Fortuna.png" width="180" target="_blank" rel="noopener"> |
-| [굿라이트](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_goodlight-master) |  |  | 근거리통신(하이패스)과 경광등을<br>이용한 긴급상황 알림 시스템 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_goodlight-master/goodlight.png" width="180" target="_blank" rel="noopener"> |
-| [Jugeo](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_jugeo-master) | 박철민 외<br>총 4명 |  | 한국형 RPR플랫폼 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_jugeo-master/jugeo.png" width="180" target="_blank" rel="noopener"> |
-| [Pick Me Up](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_pick-me-up-master) | 김형광 외<br>총 3명 |  | 공공데이터를 통한<br>주거지역 분석 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_pick-me-up-master/pick-me-up.png" width="180" target="_blank" rel="noopener"> |
-| [safetyZONE](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_safezone-master) | 안승섭 외<br>총 5명 |  | 국내 이륜자동차의 사건/사고<br>발생 지역을 빅데이터 네트워크<br>분석기법을 이용하여 분석 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_safezone-master/safezone.png" width="180" target="_blank" rel="noopener"> |
-| [TRANSFORMER](/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_transformer-master) | 김도현 외<br>총 2명 |  | 공공데이터를 활용하여 수요자<br>에게 초기 입지 지역을 추천하고<br>민간사업자의 공급 확대를<br>유도하는 부동산 플랫폼 | <img src="/Pages/2019%20국토교통%20빅데이터%20해커톤%20참가작/2019_molit_transformer-master/transformer.png" width="180" target="_blank" rel="noopener"> |
- 
+| [최적화맥스:<br>분노의 도로](/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_OptimizationMax) | 이준혁 외<br>총 5명 | 국토부장관상 | 교통 흐름의 동적 시각화<br>및 인공지능 딥러닝을<br>이용한 예측 | <img src="/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_OptimizationMax/OptimizationMax.png" width="180" target="_blank" rel="noopener"> |
+| [Gentri<br>Hackers](/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_GentriHackers) | 박민제 외<br>총 4명 | 국토연구원장상 | 젠트리피케이션 발생 원인 및 지역<br>예측을 통한 맞춤형 정책제안 | <img src="/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_GentriHackers/GentriHackers.png" width="180" target="_blank" rel="noopener"> |
+| [황금마티즈](/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_HAB-master) | 김시온 외<br>총 5명 | 교통안전공단<br>이사장상 | DTG(전자기록계)의 정보와<br>교통사고 정보를<br>Spark엔진으로 분석하고<br>실제 승객의 피드백을 통해<br>운전 안전도 향상 | <img src="/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_HAB-master/molit_HAB.png" width="180" target="_blank" rel="noopener"> |
+| [드구스테](/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_deguste) | 오영진 외<br>총 2명 | 한국교통연구원장상 | DTG 데이터를 활용한 광역<br>시내버스 개선 노선 도출 | <img src="/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_deguste/deguste.png" width="180" target="_blank" rel="noopener"> |
+| [미디어맵](/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_MediaMap) | 이하늘 외<br>총 5명 | 국토연구원장상 | 미디어 기반 상권 분석을<br>통하여 미래 상권과<br>젠트리피케이션 분석 | <img src="/Pages/2017%20국토교통%20빅데이터%20해커톤%20참가작/molit_MediaMap/MediaMap.png" width="180" target="_blank" rel="noopener"> |
+
+
 ### [공간 데이터 분석 프로젝트](/Pages/공간%20데이터%20분석%20프로젝트)
 - [대한민국 행정동 경계](/Pages/공간%20데이터%20분석%20프로젝트/admdongkor-master) (https://github.com/vuski/admdongkor)
 
