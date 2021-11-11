@@ -20,7 +20,7 @@
 | 팀명 | 인원수| 상훈 | 내용 | 화면 |
 |:------:|:----:|:----:|:----:|:----:|
 | [고목나무와 매미](/Pages/2021%20국토교통%20빅데이터%20해커톤%20참가작/2021_molit_고목나무와매미-master) | 구하영외 4명| 대상 | 아침 샐러드, 이젠 지하철에서 Take-out 하세요 | <img src="/Pages/2021%20국토교통%20빅데이터%20해커톤%20참가작/2021_molit_고목나무와매미-master/고목나무와%20매미.PNG" width="180" target="_blank" rel="noopener"> |
-| [뛰뛰빵빵](/Pages/2021%20국토교통%20빅데이터%20해커톤%20참가작/2021_molit_뛰뛰빵빵-master) | 석민정외 3명| 우수상(한국도로공사 사장상)| 시켜줘, 명예 화물차 지킴이 | <img src="/Pages/2021%20국토교통%20빅데이터%20해커톤%20참가작/2021_molit_뛰뛰빵빵-master/뛰뛰빵빵.PNG" width="180" target="_blank" rel="noopener"> | 
+| [뛰뛰빵빵](/Pages/2021%20국토교통%20빅데이터%20해커톤%20참가작/2021_molit_뛰뛰빵빵-master) | 석민정외 3명| 우수상<br/>(한국도로공사<br/> 사장상)| 시켜줘, 명예 화물차 지킴이 | <img src="/Pages/2021%20국토교통%20빅데이터%20해커톤%20참가작/2021_molit_뛰뛰빵빵-master/뛰뛰빵빵.PNG" width="180" target="_blank" rel="noopener"> | 
 | [도향교!](/Pages/2021%20국토교통%20빅데이터%20해커톤%20참가작/2021_molit_도향교-master) | 박동재외 4명| 우수상(국토연구원 원장상)| “자동차야 미안,, 나 UAM으로 갈아탈래”: 도심 항공 모빌리티(UAM) 최적 입지 선정 | <img src="/Pages/2021%20국토교통%20빅데이터%20해커톤%20참가작/2021_molit_도향교-master/도향교.PNG" width="180" target="_blank" rel="noopener"> | 
 | [TAXIO](/Pages/2021%20국토교통%20빅데이터%20해커톤%20참가작/2021_molit_TAXIO-master ) | | 우수상(교통안전공단이사장상) | 택시 수요 분석을 통해 탄생한 '에코 스마트 택시 승차대'로 편안한 택시 서비스 제공 | <img src="/Pages/2021%20국토교통%20빅데이터%20해커톤%20참가작/2021_molit_TAXIO-master/TAXIO.PNG" width="180" target="_blank" rel="noopener"> | 
 | [E-craft](/Pages/2021%20국토교통%20빅데이터%20해커톤%20참가작/2021_molit_Ecraft-master) | 김수현외 2명| 우수상(한국공항공사 사장상)| 특명! 항공기 운영 효율화로 온실가스를 감축하라! | <img src="/Pages/2021%20국토교통%20빅데이터%20해커톤%20참가작/2021_molit_Ecraft-master/28.E-craft.PNG" width="180" target="_blank" rel="noopener"> |
