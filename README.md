@@ -16,14 +16,13 @@
 - [부동산 데이터 분석 프로젝트](/Pages/부동산%20데이터%20분석%20프로젝트)
 - [주요 공공 데이터 찾기](/Pages/주요%20공공%20데이터%20찾기)
 
-
-
+UAIN(UAM Inhauniv)
 
 ### 2024 국토교통 데이터활용 경진대회 참가작  
 
 | 팀명 | 인원수| 상훈 | 내용 | 화면 |
 |:------:|:----:|:----:|:----:|:----:|
-| [BALAW](/Pages/2024%20국토교통%20데이터활용%20경진대회%20참가작/2024_molit_BALAW/) | 1명| 대상<br/>(국토교통부<br/> 장관상) | 건축물 Open API를 활용한 매물 진단(관리) 서비스 및 부동산 특화 Chat Bot | <img src="/Pages//2024 국토교통 데이터활용 경진대회 참가작/2024_molit_BALAW/대상_국토교통부_BALAW.jpg" width="180" target="_blank" rel="noopener"> |
+| [바로(BALAW)](/Pages/2024%20국토교통%20데이터활용%20경진대회%20참가작/2024_molit_BALAW/) | 1명| 대상<br/>(국토교통부<br/> 장관상) | 건축물 Open API를 활용한 매물 진단(관리) 서비스 및 부동산 특화 Chat Bot | <img src="/Pages//2024 국토교통 데이터활용 경진대회 참가작/2024_molit_BALAW/대상_국토교통부_BALAW.jpg" width="180" target="_blank" rel="noopener"> |
 | [돌굴러가유](/Pages/2024%20국토교통%20데이터활용%20경진대회%20참가작/2024_molit_돌굴러가유/) | 3명| 우수상<br/>(한국도로공사<br/> 사장상)| 붕괴위험 급경사지 지정! 사고는 다른 곳에서? | <img src="/Pages/2024 국토교통 데이터활용 경진대회 참가작/2024_molit_돌굴러가유/우수상_한국도로공사_돌굴러가유.jpg" width="180" target="_blank" rel="noopener"> | 
 | [알투](/Pages/2024%20국토교통%20데이터활용%20경진대회%20참가작/2024_molit_알투/) | 3명| 우수상<br/>(한국교통연구원<br/> 원장상)| 버스 정류장 CCTV 이용 배회 치매노인 조기 탐지 및 보호 체계 제안 | <img src="/Pages/2024 국토교통 데이터활용 경진대회 참가작 국토교통 데이터활용 경진대회 참가작/2024_molit_알투/우수상_알투.jpg" width="180" target="_blank" rel="noopener"> | 
 | [EcoMove](/Pages/2024%20국토교통%20데이터활용%20경진대회%20참가작/2024_molit_EcoMove/) | 2명| 우수상<br/>(한국철도공사<br/>사장상) | EcoMove: K-Mass 연계 대중교통 특화 탄소중립포인터 서비스 | <img src="/Pages/2024 국토교통 데이터활용 경진대회 참가작/2024_molit_EcoMove/우수상_한국교통연구원_EcoMove.jpg" width="180" target="_blank" rel="noopener"> | 
